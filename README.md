@@ -1,4 +1,6 @@
 # OOP Project
+## Portals
+### Overview Document [Google Doc.](https://docs.google.com/document/d/1rJvQxmSkxv4T4oUTngxlk691nXjYVNZztQaE7XArPOI/edit?usp=sharing)
 ## Project timeline (subject to change)
 ### Wed 24 Jan:
 - **Design overview document for construction-plan evaluator due**
@@ -26,4 +28,3 @@
   - Report on what was done according to plan and outside the plan
   - Retrospect on what was done well, and what could have been better
 - **Possible extension: after the final exam period (no later than Wed 27 Mar)**
-Test

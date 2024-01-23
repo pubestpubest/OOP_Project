@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # OOP_Project
 =======
 asd

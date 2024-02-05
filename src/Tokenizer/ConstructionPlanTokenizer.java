@@ -18,7 +18,7 @@ public class ConstructionPlanTokenizer implements Tokenizer{
      */
     @Override
     public Token getNextToken() {
-        if(currentPosition <= tokens.size())
+        if(currentPosition < tokens.size())
             return tokens.get(currentPosition++);
         return null;
     }
@@ -46,7 +46,7 @@ public class ConstructionPlanTokenizer implements Tokenizer{
                 tokens.add(new Token(type, value)); //Deep copy
             }
         }
-        return null;
+        return tokens;
     }
     /**
      * Returns the type of the specified token.

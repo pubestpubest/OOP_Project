@@ -3,7 +3,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public static class Board {
+public class Board {
+    private Region[][] RegionArr ;
     private int PlayerNum;
     private int m;
     private int n;
@@ -42,17 +43,37 @@ public static class Board {
                     //set the value to the variable that we want
                     if(i == 1){
                         m = Integer.parseInt(value);
-                    }else if(i == 1){
-                        m = Integer.parseInt(value);
-                    }else if(i == 1){
-                        m = Integer.parseInt(value);
-                    }else if(i == 1){
-                        m = Integer.parseInt(value);
-                    }els
-
-
-
-
+                    }
+                    if(i == 2){
+                        n = Integer.parseInt(value);
+                    }
+                    if(i == 3){
+                        init_plan_min = Integer.parseInt(value);
+                    }
+                    if(i == 4){
+                        init_plan_sec = Integer.parseInt(value);
+                    }
+                    if(i == 5){
+                        init_budget = Integer.parseInt(value);
+                    }
+                    if(i == 6){
+                        init_center_dep = Integer.parseInt(value);
+                    }
+                    if(i == 7){
+                        plan_rev_min = Integer.parseInt(value);
+                    }
+                    if(i == 8){
+                        plan_rev_sec = Integer.parseInt(value);
+                    }
+                    if(i == 9){
+                        rev_cost = Integer.parseInt(value);
+                    }
+                    if(i == 10){
+                        max_dep = Integer.parseInt(value);
+                    }
+                    if(i == 11){
+                        interest_pct = Integer.parseInt(value);
+                    }
                 }
                 i++;
             }
@@ -60,5 +81,7 @@ public static class Board {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
 }

@@ -5,8 +5,14 @@ public class Main {
         String InputStream ="Lorem ipsum dolor sit amet, consectetur adipiscing";
         ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
         Token token;
-        while ((token = tokenizer.getNextToken()) != null) {
-            System.out.println(token);
-        }
+        token = tokenizer.consume();
+        System.out.println(token);
+        System.out.println(tokenizer.consume());
+        System.out.println(token);
+        System.out.println(tokenizer.consume());
+        System.out.println(token);
+        System.out.println(tokenizer.consume());
+        System.out.println(token);
+        System.out.println(tokenizer.consume());
     }
 }

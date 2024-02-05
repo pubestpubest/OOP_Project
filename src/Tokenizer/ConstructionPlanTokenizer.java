@@ -1,6 +1,7 @@
 package Tokenizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import Interfaces.*;
@@ -11,17 +12,35 @@ public class ConstructionPlanTokenizer implements Tokenizer{
         this.tokens = tokenizer(input);
         this.currentPosition = 0;
     }
-    /**
-     * Returns the next token in the input sequence.
-     *
-     * @return the next token in the input sequence, or null if no more tokens are available
-     */
     @Override
-    public Token getNextToken() {
-        if(currentPosition < tokens.size())
-            return tokens.get(currentPosition++);
-        return null;
+    public boolean hasNextToken() {
+        return currentPosition+1 < tokens.size();
     }
+    public void checkNextToken() {
+        if(!hasNextToken()) throw new NoSuchElementException("no more tokens");
+    }
+    @Override
+    public Token peek() {
+        checkNextToken();
+        return tokens.get(currentPosition+1);
+    }
+    @Override
+    public Token consume() {
+        checkNextToken();
+        return tokens.get(currentPosition++);
+    }
+    @Override
+    public void consume(TokenType type) {
+        checkNextToken();
+        if(peek().getType().equals(type))
+            currentPosition++;
+    }
+    @Override
+    public boolean peek(TokenType type) {
+        checkNextToken();
+        return (peek().getType()).equals(type);
+    }
+
     /**
      * Tokenizes a construction plan input string into a list of tokens.
      *

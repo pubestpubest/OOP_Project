@@ -67,6 +67,8 @@ public class ConstructionPlanTokenizer implements Tokenizer{
                 return TokenType.IDENTIFIER;
         }else if(tokenValue.matches("[-+*/%^]"))
             return TokenType.OPERATOR;
+        else if(tokenValue.matches("="))
+                return TokenType.ASSIGNMENT;
         else if(tokenValue.matches("\\d+"))
             return TokenType.NUMBER;
         else if(tokenValue.matches("[()]"))

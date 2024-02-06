@@ -2,6 +2,7 @@ package Tokenizer;
 public enum TokenType {
     IDENTIFIER,
     OPERATOR,
+    ASSIGNMENT,
     NUMBER,
     COMMENT,
     KEYWORD,

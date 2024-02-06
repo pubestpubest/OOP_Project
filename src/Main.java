@@ -2,17 +2,10 @@ import Tokenizer.ConstructionPlanTokenizer;
 import Tokenizer.Token;
 public class Main {
     public static void main(String[] args) {
-        String InputStream ="Lorem ipsum dolor sit amet, consectetur adipiscing";
+        String InputStream ="Lorem ipsum dolor+- sit amet, consectetur \n#adipiscing";
         ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
-        Token token;
-        token = tokenizer.consume();
-        System.out.println(token);
-        System.out.println(tokenizer.consume());
-        System.out.println(token);
-        System.out.println(tokenizer.consume());
-        System.out.println(token);
-        System.out.println(tokenizer.consume());
-        System.out.println(token);
-        System.out.println(tokenizer.consume());
+        for (Token token : tokenizer.getTokens()) {
+            System.out.println(token);
+        }
     }
 }

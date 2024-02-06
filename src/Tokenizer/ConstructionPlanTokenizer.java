@@ -5,42 +5,28 @@ import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import Interfaces.*;
+/**
+ * This class is responsible for tokenize the input stream and returns
+ * the result in a list of tokens
+ */
 public class ConstructionPlanTokenizer implements Tokenizer{
     private final List<Token> tokens;
-    private int currentPosition;
+    /**
+     * Construct a new tokenizer instance with the given string and
+     * tokenize the input stream
+     *
+     * @param input the input stream
+     */
     public ConstructionPlanTokenizer(String input) {
         this.tokens = tokenizer(input);
-        this.currentPosition = 0;
     }
-    @Override
-    public boolean hasNextToken() {
-        return currentPosition+1 < tokens.size();
+    /**
+     * Getter for tokens
+     * @return list of tokens
+     */
+    public List<Token> getTokens() {
+        return tokens;
     }
-    public void checkNextToken() {
-        if(!hasNextToken()) throw new NoSuchElementException("no more tokens");
-    }
-    @Override
-    public Token peek() {
-        checkNextToken();
-        return tokens.get(currentPosition+1);
-    }
-    @Override
-    public Token consume() {
-        checkNextToken();
-        return tokens.get(currentPosition++);
-    }
-    @Override
-    public void consume(TokenType type) {
-        checkNextToken();
-        if(peek().getType().equals(type))
-            currentPosition++;
-    }
-    @Override
-    public boolean peek(TokenType type) {
-        checkNextToken();
-        return (peek().getType()).equals(type);
-    }
-
     /**
      * Tokenizes a construction plan input string into a list of tokens.
      *
@@ -52,17 +38,17 @@ public class ConstructionPlanTokenizer implements Tokenizer{
         String[] lines = input.split("\n");
         for(String line : lines) {
             line = line.trim();
-            if(line.startsWith("#")||line.isEmpty()) continue;
+            if(line.isEmpty()) continue;
             /*
              * 1.[a-zA-Z_][a-zA-Z_0-9]* : Alphabet follow by optional underscore and more alphanumeric character
              * 2.\\d+ : One or more digits
              * 3.\\S : Any non-alphanumeric character
              */
-            Matcher matcher = Pattern.compile("([a-zA-Z_][a-zA-Z_0-9]*|\\d+|\\S)").matcher(line);
+            Matcher matcher = Pattern.compile("(^#.*$|[a-zA-Z_][a-zA-Z_0-9]*|\\d+|\\S)").matcher(line);
             while(matcher.find()) {
-                String value = matcher.group().toUpperCase();
+                String value = matcher.group();
                 TokenType type = getTokenType(value);
-                tokens.add(new Token(type, value)); //Deep copy
+                tokens.add(new Token(type, value));
             }
         }
         return tokens;

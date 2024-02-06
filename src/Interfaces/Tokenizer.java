@@ -2,10 +2,13 @@ package Interfaces;
 import Tokenizer.Token;
 import Tokenizer.TokenType;
 
+import java.util.List;
+
+/**
+ * Interface for a tokenizer.
+ *
+ * @author Pubest
+ */
 public interface Tokenizer {
-    public boolean hasNextToken();
-    public Token peek();
-    public Token consume();
-    public boolean peek(TokenType type);
-    public void consume(TokenType type);
+    public List<Token> getTokens();
 }

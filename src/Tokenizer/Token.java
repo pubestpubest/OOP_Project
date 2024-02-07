@@ -1,4 +1,5 @@
 package Tokenizer;
+import java.util.Objects;
 /**
  * A class representing a token in the input code.
  *
@@ -37,5 +38,22 @@ public class Token {
                 "type=" + type +
                 ", value='" + value + '\'' +
                 '}';
+    }
+    /**
+     * Returns true if the specified object is equal to this Token.
+     *
+     * @param o the object to be compared for equality with this Token
+     * @return true if the specified object is equal to this Token, false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Token token = (Token) o;
+        return type == token.type && Objects.equals(value, token.value);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, value);
     }
 }

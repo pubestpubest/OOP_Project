@@ -1,6 +1,10 @@
 package Parser;
+import Interfaces.Expr;
 import Interfaces.Parser;
 import Tokenizer.*;
+import java.util.HashMap;
+
+import java.util.ArrayList;
 import java.util.List;
 /**
  * This class is responsible for parsing the construction plan
@@ -15,6 +19,8 @@ public class ConstructionPlanParser implements Parser {
      */
     private List<Token> tokens;
 
+    private HashMap<String, Integer> variables;
+
     /**
      * The index of the current token in the list.
      */
@@ -26,7 +32,7 @@ public class ConstructionPlanParser implements Parser {
      * @param tokens The list of tokens to parse
      */
     public ConstructionPlanParser(List<Token> tokens) {
-        this.tokens = tokens;
+        this.tokens = new ArrayList<Token>(tokens);
         this.currentPosition = 0;
     }
 
@@ -43,12 +49,25 @@ public class ConstructionPlanParser implements Parser {
      * @return The current token, or null if there are no more tokens
      */
     private Token getCurrentToken() {
-        if (currentPosition < tokens.size()) {
-            return tokens.get(currentPosition);
-        }
-        return null;
+        assert tokens.get(currentPosition) == null;
+        return tokens.get(currentPosition);
     }
+    /**
+     * Returns the next token in the list without advancing the position.
+     *
+     * @return The next token, or null if there are no more tokens
+     */
+    private Token peek(){return tokens.get(currentPosition+1);}
+    /**
+     * Returns the next token in the list without advancing the position.
+     *
+     * @return The next token, or null if there are no more tokens
+     */
+    private Token consume(){return tokens.get(++currentPosition);}
 
+    private boolean peek(Token expectToken){return tokens.get(currentPosition+1).equals(expectToken);}
+
+    private boolean consume(Token expectToken){return tokens.get(++currentPosition).equals(expectToken);}
     /**
      * Parses the entire construction plan, one statement at a time.
      */
@@ -63,14 +82,12 @@ public class ConstructionPlanParser implements Parser {
      */
     private void parseStatement() {
         Token token = getCurrentToken();
-        switch (token.getType()) {
-            case IDENTIFIER:
-                // Handle an identifier
-                break;
-            default:
-                // Handle an unknown token
-                break;
+        assert token != null;
+        if(token.getType() == TokenType.IDENTIFIER|| false
+            ) {
+            //TODO:implement
         }
+
     }
 
     /**
@@ -85,6 +102,10 @@ public class ConstructionPlanParser implements Parser {
      */
     private void parseAssignment() {
         // TODO: Implement me
+        Token token = getCurrentToken();
+        String identifier = token.getValue();
+        consume(new Token(TokenType.ASSIGNMENT, "="));
+        variables.put(identifier, parseExpr().eval())
     }
 
     /**
@@ -146,14 +167,16 @@ public class ConstructionPlanParser implements Parser {
     /**
      * Parses an expression in the construction plan.
      */
-    private void parseExpr() {
+    private Expr parseExpr() {
         // TODO: Implement me
+        Expr v = parseTerm();
+
     }
 
     /**
      * Parses a term in the construction plan.
      */
-    private void parseTerm() {
+    private Expr parseTerm() {
         // TODO: Implement me
     }
 

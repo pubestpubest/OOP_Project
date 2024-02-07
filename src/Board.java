@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Board {
-    private Region[][] RegionArr ;
+    private Region[][] regions ;
     private int PlayerNum;
     private int m;
     private int n;
@@ -83,5 +83,38 @@ public class Board {
         }
 
     }
+    public String getHexagonRepresentation(String filled) {
+        String top = " / \\ ";
+        String middle;
+        if(filled = " "){
+            middle = "/   \\";
+        }else{
+            middle = "/ "+filled+" \\"
+        }
+        String bottom = "\\_/ ";
+        return top + "\n" + middle + "\n" + bottom;
+    }
+
+    public  void printBoard() {
+
+        for (int row = 0; row < m; row++) {
+            // Print top row of hexagons
+            for (int col = 0; col < n; col++) {
+                System.out.print(getHexagonRepresentation(region[row][col]));
+            }
+            System.out.println();
+
+            // Print bottom row of hexagons (shifted for odd rows)
+            if (row % 2 == 1) {
+                for (int col = 0; col < n; col++) {
+                    System.out.print("   ");
+                }
+                System.out.println();
+            }
+        }
+
+    }
+
+
 
 }

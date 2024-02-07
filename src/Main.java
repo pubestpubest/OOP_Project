@@ -61,5 +61,10 @@ public class Main {
         for (Token token : tokenizer.getTokens()) {
             System.out.println(token);
         }
+
+        //Test Player movement
+        Board Board1 = new Board(2);
+        Player P1 = new Player("Palm");
+        Board1.printBoard();
     }
 }

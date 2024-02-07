@@ -1,7 +1,10 @@
-import Tokenizer.ConstructionPlanTokenizer;
-import Tokenizer.Token;
+import Exceptions.EvaluationError;
+import Exceptions.SynataxError;
+import Interfaces.*;
+import Tokenizer.*;
+import Parser.*;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EvaluationError, SynataxError {
         String InputStream =
                 "t = t + 1  # keeping track of the turn number\n" +
                 "m = 0  # number of random moves\n" +
@@ -57,9 +60,15 @@ public class Main {
                 "}  # end while\n" +
                 "# city crew on a region belonging to nobody, so claim it\n" +
                 "if (budget - 1) then invest 1 else {}";
-        ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
+        String arithmetic = "t=1";
+
+        Player player = new PlayerContext("name");
+        Tokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
+        //Parser parser = new ConstructionPlanParser();
+        //parser.parse(tokenizer.getTokens(), player);
         for (Token token : tokenizer.getTokens()) {
             System.out.println(token);
         }
+//        System.out.println(player);
     }
 }

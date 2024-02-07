@@ -60,15 +60,14 @@ public class Main {
                 "}  # end while\n" +
                 "# city crew on a region belonging to nobody, so claim it\n" +
                 "if (budget - 1) then invest 1 else {}";
-        String arithmetic = "t=1";
-
-        Player player = new PlayerContext("name");
-        Tokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
-        //Parser parser = new ConstructionPlanParser();
-        //parser.parse(tokenizer.getTokens(), player);
+        ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
         for (Token token : tokenizer.getTokens()) {
             System.out.println(token);
         }
-//        System.out.println(player);
+
+        //Test Player movement
+        Board Board1 = new Board(2);
+        Player P1 = new Player("Palm");
+        Board1.printBoard();
     }
 }

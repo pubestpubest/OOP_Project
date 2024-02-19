@@ -1,10 +1,13 @@
 import Exceptions.EvaluationError;
-import Exceptions.SynataxError;
+import Exceptions.SyntaxError;
 import Interfaces.*;
 import Tokenizer.*;
 import Parser.*;
+
+import java.util.HashMap;
+import java.util.Map;
 public class Main {
-    public static void main(String[] args) throws EvaluationError, SynataxError {
+    public static void main(String[] args) throws EvaluationError, SyntaxError {
         String InputStream =
                 "t = t + 1  # keeping track of the turn number\n" +
                 "m = 0  # number of random moves\n" +
@@ -60,14 +63,29 @@ public class Main {
                 "}  # end while\n" +
                 "# city crew on a region belonging to nobody, so claim it\n" +
                 "if (budget - 1) then invest 1 else {}";
-        ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
-        for (Token token : tokenizer.getTokens()) {
-            System.out.println(token);
-        }
 
+        String arithmetic = "t = 1+2\n" +
+                "a = 6\n" +
+                "a = a + ts\n" +
+                "ss = s";
+        HashMap<String, Integer> map = new HashMap<>();
+//        map.put("a", 0);
+        ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(arithmetic);
+        Parser parser = new ConstructionPlanParser();
+        PlayerContext player = new PlayerContext("Player 1");
+        System.out.println(player);
+//        player.setVariables(map);
+        parser.parse(tokenizer.getTokens(), player);
+        System.out.println(player);
+//        for (Token token : tokenizer.getTokens()) {
+//            System.out.println(token);
+//        }
+/*
         //Test Player movement
         Board Board1 = new Board(2);
         Player P1 = new Player("Palm");
         Board1.printBoard();
+
+ */
     }
 }

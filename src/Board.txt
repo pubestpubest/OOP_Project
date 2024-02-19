@@ -86,10 +86,10 @@ public class Board {
     public String getHexagonRepresentation(String filled) {
         String top = " / \\ ";
         String middle;
-        if(filled.equals(" "){
+        if(filled.equals(" ")){
             middle = "/   \\";
         }else{
-            middle = "/ "+filled+" \\"
+            middle = "/ "+filled+" \\";
         }
         String bottom = "\\_/ ";
         return top + "\n" + middle + "\n" + bottom;

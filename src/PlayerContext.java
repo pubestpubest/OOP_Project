@@ -8,6 +8,7 @@ public class PlayerContext implements Player {
 
     public PlayerContext(String name){
         this.name = name;
+        this.variables = new HashMap<>();
     }
     public String getName() {
         return name;

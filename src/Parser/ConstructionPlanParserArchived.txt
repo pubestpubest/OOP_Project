@@ -1,4 +1,4 @@
-package Parser;
+/*package Parser;
 
 import Exceptions.EvaluationError;
 import Exceptions.SynataxError;
@@ -15,7 +15,7 @@ import java.util.*;
  * individual tokens, and then uses a series of methods to parse
  * these tokens into construction plan to be executed.
  */
-public class ConstructionPlanParserA implements Parser {
+public class ConstructionPlanParserArchived implements Parser {
 
     /**
      * The list of tokens that make up the construction plan.
@@ -31,7 +31,7 @@ public class ConstructionPlanParserA implements Parser {
     /**
      * Creates a new ConstructionPlanParser that will parse the given list of tokens.
      */
-    public ConstructionPlanParserA() {
+    public ConstructionPlanParserArchived() {
         this.currentPosition = 0;
     }
 

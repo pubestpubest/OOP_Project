@@ -1,10 +1,13 @@
+import java.util.Scanner;
+
 public class Player {
-    private String name ;
-    private Region[][] CurRegion ;
+    private char name ;
+    private int posX;
+    private int posY;
     private double budget;
 
     //constructor
-    public Player(String name ){
+    public Player(char name ){
         this.name = name;
     }
 
@@ -40,6 +43,22 @@ public class Player {
 //            }
 //        }
 
+    }
+
+    public void ClaimfirstRegion(Region[][] board, Scanner scanner) {
+        while (true) {
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
+
+            if (row < 1 || row >= board.length+1 || col < 1 || col >= board[0].length+1 || board[row-1][col-1].getOwner() != '-') {
+                System.out.println("Invalid Region. Please try again.");
+            } else {
+                board[row-1][col-1].setOwner(name);
+                posX = row-1;
+                posY = col-1;
+                break;
+            }
+        }
     }
 
     /*adds more deposits to the current region occupied by the city crew.

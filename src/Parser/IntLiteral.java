@@ -3,7 +3,7 @@ import java.util.Map;
 import Exceptions.*;
 import Interfaces.*;
 import Tokenizer.*;
-record IntLiteral(int value) implements Expr{
+public record IntLiteral(int value) implements Expr{
     @Override
     public int eval(Map<String, Integer> bindings) throws EvaluationError {
         return value;

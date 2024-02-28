@@ -76,25 +76,11 @@ public class Main {
                 "invest i\n" +
                 "i = i - 2\n" +
                 "}\n";
-        String action = "done \n"+"done\n";
-        HashMap<String, Integer> map = new HashMap<>();
+
 //        ConstructionPlanTokenizer tokenizeeeer = new ConstructionPlanTokenizer(InputStream);
-        Tokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
-        Parser parser = new ConstructionPlanParser();
-        Player player = new PlayerContext("Player 1");
-        int i=0;
-        for (Token token : tokenizer.getTokens()) {
-            System.out.print(i++);
-            System.out.println(token);
-        }
+
 //        if(false)
-        try{
-            System.out.println(player);
-            parser.parse(tokenizer.getTokens(), player);
-            System.out.println(player);
-        }catch(SyntaxError s){
-            System.out.println(s);
-        }
+
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter number of rows and columns for the UPBEAT board:");
@@ -103,8 +89,8 @@ public class Main {
 
         Board game = new Board(rows,cols);
 
-        Player player1 = new PlayerContext("1");
-        Player player2 = new PlayerContext("2");
+        Player player1 = new PlayerContext("1",game.board);
+        Player player2 = new PlayerContext("2",game.board);
 
         System.out.println("Current board:");
         game.printBoard();
@@ -121,11 +107,22 @@ public class Main {
         System.out.println("Current board:");
         game.printBoard();
 
+        String action = "move up";
+        Tokenizer tokenizer = new ConstructionPlanTokenizer(action);
+        Parser parser = new ConstructionPlanParser();
+        try{
+            System.out.println(player1);
+            parser.parse(tokenizer.getTokens(), player1);
+            System.out.println(player1);
+        }catch(SyntaxError s){
+            System.out.println(s);
+        }
+
         // Game loop
 //        while (true) {
 //
-//            System.out.println("Current board:");
-//            game.printBoard();
+            System.out.println("Current board:");
+            game.printBoard();
 //            System.out.println("Player 1's turn. Enter direction to a move");
 //            player1.move(game.board , scanner);
 //

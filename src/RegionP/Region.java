@@ -16,7 +16,7 @@ public class Region {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setPosition(String owner) {
         this.owner = owner;
     }
 }

@@ -1,5 +1,8 @@
 import Tokenizer.ConstructionPlanTokenizer;
 import Tokenizer.Token;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         String InputStream =
@@ -62,9 +65,49 @@ public class Main {
             System.out.println(token);
         }
 
-        //Test Player movement
-        Board Board1 = new Board(2);
-        Player P1 = new Player("Palm");
-        Board1.printBoard();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter number of rows and columns for the UPBEAT board:");
+        int rows = scanner.nextInt();
+        int cols = scanner.nextInt();
+
+        Board game = new Board(rows,cols);
+
+        Player player1 = new Player('1');
+        Player player2 = new Player('2');
+
+        System.out.println("Current board:");
+        game.printBoard();
+        System.out.println("Player 1's turn. Enter row and column to claim a region:");
+
+        player1.ClaimfirstRegion(game.board, scanner);
+
+        System.out.println("Current board:");
+        game.printBoard();
+        System.out.println("Player 2's turn. Enter row and column to claim a region:");
+
+        player2.ClaimfirstRegion(game.board, scanner);
+
+        System.out.println("Current board:");
+        game.printBoard();
+
+        // Game loop
+//        while (true) {
+//
+//            System.out.println("Current board:");
+//            game.printBoard();
+//            System.out.println("Player 1's turn. Enter direction to a move");
+//            player1.move(game.board , scanner);
+//
+//            System.out.println("Current board:");
+//            game.printBoard();
+//            System.out.println("Player 2's turn. Enter direction to a move");
+//            int di2 = scanner.nextInt();
+//            player2.move(game.board, scanner);
+//
+//            // Check for game over condition (for demonstration, you'll need to implement this)
+//            // If game over, break out of loop and declare winner
+//        }
+
+
     }
 }

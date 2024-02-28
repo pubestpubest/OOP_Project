@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Board {
-    private Region[][] regions ;
+    public Region[][] board ;
     private int PlayerNum;
-    private int m;
-    private int n;
+    private int rows;
+    private int cols;
     private int init_plan_min;
     private int init_plan_sec;
     private int init_budget;
@@ -18,9 +18,9 @@ public class Board {
     private int max_dep;
     private int interest_pct;
 
-    public Board(int PlayerNum){
+    public Board(int rows,int cols){
 
-        this.PlayerNum = PlayerNum;
+
 
         //read configuration file  part
         String filePath = "config.txt";
@@ -41,12 +41,12 @@ public class Board {
                     String value = parts[1].trim();
 
                     //set the value to the variable that we want
-                    if(i == 1){
-                        m = Integer.parseInt(value);
-                    }
-                    if(i == 2){
-                        n = Integer.parseInt(value);
-                    }
+//                    if(i == 1){
+//                        rows = Integer.parseInt(value);
+//                    }
+//                    if(i == 2){
+//                        cols = Integer.parseInt(value);
+//                    }
                     if(i == 3){
                         init_plan_min = Integer.parseInt(value);
                     }
@@ -82,37 +82,40 @@ public class Board {
             e.printStackTrace();
         }
 
+        this.rows = rows;
+        this.cols = cols;
+        board = new Region[rows][cols];
+        initializeBoard();
+
+
+
     }
-    public String getHexagonRepresentation(String filled) {
-        String top = " / \\ ";
-        String middle;
-        if(filled.equals(" "){
-            middle = "/   \\";
-        }else{
-            middle = "/ "+filled+" \\"
+    private void initializeBoard() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                board[i][j] = new Region(i, j);
+            }
         }
-        String bottom = "\\_/ ";
-        return top + "\n" + middle + "\n" + bottom;
     }
 
-    public  void printBoard() {
-
-        for (int row = 0; row < m; row++) {
-            // Print top row of hexagons
-            for (int col = 0; col < n; col++) {
-                System.out.print(getHexagonRepresentation(region[row][col]));
+    public void printBoard() {
+        for (int i = 0; i < rows; i++) {
+            // Add spacing for visual representation of hexagonal grid
+            System.out.print("       ");
+            for (int j = 0; j < cols; j++) {
+                if(j%2 == 1){
+                    System.out.print(" " + board[i][j].getOwner());
+                }
             }
             System.out.println();
-
-            // Print bottom row of hexagons (shifted for odd rows)
-            if (row % 2 == 1) {
-                for (int col = 0; col < n; col++) {
-                    System.out.print("   ");
+            System.out.print("Row:" + (i+1) + " ");
+            for (int j = 0; j < cols; j++) {
+                if(j%2 == 0){
+                    System.out.print(" " +board[i][j].getOwner());
                 }
-                System.out.println();
             }
+            System.out.println();
         }
-
     }
 
 

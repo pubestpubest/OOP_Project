@@ -79,9 +79,9 @@ public class Main {
         String action = "done \n"+"done\n";
         HashMap<String, Integer> map = new HashMap<>();
 //        ConstructionPlanTokenizer tokenizeeeer = new ConstructionPlanTokenizer(InputStream);
-        ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
+        Tokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
         Parser parser = new ConstructionPlanParser();
-        PlayerContext player = new PlayerContext("Player 1");
+        Player player = new PlayerContext("Player 1");
         int i=0;
         for (Token token : tokenizer.getTokens()) {
             System.out.print(i++);

@@ -1,11 +1,11 @@
 import Exceptions.EvaluationError;
 import Exceptions.SyntaxError;
 import Interfaces.*;
-import Tokenizer.*;
+import Interfaces.Player;
 import Parser.*;
 
 import java.util.HashMap;
-import java.util.Map;
+
 import Tokenizer.ConstructionPlanTokenizer;
 import Tokenizer.Token;
 
@@ -103,20 +103,20 @@ public class Main {
 
         Board game = new Board(rows,cols);
 
-        Player player1 = new Player('1');
-        Player player2 = new Player('2');
+        Player player1 = new PlayerContext("1");
+        Player player2 = new PlayerContext("2");
 
         System.out.println("Current board:");
         game.printBoard();
         System.out.println("Player 1's turn. Enter row and column to claim a region:");
 
-        player1.ClaimfirstRegion(game.board, scanner);
+        player1.ClaimFirstRegion(game.board, scanner);
 
         System.out.println("Current board:");
         game.printBoard();
         System.out.println("Player 2's turn. Enter row and column to claim a region:");
 
-        player2.ClaimfirstRegion(game.board, scanner);
+        player2.ClaimFirstRegion(game.board, scanner);
 
         System.out.println("Current board:");
         game.printBoard();

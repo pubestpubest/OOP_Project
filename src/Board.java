@@ -1,3 +1,5 @@
+import RegionP.Region;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -117,7 +119,4 @@ public class Board {
             System.out.println();
         }
     }
-
-
-
 }

@@ -1,11 +1,17 @@
 import Interfaces.Expr;
 import Interfaces.Player;
 import Parser.*;
+import RegionP.Region;
 
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.Scanner;
+
 public class PlayerContext implements Player {
     private String name;
     private HashMap<String,Integer> variables;
+    private int posX;
+    private int posY;
 
 
     public PlayerContext(String name){
@@ -63,5 +69,22 @@ public class PlayerContext implements Player {
                 "name='" + name + '\'' +
                 ", variables=" + variables +
                 '}';
+    }
+    @Override
+    public void ClaimFirstRegion(Region[][] board, Scanner scanner) {
+        while (true) {
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
+
+            if (row < 1 || row >= board.length+1 || col < 1 || col >= board[0].length+1 || !Objects.equals(board[row - 1][col - 1].getOwner(), "-")) {
+                System.out.println("Invalid RegionP.Region. Please try again.");
+            } else {
+                board[row-1][col-1].setOwner(name);
+
+                posX = row-1;
+                posY = col-1;
+                break;
+            }
+        }
     }
 }

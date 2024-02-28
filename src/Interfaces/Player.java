@@ -1,5 +1,8 @@
 package Interfaces;
 import java.util.Map;
+import java.util.Scanner;
+import RegionP.Region;
+
 public interface Player {
     void done();
     void relocate();
@@ -11,4 +14,5 @@ public interface Player {
     void shoot(String dir, int eval);
     Expr opponent();
     Expr nearby(String dir);
+    public void ClaimFirstRegion(Region[][] board, Scanner scanner);
 }

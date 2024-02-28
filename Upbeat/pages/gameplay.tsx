@@ -14,7 +14,12 @@ const Gameplay: NextPage = () => {
           src="/frame-1.svg"
         /> */}
         <div
-          style={{ padding: 50, border: " 1px solid black ", paddingRight: 80 }}
+          style={{
+            padding: 50,
+            border: " 1px solid black ",
+            paddingRight: 80,
+            paddingBottom: 30,
+          }}
         >
           <TableMap r={8} c={12} />
         </div>

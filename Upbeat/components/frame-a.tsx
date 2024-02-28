@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useCallback } from "react";
 import InstanceF from "./instance-f";
 import { useRouter } from "next/router";
+import JavaCodeInput from "../components/javacodeinput";
 
 const FrameA: NextPage = () => {
   const router = useRouter();
@@ -56,72 +57,11 @@ const FrameA: NextPage = () => {
             <div className="self-stretch rounded-4xs bg-gainsboro flex flex-col items-start justify-start pt-1.5 pb-[18px] pr-[26px] pl-[9px] box-border gap-[2px_0px] max-w-full z-[1]">
               <div className="w-[335px] h-56 relative rounded-4xs bg-gainsboro hidden max-w-full" />
               <div className="w-[241px] flex flex-row items-start justify-start py-0 px-0.5 box-border">
-                <div className="flex-1 relative z-[2] mq450:text-lgi mq1050:text-7xl">
+                {/* <div className="flex-1 relative z-[2] mq450:text-lgi mq1050:text-7xl">
                   Current Plan:
-                </div>
+                </div> */}
               </div>
-              <div className="self-stretch rounded-[2.91px] bg-white overflow-hidden flex flex-row items-center justify-start pt-1 px-1 pb-0 z-[2] text-8xs-7">
-                <div className="h-[156px] flex flex-col items-start justify-start pt-0 px-0 pb-0 box-border">
-                  <div className="mb-[-36px] relative">
-                    <p className="m-0">
-                      t = t + 1  # keeping track of the turn number
-                    </p>
-                    <p className="m-0">m = 0  # number of random moves</p>
-                    <p className="m-0">{`while (deposit) { # still our region`}</p>
-                    <p className="m-0">  if (deposit - 100)</p>
-                    <p className="m-0">
-                        then collect (deposit / 4)  # collect 1/4 of available
-                      deposit
-                    </p>
-                    <p className="m-0">
-                        else if (budget - 25) then invest 25
-                    </p>
-                    <p className="m-0">{`  else {}`}</p>
-                    <p className="m-0">{`  if (budget - 100) then {} else done  # too poor to do anything else`}</p>
-                    <p className="m-0">  opponentLoc = opponent</p>
-                    <p className="m-0">  if (opponentLoc / 10 - 1)</p>
-                    <p className="m-0">  then  # opponent afar</p>
-                    <p className="m-0">
-                          if (opponentLoc % 10 - 5) then move downleft
-                    </p>
-                    <p className="m-0">
-                          else if (opponentLoc % 10 - 4) then move down
-                    </p>
-                    <p className="m-0">
-                          else if (opponentLoc % 10 - 3) then move downright
-                    </p>
-                    <p className="m-0">
-                          else if (opponentLoc % 10 - 2) then move right
-                    </p>
-                    <p className="m-0">
-                          else if (opponentLoc % 10 - 1) then move upright
-                    </p>
-                    <p className="m-0">    else move up</p>
-                    <p className="m-0">  else if (opponentLoc)</p>
-                    <p className="m-0">
-                        then  # opponent adjacent to city crew
-                    </p>
-                    <p className="m-0">{`    if (opponentLoc % 10 - 5) then {`}</p>
-                    <p className="m-0">
-                            cost = 10 ^ (nearby upleft % 100 + 1)
-                    </p>
-                    <p className="m-0">{`      if (budget - cost) then shoot upleft cost else {}`}</p>
-                    <p className="m-0">{`    }`}</p>
-                    <p className="m-0">{`    else if (opponentLoc % 10 - 4) then {`}</p>
-                    <p className="m-0">
-                            cost = 10 ^ (nearby downleft % 100 + 1)
-                    </p>
-                    <p className="m-0">{`      if (budget - cost) then shoot downleft cost else {}`}</p>
-                    <p className="m-0">{`    }`}</p>
-                    <p className="m-0">{`    else if (opponentLoc % 10 - 3) then {`}</p>
-                    <p className="m-0">
-                            cost = 10 ^ (nearby down % 100 + 1)
-                    </p>
-                    <p className="m-0">{`      if (budget - cost) then shoot down cost else {}`}</p>
-                    <p className="m-0">{`    }`}</p>
-                  </div>
-                </div>
-              </div>
+              <JavaCodeInput topic={"Current plan:"} cols={40} />
             </div>
           </div>
         </div>

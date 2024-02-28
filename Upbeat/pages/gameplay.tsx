@@ -13,7 +13,11 @@ const Gameplay: NextPage = () => {
           alt=""
           src="/frame-1.svg"
         /> */}
-        <TableMap r={2} c={2} />
+        <div
+          style={{ padding: 50, border: " 1px solid black ", paddingRight: 80 }}
+        >
+          <TableMap r={8} c={12} />
+        </div>
       </section>
     </div>
   );

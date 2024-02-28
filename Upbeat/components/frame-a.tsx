@@ -14,6 +14,9 @@ const FrameA: NextPage = () => {
   }, []);
 
   const onChangePlanFrameClick = useCallback(() => {
+    router.push("/gameplay1");
+  }, [router]);
+  const onExitFrameClick = useCallback(() => {
     router.push("/");
   }, [router]);
 
@@ -128,7 +131,13 @@ const FrameA: NextPage = () => {
           <div className="flex-1 flex flex-col items-start justify-start gap-[24px_0px] min-w-[161px]">
             <div className="self-stretch rounded-8xl bg-gainsboro flex flex-row items-center justify-start py-2 pr-[34px] pl-6 whitespace-nowrap z-[1]">
               <div className="h-[55px] w-[248px] relative rounded-8xl bg-gainsboro hidden" />
-              <div className="relative z-[2]">Change plan</div>
+              <div
+                className="relative z-[2]"
+                onClick={onChangePlanFrameClick}
+                style={{ cursor: "pointer" }}
+              >
+                Change plan
+              </div>
             </div>
             <div className="rounded-8xl bg-gainsboro flex flex-row items-center justify-center py-2 pr-[57px] pl-14 whitespace-nowrap z-[1]">
               <div className="h-[55px] w-[248px] relative rounded-8xl bg-gainsboro hidden" />
@@ -138,7 +147,7 @@ const FrameA: NextPage = () => {
           <div className="flex flex-col items-start justify-start pt-0 px-0 pb-[17px] text-white">
             <div
               className="rounded-xl bg-red overflow-hidden flex flex-row items-center justify-center pt-[15px] px-2.5 pb-[11px] cursor-pointer z-[1]"
-              onClick={onChangePlanFrameClick}
+              onClick={onExitFrameClick}
             >
               <div className="h-[63px] w-[78px] relative rounded-xl bg-red hidden" />
               <i className="relative font-extrabold z-[1] mq450:text-lgi mq1050:text-7xl">

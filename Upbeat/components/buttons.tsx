@@ -61,10 +61,12 @@ const Buttons: NextPage = () => {
       >
         <div
           style={{
-            fontSize: "50px ", // ขนาดข้อความ 16px
-            color: " white",
+            fontSize: "50px", // Font size 50 pixels
+            color: "white",
             fontFamily: "monospace",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // ใช้ textShadow แทน text-shadow
+            textShadow: "0 0 10px rgba(255, 255, 255, 0.8)",
+            WebkitTextStroke: "1px rgba(255, 255, 255, 0.2)",
+            filter: "drop-shadow(2px 2px 4px rgba(0, 255, 0, 0.8))", // Adding a drop shadow with green color
           }}
         >
           PLAY
@@ -103,10 +105,12 @@ const Buttons: NextPage = () => {
       >
         <div
           style={{
-            fontSize: "50px ", // ขนาดข้อความ 16px
-            color: " white",
+            fontSize: "50px", // Font size 50 pixels
+            color: "white", // Orange color for the text "RULES"
             fontFamily: "monospace",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // ใช้ textShadow แทน text-shadow
+            textShadow: "0 0 10px rgba(255, 165, 0, 0.8)", // Orange shadow for glow effect
+            WebkitTextStroke: "3px rgba(255, 165, 0, 0.2)", // Orange stroke for glow effect
+            filter: "drop-shadow(3px 2px 4px rgba(255, 165, 0, 0.8))", // Orange drop shadow for glow effect
           }}
         >
           RULES
@@ -145,10 +149,12 @@ const Buttons: NextPage = () => {
       >
         <div
           style={{
-            fontSize: "50px", // ขนาดข้อความ 50px
-            color: "white",
+            fontSize: "50px", // Font size 50 pixels
+            color: "white", // Red color for the text
             fontFamily: "monospace",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // ใช้ textShadow แทน text-shadow
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Initial text shadow for glow effect
+            WebkitTextStroke: "1px rgba(255, 0, 0, 0.2)", // Red stroke for glow effect
+            filter: "drop-shadow(2px 2px 4px red)", // Red drop shadow for glow effect
           }}
         >
           CONFIG

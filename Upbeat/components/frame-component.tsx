@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useCallback } from "react";
 import { useRouter } from "next/router";
+import TableMap from "../pages/tablemap";
 
 const FrameComponent: NextPage = () => {
   const router = useRouter();
@@ -11,12 +12,7 @@ const FrameComponent: NextPage = () => {
 
   return (
     <div className="self-stretch flex flex-col items-end justify-start gap-[101px_0px] max-w-full text-center text-41xl text-black font-inter mq750:gap-[101px_0px]">
-      <img
-        className="self-stretch h-[515px] relative max-w-full overflow-hidden shrink-0"
-        loading="eager"
-        alt=""
-        src="/frame-11.svg"
-      />
+      <TableMap r={8} c={11} />
       <div className="self-stretch flex flex-row items-start justify-start py-0 pr-10 pl-[37px] box-border max-w-full">
         <div className="flex-1 overflow-hidden flex flex-col items-start justify-start py-[53px] px-[26px] box-border relative min-h-[171px] max-w-full">
           <img

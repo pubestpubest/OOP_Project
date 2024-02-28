@@ -7,27 +7,28 @@ import Parser.*;
 import java.util.HashMap;
 import java.util.Map;
 public class Main {
-    public static void main(String[] args) throws EvaluationError, SyntaxError {
+    public static void main(String[] args) throws EvaluationError {
         String InputStream =
-                "t = t + 1  # keeping track of the turn number\n" +
-                "m = 0  # number of random moves\n" +
-                "while (deposit) { # still our region\n" +
+                "t = t + 1\n" +
+                "m = 0\n" +
+                "deposit = 100\n" +
+                "while (deposit) { \n" +
                 "  if (deposit - 100)\n" +
-                "  then collect (deposit / 4)  # collect 1/4 of available deposit\n" +
+                "  then collect (deposit / 4)\n" +
                 "  else if (budget - 25) then invest 25\n" +
                 "  else {}\n" +
-                "  if (budget - 100) then {} else done  # too poor to do anything else\n" +
+                "  if (budget - 100) then {} else done  \n" +
                 "  opponentLoc = opponent\n" +
                 "  if (opponentLoc / 10 - 1)\n" +
-                "  then  # opponent afar\n" +
+                "  then\n" +
                 "    if (opponentLoc % 10 - 5) then move downleft\n" +
                 "    else if (opponentLoc % 10 - 4) then move down\n" +
                 "    else if (opponentLoc % 10 - 3) then move downright\n" +
-                "    else if (opponentLoc % 10 - 2) then move right\n" +
+                "    else if (opponentLoc % 10 - 2) then move downright\n" +
                 "    else if (opponentLoc % 10 - 1) then move upright\n" +
                 "    else move up\n" +
                 "  else if (opponentLoc)\n" +
-                "  then  # opponent adjacent to city crew\n" +
+                "  then  \n" +
                 "    if (opponentLoc % 10 - 5) then {\n" +
                 "      cost = 10 ^ (nearby upleft % 100 + 1)\n" +
                 "      if (budget - cost) then shoot upleft cost else {}\n" +
@@ -52,7 +53,7 @@ public class Main {
                 "      cost = 10 ^ (nearby up % 100 + 1)\n" +
                 "      if (budget - cost) then shoot up cost else {}\n" +
                 "    }\n" +
-                "  else {  # no visible opponent; move in a random direction\n" +
+                "  else {\n" +
                 "dir = random % 6\n" +
                 "if (dir - 4) then move upleft\n" +
                 "else if (dir - 3) then move downleft else if (dir - 2) then move down\n" +
@@ -60,26 +61,36 @@ public class Main {
                 "else move up\n" +
                 "m=m+1\n" +
                 "  }\n" +
-                "}  # end while\n" +
+                "}\n" +
                 "# city crew on a region belonging to nobody, so claim it\n" +
-                "if (budget - 1) then invest 1 else {}";
+                "if (budget - 1) then invest 1 else {}\n" +
+                "-1";
 
-        String arithmetic = "t = 1+2\n" +
-                "a = 6\n" +
-                "a = a + ts\n" +
-                "ss = s";
+        String arithmetic = "i = 100\n" +
+                "while(i){\n" +
+                "invest i\n" +
+                "i = i - 2\n" +
+                "}\n";
+        String action = "done \n"+"done\n";
         HashMap<String, Integer> map = new HashMap<>();
-//        map.put("a", 0);
-        ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(arithmetic);
+//        ConstructionPlanTokenizer tokenizeeeer = new ConstructionPlanTokenizer(InputStream);
+        ConstructionPlanTokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
         Parser parser = new ConstructionPlanParser();
         PlayerContext player = new PlayerContext("Player 1");
-        System.out.println(player);
-//        player.setVariables(map);
-        parser.parse(tokenizer.getTokens(), player);
-        System.out.println(player);
-//        for (Token token : tokenizer.getTokens()) {
-//            System.out.println(token);
-//        }
+        int i=0;
+        for (Token token : tokenizer.getTokens()) {
+            System.out.print(i++);
+            System.out.println(token);
+        }
+//        if(false)
+        try{
+            System.out.println(player);
+            parser.parse(tokenizer.getTokens(), player);
+            System.out.println(player);
+        }catch(SyntaxError s){
+            System.out.println(s);
+        }
+
 /*
         //Test Player movement
         Board Board1 = new Board(2);

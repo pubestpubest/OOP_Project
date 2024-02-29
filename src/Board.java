@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Board {
-    public Region[][] board ;
+    public Region[][] regions;
     private int PlayerNum;
     private int rows;
     private int cols;
@@ -86,7 +86,7 @@ public class Board {
 
         this.rows = rows;
         this.cols = cols;
-        board = new Region[rows][cols];
+        regions = new Region[rows][cols];
         initializeBoard();
 
 
@@ -95,7 +95,7 @@ public class Board {
     private void initializeBoard() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                board[i][j] = new Region(i, j);
+                regions[i][j] = new Region(i, j);
             }
         }
     }
@@ -103,17 +103,27 @@ public class Board {
     public void printBoard() {
         for (int i = 0; i < rows; i++) {
             // Add spacing for visual representation of hexagonal grid
-            System.out.print("       ");
+            System.out.print("        ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 1){
-                    System.out.print(" " + board[i][j].getOwner());
+                    System.out.print(" " + regions[i][j].getOwner());
+                    if(regions[i][j].isStandHere()){
+                        System.out.print("C");
+                    }else{
+                        System.out.print("-");
+                    }
                 }
             }
             System.out.println();
             System.out.print("Row:" + (i+1) + " ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 0){
-                    System.out.print(" " +board[i][j].getOwner());
+                    System.out.print(" "+ regions[i][j].getOwner());
+                    if(regions[i][j].isStandHere()){
+                        System.out.print("C");
+                    }else{
+                        System.out.print("-");
+                    }
                 }
             }
             System.out.println();

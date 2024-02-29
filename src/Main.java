@@ -4,10 +4,7 @@ import Interfaces.*;
 import Interfaces.Player;
 import Parser.*;
 
-import java.util.HashMap;
-
 import Tokenizer.ConstructionPlanTokenizer;
-import Tokenizer.Token;
 
 import java.util.Scanner;
 
@@ -79,7 +76,6 @@ public class Main {
 
 //        ConstructionPlanTokenizer tokenizeeeer = new ConstructionPlanTokenizer(InputStream);
 
-//        if(false)
 
 
         Scanner scanner = new Scanner(System.in);
@@ -89,40 +85,58 @@ public class Main {
 
         Board game = new Board(rows,cols);
 
-        Player player1 = new PlayerContext("1",game.board);
-        Player player2 = new PlayerContext("2",game.board);
+        Player player1 = new PlayerContext("1",game.regions);
+        Player player2 = new PlayerContext("2",game.regions);
 
         System.out.println("Current board:");
         game.printBoard();
         System.out.println("Player 1's turn. Enter row and column to claim a region:");
 
-        player1.ClaimFirstRegion(game.board, scanner);
+        player1.ClaimFirstRegion(game.regions, scanner);
 
         System.out.println("Current board:");
         game.printBoard();
         System.out.println("Player 2's turn. Enter row and column to claim a region:");
 
-        player2.ClaimFirstRegion(game.board, scanner);
+        player2.ClaimFirstRegion(game.regions, scanner);
 
         System.out.println("Current board:");
         game.printBoard();
 
-        String action = "move up";
-        Tokenizer tokenizer = new ConstructionPlanTokenizer(action);
-        Parser parser = new ConstructionPlanParser();
-        try{
-            System.out.println(player1);
-            parser.parse(tokenizer.getTokens(), player1);
-            System.out.println(player1);
-        }catch(SyntaxError s){
-            System.out.println(s);
+        while(true){
+            System.out.println("Player 1's turn. Enter action");
+            String action = scanner.nextLine();
+            Tokenizer tokenizer = new ConstructionPlanTokenizer(action);
+            Parser parser = new ConstructionPlanParser();
+            try{
+                System.out.println(player2);
+                parser.parse(tokenizer.getTokens(), player2);
+                System.out.println(player2);
+            }catch(SyntaxError s){
+                System.out.println(s);
+            }
+            System.out.println("Current board:");
+            game.printBoard();
+
+//            System.out.println("Player 2's turn. Enter action");
+//            String action = scanner.nextLine();
+//            Tokenizer tokenizer = new ConstructionPlanTokenizer(action);
+//            Parser parser = new ConstructionPlanParser();
+            try{
+                System.out.println(player2);
+                parser.parse(tokenizer.getTokens(), player2);
+                System.out.println(player2);
+            }catch(SyntaxError s){
+                System.out.println(s);
+            }
+            System.out.println("Current board:");
+            game.printBoard();
         }
+
 
         // Game loop
 //        while (true) {
 //
-            System.out.println("Current board:");
-            game.printBoard();
 //            System.out.println("Player 1's turn. Enter direction to a move");
 //            player1.move(game.board , scanner);
 //

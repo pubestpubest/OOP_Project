@@ -49,42 +49,42 @@ public class PlayerContext implements Player {
 
                 board[posX][posY].setPosition("-");
                 board[posX][posY-1].setPosition(name);
-                SetPos(posX,posY-1);
+                SetPlayerPos(posX,posY-1);
                 break;
 
             } else if (dir.equals("upright")) {
 
                 board[posX][posY].setPosition("-");
                 board[posX+1][posY-1].setPosition(name);
-                SetPos(posX+1,posY-1);
+                SetPlayerPos(posX+1,posY-1);
                 break;
 
             } else if (dir.equals("downright")) {
 
                 board[posX][posY].setPosition("-");
                 board[posX+1][posY].setPosition(name);
-                SetPos(posX+1,posY);
+                SetPlayerPos(posX+1,posY);
                 break;
 
             } else if (dir.equals("down")) {
 
                 board[posX][posY].setPosition("-");
                 board[posX][posY+1].setPosition(name);
-                SetPos(posX,posY+1);
+                SetPlayerPos(posX,posY+1);
                 break;
 
             } else if (dir.equals("downleft")) {
 
                 board[posX][posY].setPosition("-");
                 board[posX-1][posY].setPosition(name);
-                SetPos(posX-1,posY);
+                SetPlayerPos(posX-1,posY);
                 break;
 
             } else if (dir.equals("upleft")) {
 
                 board[posX][posY].setPosition("-");
                 board[posX-1][posY-1].setPosition(name);
-                SetPos(posX-1,posY-1);
+                SetPlayerPos(posX-1,posY-1);
                 break;
 
             } else {
@@ -95,7 +95,7 @@ public class PlayerContext implements Player {
 
         }
     }
-    private void SetPos(int x,int y){
+    private void SetPlayerPos(int x,int y){
         posX = x;
         posY = y;
     }
@@ -139,7 +139,7 @@ public class PlayerContext implements Player {
                 System.out.println("Invalid RegionP.Region. Please try again.");
             } else {
                 board[row-1][col-1].setPosition(name);
-
+                board[row-1][col-1].setStandHere(true);
                 posX = row-1;
                 posY = col-1;
                 break;

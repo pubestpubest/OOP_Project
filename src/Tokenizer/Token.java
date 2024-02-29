@@ -3,27 +3,18 @@ import java.util.Objects;
 /**
  * A class representing a token in the input code.
  *
+ * @param type  The type of the token.
+ * @param value The value of the token.
  * @author Pubest
  */
-public class Token {
-    private final TokenType type;
-    private final String value;
-    /**
-     * Constructs a new Token with the specified type and value.
-     *
-     * @param type The type of the token.
-     * @param value The value of the token.
-     */
-    public Token(TokenType type, String value) {
-        this.type = type;
-        this.value = value;
-    }
+public record Token(TokenType type, String value) {
     /**
      * Returns the type of the token.
      *
      * @return The type of the token.
      */
-    public TokenType getType() {
+    @Override
+    public TokenType type() {
         return type;
     }
     /**
@@ -31,7 +22,10 @@ public class Token {
      *
      * @return The value of the token.
      */
-    public String getValue() { return value; }
+    @Override
+    public String value() {
+        return value;
+    }
     @Override
     public String toString() {
         return "Token{" +
@@ -51,9 +45,5 @@ public class Token {
         if(o == null || getClass() != o.getClass()) return false;
         Token token = (Token) o;
         return type == token.type && Objects.equals(value, token.value);
-    }
-    @Override
-    public int hashCode() {
-        return Objects.hash(type, value);
     }
 }

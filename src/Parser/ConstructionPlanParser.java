@@ -14,7 +14,9 @@ public class ConstructionPlanParser implements Parser {
     Player player;
     Map<String, Integer> playerVariables;
     int currentPosition = 0;
-    // TODO: Fix the Special variables : deposit
+    //  TODO: Fix the Special variables;Variables from the board
+    //  TODO: Implement singleton constructor
+    //  TODO: Testers
     /**
      * Parses a list of tokens into a sequence of statements.
      *
@@ -61,7 +63,7 @@ public class ConstructionPlanParser implements Parser {
     private boolean peek(String exp){
         if(hasNextToken()){
             Token token = tokens.get(currentPosition+1);
-            return token.getValue().equals(exp);
+            return token.value().equals(exp);
         }else
             return false;
     }
@@ -74,11 +76,11 @@ public class ConstructionPlanParser implements Parser {
      */
     private boolean isExpression() {
         Token token = getCurrentToken();
-        return token.getType() == TokenType.NUMBER
-                || token.getType() == TokenType.IDENTIFIER
-                || token.getType() == TokenType.PARENTHESIS
-                || token.getValue().equals("opponent")
-                || token.getValue().equals("nearby");
+        return token.type() == TokenType.NUMBER
+                || token.type() == TokenType.IDENTIFIER
+                || token.type() == TokenType.PARENTHESIS
+                || token.value().equals("opponent")
+                || token.value().equals("nearby");
     }
 
     /**
@@ -90,7 +92,7 @@ public class ConstructionPlanParser implements Parser {
     private boolean isDirection(){
         Token token = getCurrentToken();
         Set<String> Dir= Keywords.getDirection();
-        return Dir.contains(token.getValue());
+        return Dir.contains(token.value());
     }
 
     /**
@@ -100,7 +102,7 @@ public class ConstructionPlanParser implements Parser {
      */
     private boolean expect(String value) {
         Token token = tokens.get(currentPosition);
-        return token.getValue().equals(value);
+        return token.value().equals(value);
     }
 
     /**
@@ -119,7 +121,7 @@ public class ConstructionPlanParser implements Parser {
      */
     private  boolean isBlockStart() {
         Token token = getCurrentToken();
-        return token.getType() == TokenType.BLOCK_START && token.getValue().equals("{");
+        return token.type() == TokenType.BLOCK_START && token.value().equals("{");
     }
 
     /**
@@ -137,32 +139,32 @@ public class ConstructionPlanParser implements Parser {
      */
     private void parseStatement(boolean enable) throws SyntaxError, EvaluationError {
         Token token = getCurrentToken();
-        TokenType type = token.getType();
+        TokenType type = token.type();
         TokenType keyword = TokenType.KEYWORD;
-        String value = token.getValue();
+        String value = token.value();
         Set<String> commandSet = Keywords.getCommand();
 
         // Determine the type of statement and delegate to the appropriate method.
         // Supports assignment, action commands, block statements, and control flow constructs.
-        if (token.getType() == TokenType.IDENTIFIER || (type == keyword && commandSet.contains(value))) {
+        if (token.type() == TokenType.IDENTIFIER || (type == keyword && commandSet.contains(value))) {
             // For IDENTIFIER tokens, parse as an assignment. For KEYWORD tokens that are recognized commands, parse as an action.
-            if (token.getType() == TokenType.IDENTIFIER) {
+            if (token.type() == TokenType.IDENTIFIER) {
                 parseAssignment(enable);
             } else {
                 parseAction(enable);
             }
-        } else if (token.getType() == TokenType.BLOCK_START) {
+        } else if (token.type() == TokenType.BLOCK_START) {
             // For BLOCK_START tokens, parse as a block statement.
             parseBlockStatement(enable);
-        } else if (token.getType() == TokenType.KEYWORD) {
+        } else if (token.type() == TokenType.KEYWORD) {
             // For KEYWORD tokens, handle specific control flow constructs like 'if' and 'while'.
-            if (token.getValue().equals("if")) {
+            if (token.value().equals("if")) {
                 parseIfStatement(enable);
-            } else if (token.getValue().equals("while")) {
+            } else if (token.value().equals("while")) {
                 parseWhileStatement(enable);
             } else {
                 // Throw a SyntaxError for unrecognized keywords.
-                throw new SyntaxError(currentPosition + token.getValue() + "Unknown keyword");
+                throw new SyntaxError(currentPosition + token.value() + "Unknown keyword");
             }
         }
     }
@@ -180,19 +182,19 @@ public class ConstructionPlanParser implements Parser {
         if(hasNextToken()) advance();
         else throw new SyntaxError(currentPosition+"Expected next token");
         Token token = getCurrentToken();
-        if(token.getType() == TokenType.PARENTHESIS){
+        if(token.type() == TokenType.PARENTHESIS){
             if(expect("(")){
                 if(hasNextToken()) advance();
-                else throw new SyntaxError(currentPosition+token.getValue()+"Missing expression");
+                else throw new SyntaxError(currentPosition+token.value()+"Missing expression");
                 Expr expr = parseExpression(enable);
                 statement = expr.eval(playerVariables) >= 1;
                 if(hasNextToken())
                     if(peek(")"))
                         advance();
-                    else throw new SyntaxError(currentPosition+token.getValue()+"Expected ending parentheses");
+                    else throw new SyntaxError(currentPosition+token.value()+"Expected ending parentheses");
                 if(hasNextToken())
                     advance();
-                else throw new SyntaxError(currentPosition+token.getValue()+"Expected statement");
+                else throw new SyntaxError(currentPosition+token.value()+"Expected statement");
                 int startPosition = currentPosition;
                 for(int i = 0; (i<10000)&&statement;i++){
                     currentPosition = startPosition;
@@ -217,33 +219,33 @@ public class ConstructionPlanParser implements Parser {
         if(hasNextToken()) advance();
         else throw new SyntaxError(currentPosition+"Expected next token");
         Token token = getCurrentToken();
-        if(token.getType() == TokenType.PARENTHESIS){
+        if(token.type() == TokenType.PARENTHESIS){
             if(expect("(")){
                 if(hasNextToken()) advance();
-                else throw new SyntaxError(currentPosition+token.getValue()+"Missing expression");
+                else throw new SyntaxError(currentPosition+token.value()+"Missing expression");
                 Expr expr = parseExpression(enable);
                 statement = expr.eval(playerVariables) >= 1;
                 if(hasNextToken())
                     if(peek(")"))
                         advance();
-                else throw new SyntaxError(currentPosition+token.getValue()+"Expected ending parentheses");
+                else throw new SyntaxError(currentPosition+token.value()+"Expected ending parentheses");
                 if(hasNextToken())
                     if(peek("then"))
                             advance();
-                else throw new SyntaxError(currentPosition+token.getValue()+"Expected then keyword");
+                else throw new SyntaxError(currentPosition+token.value()+"Expected then keyword");
                 if(hasNextToken())
                     advance();
-                else throw new SyntaxError(currentPosition+token.getValue()+"Expected statement");
+                else throw new SyntaxError(currentPosition+token.value()+"Expected statement");
                 parseStatement(statement&&enable);
                 if(hasNextToken())
                     if(peek("else"))
                         advance();
-                else throw new SyntaxError(currentPosition+token.getValue()+"Expected else keyword");
+                else throw new SyntaxError(currentPosition+token.value()+"Expected else keyword");
                 if(hasNextToken())
                     advance();
-                else throw new SyntaxError(currentPosition+token.getValue()+"Expected statement");
+                else throw new SyntaxError(currentPosition+token.value()+"Expected statement");
                 parseStatement(!statement&&enable);
-            }else throw new SyntaxError(currentPosition+token.getValue()+"Expected opening parenthesis");
+            }else throw new SyntaxError(currentPosition+token.value()+"Expected opening parenthesis");
         }
     }
 
@@ -286,9 +288,9 @@ public class ConstructionPlanParser implements Parser {
     private void parseAction(boolean enable) throws SyntaxError, EvaluationError {
         Token token = getCurrentToken();
         // Ensure the current token is a KEYWORD type as actions are predefined commands.
-        if(token.getType() == TokenType.KEYWORD) {
+        if(token.type() == TokenType.KEYWORD) {
             // Switch on the value of the token to determine the specific action command.
-            switch (token.getValue()) {
+            switch (token.value()) {
                 case "done":
                     // Complete the player's turn or action.
                     if(enable) player.done();
@@ -303,9 +305,9 @@ public class ConstructionPlanParser implements Parser {
                         advance();
                         token = getCurrentToken();
                         if(isDirection()){
-                            if(enable) player.move(token.getValue());
-                        } else throw new SyntaxError(currentPosition + token.getValue() + "Invalid direction");
-                    }else throw new SyntaxError(currentPosition + token.getValue() + "Expect next Token");
+                            if(enable) player.move(token.value());
+                        } else throw new SyntaxError(currentPosition + token.value() + "Invalid direction");
+                    }else throw new SyntaxError(currentPosition + token.value() + "Expect next Token");
                     break;
                 case "invest":
                     // Invest resources by evaluating an expression for the amount.
@@ -329,14 +331,14 @@ public class ConstructionPlanParser implements Parser {
                         advance();
                         if(isDirection()){
                             token = getCurrentToken();
-                            String dir = token.getValue();
+                            String dir = token.value();
                             if(hasNextToken()) {
                                 advance();
                                 Expr expr = parseExpression(enable);
                                 if(enable) player.shoot(dir, expr.eval(playerVariables));
-                            }else throw new SyntaxError(currentPosition + token.getValue() + "Expect expression");
-                        }else throw new SyntaxError(currentPosition + token.getValue() + "Invalid direction");
-                    }else throw new SyntaxError(currentPosition + token.getValue() + "Expect next Token");
+                            }else throw new SyntaxError(currentPosition + token.value() + "Expect expression");
+                        }else throw new SyntaxError(currentPosition + token.value() + "Invalid direction");
+                    }else throw new SyntaxError(currentPosition + token.value() + "Expect next Token");
                     break;
             }
         }
@@ -360,8 +362,8 @@ public class ConstructionPlanParser implements Parser {
     private void parseAssignment(boolean enable) throws SyntaxError, EvaluationError {
         Token token = getCurrentToken();
         // Ensure the current token is an IDENTIFIER, which is necessary for an assignment.
-        if(token.getType() == TokenType.IDENTIFIER) {
-            String name = token.getValue(); // Get the variable name from the token.
+        if(token.type() == TokenType.IDENTIFIER) {
+            String name = token.value(); // Get the variable name from the token.
             advance(); // Move past the variable name token.
             if (!expect("=")) throw new SyntaxError("Expected '=' after identifier."); // Ensure the next token is '='.
             advance(); // Move past the '=' token.
@@ -392,7 +394,7 @@ public class ConstructionPlanParser implements Parser {
     private Expr parseExpression(boolean enable) throws SyntaxError, EvaluationError {
         // Check if the current token starts a valid expression.
         if (!isExpression())
-            throw new SyntaxError(getCurrentToken().getValue() + ": Invalid expression");
+            throw new SyntaxError(getCurrentToken().value() + ": Invalid expression");
 
         // Parse the first term of the expression.
         Expr v = parseTerm(enable);
@@ -490,17 +492,17 @@ public class ConstructionPlanParser implements Parser {
      */
     private Expr parsePower(boolean enable) throws SyntaxError, EvaluationError {
         Token token = getCurrentToken();
-        if (token.getType() == TokenType.NUMBER) {
+        if (token.type() == TokenType.NUMBER) {
             if(enable){
-                int value = Integer.parseInt(getCurrentToken().getValue());
+                int value = Integer.parseInt(getCurrentToken().value());
                 return new IntLiteral(value);
             }else
                 return new IntLiteral(1);
-        } else if (token.getType() == TokenType.IDENTIFIER) {
+        } else if (token.type() == TokenType.IDENTIFIER) {
             if(enable){
-                if (!playerVariables.containsKey(getCurrentToken().getValue()))
-                    playerVariables.put(getCurrentToken().getValue(), 0);
-                return new Variable(getCurrentToken().getValue());
+                if (!playerVariables.containsKey(getCurrentToken().value()))
+                    playerVariables.put(getCurrentToken().value(), 0);
+                return new Variable(getCurrentToken().value());
             }   else
                 return new IntLiteral(1);
         } else if (expect("(")) {
@@ -508,11 +510,11 @@ public class ConstructionPlanParser implements Parser {
             Expr expr = parseExpression(enable);
             advance();
             if(!expect(")"))
-                throw new SyntaxError(currentPosition+token.getValue()+"Expected )");
+                throw new SyntaxError(currentPosition+token.value()+"Expected )");
             return expr;
         } else
-            if(!(Keywords.getInfo().contains(getCurrentToken().getValue())))
-                throw new SyntaxError(currentPosition+token.getValue()+"Expected a number or variable or keyword");
+            if(!(Keywords.getInfo().contains(getCurrentToken().value())))
+                throw new SyntaxError(currentPosition+token.value()+"Expected a number or variable or keyword");
             return parseInfoExpr(enable);
     }
 
@@ -542,13 +544,13 @@ public class ConstructionPlanParser implements Parser {
             else
                 throw new SyntaxError(currentPosition+"Expected an expression");
             Token token = getCurrentToken();
-            if(Keywords.getDirection().contains(token.getValue())){
-                String dir = token.getValue();
+            if(Keywords.getDirection().contains(token.value())){
+                String dir = token.value();
                 if(enable)
                     return player.nearby(dir);
                 else
                     return new IntLiteral(1);
-            }else throw new SyntaxError(currentPosition+token.getValue()+"Expect direction");
+            }else throw new SyntaxError(currentPosition+token.value()+"Expect direction");
         }
 //        return null;
     }

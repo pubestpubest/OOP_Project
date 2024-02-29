@@ -77,8 +77,6 @@ public class Main {
                 "i = i - 2\n" +
                 "}\n";
         String action = "done \n"+"done\n";
-        HashMap<String, Integer> map = new HashMap<>();
-//        ConstructionPlanTokenizer tokenizeeeer = new ConstructionPlanTokenizer(InputStream);
         Tokenizer tokenizer = new ConstructionPlanTokenizer(InputStream);
         Parser parser = new ConstructionPlanParser();
         Player player = new PlayerContext("Player 1");

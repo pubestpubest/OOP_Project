@@ -2,16 +2,12 @@ package RegionP;
 
 public class Region {
 
-    private int m;
-    private int n;
     private String owner;
 
     private boolean StandHere;
 
     public Region(int m, int n) {
         StandHere = false;
-        this.m = m;
-        this.n = n;
         this.owner = "-";
     }
 

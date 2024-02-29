@@ -96,12 +96,12 @@ public class Main {
 
         System.out.println("Current board:");
         game.printBoard();
-        System.out.println("Player 2's turn. Enter row and column to claim a region:");
-
-        player2.ClaimFirstRegion(game.regions, scanner);
-
-        System.out.println("Current board:");
-        game.printBoard();
+//        System.out.println("Player 2's turn. Enter row and column to claim a region:");
+//
+//        player2.ClaimFirstRegion(game.regions, scanner);
+//
+//        System.out.println("Current board:");
+//        game.printBoard();
 
         while(true){
             System.out.println("Player 1's turn. Enter action");
@@ -110,45 +110,18 @@ public class Main {
             Parser parser = new ConstructionPlanParser();
             try{
                 System.out.println(player2);
-                parser.parse(tokenizer.getTokens(), player2);
+                parser.parse(tokenizer.getTokens(), player1);
                 System.out.println(player2);
             }catch(SyntaxError s){
                 System.out.println(s);
             }
+
             System.out.println("Current board:");
             game.printBoard();
 
-//            System.out.println("Player 2's turn. Enter action");
-//            String action = scanner.nextLine();
-//            Tokenizer tokenizer = new ConstructionPlanTokenizer(action);
-//            Parser parser = new ConstructionPlanParser();
-            try{
-                System.out.println(player2);
-                parser.parse(tokenizer.getTokens(), player2);
-                System.out.println(player2);
-            }catch(SyntaxError s){
-                System.out.println(s);
-            }
-            System.out.println("Current board:");
-            game.printBoard();
-        }
 
+       }
 
-        // Game loop
-//        while (true) {
-//
-//            System.out.println("Player 1's turn. Enter direction to a move");
-//            player1.move(game.board , scanner);
-//
-//            System.out.println("Current board:");
-//            game.printBoard();
-//            System.out.println("Player 2's turn. Enter direction to a move");
-//            int di2 = scanner.nextInt();
-//            player2.move(game.board, scanner);
-//
-//            // Check for game over condition (for demonstration, you'll need to implement this)
-//            // If game over, break out of loop and declare winner
-//        }
 
 
     }

@@ -9,14 +9,14 @@ import java.util.Scanner;
 
 public class PlayerContext implements Player {
     private String name;
-    private Region[][] board;
+    private Region[][] regions;
     private HashMap<String,Integer> variables;
-    private int posX;
-    private int posY;
+    private int currow;
+    private int curcol;
 
 
     public PlayerContext(String name,Region[][] Board){
-        this.board = Board;
+        this.regions = Board;
         this.name = name;
         this.variables = new HashMap<>();
 
@@ -44,60 +44,79 @@ public class PlayerContext implements Player {
 
         System.out.println(name+" moved "+dir);
 
+        label:
         while(true){
-            if(dir.equals("up")){
+            switch (dir) {
+                case "up":
 
-                board[posX][posY].setPosition("-");
-                board[posX][posY-1].setPosition(name);
-                SetPlayerPos(posX,posY-1);
-                break;
+                    regions[currow][curcol].setPosition("-");
+                    regions[currow - 1][curcol].setPosition(name);
+                    SetPlayerPos(currow - 1, curcol);
 
-            } else if (dir.equals("upright")) {
+                    CheckPos();
+                    break label;
 
-                board[posX][posY].setPosition("-");
-                board[posX+1][posY-1].setPosition(name);
-                SetPlayerPos(posX+1,posY-1);
-                break;
+                case "upright":
 
-            } else if (dir.equals("downright")) {
+                    regions[currow][curcol].setPosition("-");
+                    regions[currow - 1][curcol + 1].setPosition(name);
+                    SetPlayerPos(currow - 1, curcol + 1);
 
-                board[posX][posY].setPosition("-");
-                board[posX+1][posY].setPosition(name);
-                SetPlayerPos(posX+1,posY);
-                break;
+                    CheckPos();
+                    break label;
 
-            } else if (dir.equals("down")) {
+                case "downright":
 
-                board[posX][posY].setPosition("-");
-                board[posX][posY+1].setPosition(name);
-                SetPlayerPos(posX,posY+1);
-                break;
+                    regions[currow][curcol].setPosition("-");
+                    regions[currow+1][curcol+1].setPosition(name);
+                    SetPlayerPos(currow +1, curcol+1);
 
-            } else if (dir.equals("downleft")) {
+                    CheckPos();
+                    break label;
 
-                board[posX][posY].setPosition("-");
-                board[posX-1][posY].setPosition(name);
-                SetPlayerPos(posX-1,posY);
-                break;
+                case "down":
 
-            } else if (dir.equals("upleft")) {
+                    regions[currow][curcol].setPosition("-");
+                    regions[currow+1][curcol].setPosition(name);
+                    SetPlayerPos(currow+1, curcol);
 
-                board[posX][posY].setPosition("-");
-                board[posX-1][posY-1].setPosition(name);
-                SetPlayerPos(posX-1,posY-1);
-                break;
+                    CheckPos();
+                    break label;
 
-            } else {
+                case "downleft":
 
-                System.out.println("Invalid move. Please try again.");
+                    regions[currow][curcol].setPosition("-");
+                    regions[currow+1][curcol-1].setPosition(name);
+                    SetPlayerPos(currow+ 1 , curcol -1);
 
+                    CheckPos();
+                    break label;
+
+                case "upleft":
+
+                    regions[currow][curcol].setPosition("-");
+                    regions[currow - 1][curcol - 1].setPosition(name);
+                    SetPlayerPos(currow - 1, curcol - 1);
+
+                    CheckPos();
+                    break label;
+
+                default:
+
+                    System.out.println("Invalid move. Please try again.");
+
+                    break;
             }
 
         }
     }
+    public void CheckPos(){
+        System.out.println("currow :"+currow );
+        System.out.println("curcol :"+curcol);
+    }
     private void SetPlayerPos(int x,int y){
-        posX = x;
-        posY = y;
+        currow = x;
+        curcol = y;
     }
     @Override
     public void invest(int eval) {
@@ -140,8 +159,8 @@ public class PlayerContext implements Player {
             } else {
                 board[row-1][col-1].setPosition(name);
                 board[row-1][col-1].setStandHere(true);
-                posX = row-1;
-                posY = col-1;
+                currow = row-1;
+                curcol = col-1;
                 break;
             }
         }

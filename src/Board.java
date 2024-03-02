@@ -9,8 +9,8 @@ import java.util.Objects;
 public class Board {
     public Region[][] regions;
     private int PlayerNum;
-    private final int rows;
-    private final int cols;
+    private int rows;
+    private int cols;
     public static int r;
     public static int c;
     private int init_plan_min;
@@ -23,7 +23,7 @@ public class Board {
     public static int max_dep;
     public static int interest_pct;
 
-    public Board(int rows,int cols){
+    public Board(){
 
 
 
@@ -46,12 +46,12 @@ public class Board {
                     String value = parts[1].trim();
 
                     //set the value to the variable that we want
-//                    if(i == 1){
-//                        rows = Integer.parseInt(value);
-//                    }
-//                    if(i == 2){
-//                        cols = Integer.parseInt(value);
-//                    }
+                    if(i == 1){
+                        rows = Integer.parseInt(value);
+                    }
+                    if(i == 2){
+                        cols = Integer.parseInt(value);
+                    }
                     if(i == 3){
                         init_plan_min = Integer.parseInt(value);
                     }
@@ -87,10 +87,9 @@ public class Board {
             e.printStackTrace();
         }
 
-        this.rows = rows;
-        this.cols = cols;
         r = rows;
         c = cols;
+
         regions = new Region[rows][cols];
         initializeBoard();
 
@@ -102,12 +101,8 @@ public class Board {
 
     }
 
-    public static int getRows(){
-        return r;
-    }
-    public static int getCols(){
-        return c;
-    }
+    public static int getRows(){return r;}
+    public static int getCols(){return c;}
 
 
     private void initializeBoard() {

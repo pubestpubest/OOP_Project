@@ -79,11 +79,10 @@ public class Main {
 
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter number of rows and columns for the UPBEAT board:");
-        int rows = scanner.nextInt();
-        int cols = scanner.nextInt();
 
-        Board game = new Board(rows,cols);
+        Board game = new Board();
+
+        System.out.println(Board.getRows()+"x"+Board.getCols()+" UPBEAT board:");
 
         Player player1 = new PlayerContext("1",game.regions);
         Player player2 = new PlayerContext("2",game.regions);
@@ -96,12 +95,13 @@ public class Main {
 
         System.out.println("Current board:");
         game.printBoard();
-//        System.out.println("Player 2's turn. Enter row and column to claim a region:");
-//
-//        player2.ClaimFirstRegion(game.regions, scanner);
-//
-//        System.out.println("Current board:");
-//        game.printBoard();
+
+        System.out.println("Player 2's turn. Enter row and column to claim a region:");
+
+        player2.ClaimCityCenter(game.regions, scanner);
+
+        System.out.println("Current board:");
+        game.printBoard();
 
         while(true){
             System.out.println("Player 1's turn. Enter action");
@@ -122,15 +122,21 @@ public class Main {
             System.out.println("Current board:");
             game.printBoard();
 
-            ((PlayerContext) player1).calculateInterest();
 
-            System.out.println("board after calculate:");
-            game.printBoard();
-
+//            System.out.println("End Turn? :");
+//            boolean endturn = scanner.nextBoolean();
+//            if (endturn){
+//                ((PlayerContext) player1).calculateInterest();
+//
+//                System.out.println("board after calculate:");
+//                game.printBoard();
+//            }
 
        }
 
 
 
     }
+
+
 }

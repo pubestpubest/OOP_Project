@@ -49,4 +49,5 @@ public class Region {
     public void decreaseCurdeposit(double curdeposit) {
         this.curdeposit -= curdeposit;
     }
+    public void setCurdeposit(double x){curdeposit = x;}
 }

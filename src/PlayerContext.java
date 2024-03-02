@@ -12,7 +12,6 @@ public class PlayerContext implements Player {
     private String name;
     private Region[][] regions;
     private Region curCaptal;
-   // private Region[] curegions;
     private HashMap<String,Integer> variables;
     private int currow;
     private int curcol;
@@ -198,9 +197,152 @@ public class PlayerContext implements Player {
         //do this
     }
     @Override
-    public void shoot(String dir, int eval) {
-        System.out.println(name+" shooting "+dir+" "+ eval);
-        //do this
+    public void shoot(String dir, int x) {
+        System.out.println(name+" shooting "+dir+" "+ x);
+
+        if(budget - x+1 > 0){
+
+            switch (dir) {
+                case "up":
+                    budget -= x+1;
+                    regions[currow-1][curcol].decreaseCurdeposit(x) ;
+                    if(regions[currow-1][curcol].getCurdeposit() < 1 ){
+                        regions[currow-1][curcol].setOwner("-");
+                        regions[currow-1][curcol].setCurdeposit(0);
+                        if(regions[currow-1][curcol].isCapital()){
+                            for(int i = 0; i< Board.getRows(); i++){
+                                for(int j = 0; j< Board.getCols(); j++){
+
+                                    if(regions[i][j].getOwner().equals(regions[currow-1][curcol].getOwner())){
+                                        regions[i][j].setOwner("-");
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+                    break;
+
+                case "upright":
+                    budget -= x+1;
+                    regions[currow-1][curcol+1].decreaseCurdeposit(x) ;
+                    if(regions[currow-1][curcol+1].getCurdeposit() < 1 ){
+                        regions[currow-1][curcol+1].setOwner("-");
+                        regions[currow-1][curcol+1].setCurdeposit(0);
+                        if(regions[currow-1][curcol+1].isCapital()){
+                            for(int i = 0; i< Board.getRows(); i++){
+                                for(int j = 0; j< Board.getCols(); j++){
+
+                                    if(regions[i][j].getOwner().equals(regions[currow-1][curcol+1].getOwner())){
+                                        regions[i][j].setOwner("-");
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+
+                    break;
+
+                case "downright":
+                    budget -= x+1;
+                    regions[currow+1][curcol+1].decreaseCurdeposit(x) ;
+                    if(regions[currow+1][curcol+1].getCurdeposit() < 1 ){
+                        regions[currow+1][curcol+1].setOwner("-");
+                        regions[currow+1][curcol+1].setCurdeposit(0);
+                        if(regions[currow+1][curcol+1].isCapital()){
+                            for(int i = 0; i< Board.getRows(); i++){
+                                for(int j = 0; j< Board.getCols(); j++){
+
+                                    if(regions[i][j].getOwner().equals(regions[currow+1][curcol+1].getOwner())){
+                                        regions[i][j].setOwner("-");
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+                    break;
+
+                case "down":
+                    budget -= x+1;
+                    regions[currow+1][curcol].decreaseCurdeposit(x) ;
+                    if(regions[currow+1][curcol].getCurdeposit() < 1 ){
+                        regions[currow+1][curcol].setOwner("-");
+                        regions[currow+1][curcol].setCurdeposit(0);
+                        if(regions[currow+1][curcol].isCapital()){
+                            for(int i = 0; i< Board.getRows(); i++){
+                                for(int j = 0; j< Board.getCols(); j++){
+
+                                    if(regions[i][j].getOwner().equals(regions[currow+1][curcol].getOwner())){
+                                        regions[i][j].setOwner("-");
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+
+                    break;
+
+                case "downleft":
+                    budget -= x+1;
+                    regions[currow+1][curcol-1].decreaseCurdeposit(x) ;
+                    if(regions[currow+1][curcol-1].getCurdeposit() < 1 ){
+                        regions[currow+1][curcol-1].setOwner("-");
+                        regions[currow+1][curcol-1].setCurdeposit(0);
+                        if(regions[currow+1][curcol-1].isCapital()){
+                            for(int i = 0; i< Board.getRows(); i++){
+                                for(int j = 0; j< Board.getCols(); j++){
+
+                                    if(regions[i][j].getOwner().equals(regions[currow+1][curcol-1].getOwner())){
+                                        regions[i][j].setOwner("-");
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    break;
+
+                case "upleft":
+                    budget -= x+1;
+                    regions[currow-1][curcol-1].decreaseCurdeposit(x) ;
+                    if(regions[currow-1][curcol-1].getCurdeposit() < 1 ){
+                        regions[currow-1][curcol-1].setOwner("-");
+                        regions[currow-1][curcol-1].setCurdeposit(0);
+                        if(regions[currow-1][curcol-1].isCapital()){
+                            for(int i = 0; i< Board.getRows(); i++){
+                                for(int j = 0; j< Board.getCols(); j++){
+
+                                    if(regions[i][j].getOwner().equals(regions[currow-1][curcol-1].getOwner())){
+                                        regions[i][j].setOwner("-");
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    break;
+
+                default:
+
+                    System.out.println("Invalid shoot. Please try again.");
+
+                    break;
+            }
+
+        }
 
     }
     @Override
@@ -209,16 +351,88 @@ public class PlayerContext implements Player {
 
 
         //should returns the location of the closest region belonging to an opponent
-        return new IntLiteral(999);
+        //not done
+
+        return new IntLiteral(0);
 
     }
+
+    //not sure && not done
     @Override
     public Expr nearby(String dir) {
         System.out.println("nearby "+dir+"called");
 
+            switch (dir) {
+                case "up":
+                    while (true){
+                        int i=1;
+                        if(regions[curcol][currow+i] == null ){
+                            break;
+                        }
+                        if(!regions[curcol][currow+i].getOwner().equals(name) && !regions[curcol][currow+i].getOwner().equals("-")){
 
-        //return  100*x + y;
-        return  new IntLiteral(999);
+                            String text = Double.toString(regions[curcol][currow+i].getCurdeposit());
+                            int index = text.indexOf('.');
+                            int digits = 0;
+                            if (index != -1) {
+
+                                digits = text.length() - index - 1;
+                            }
+
+                            return  new IntLiteral((int) 100*i + digits);
+
+                        }
+                        i++;
+                    }
+                case "upright":
+                    for(int i=1; i<currow  ;i++){
+                        if(!regions[curcol-i][currow+i].getOwner().equals(name) && !regions[curcol-i][currow+i].getOwner().equals("-")){
+
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol-i][currow+i].getCurdeposit()/10));
+
+                        }
+                    }
+                case "downright":
+                    for(int i=1; i<Board.getRows()-currow  ;i++){
+                        if(!regions[curcol+i][currow+i].getOwner().equals(name) && !regions[curcol+i][currow+i].getOwner().equals("-")){
+
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow+i].getCurdeposit()/10));
+
+                        }
+                    }
+                case "down":
+                    for(int i=1; i<Board.getRows()-currow  ;i++){
+                        if(!regions[curcol+i][currow].getOwner().equals(name) && !regions[curcol+i][currow].getOwner().equals("-")){
+
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow].getCurdeposit()/10));
+
+                        }
+                    }
+                case "downleft":
+                    for(int i=1; i<currow  ;i++){
+                        if(!regions[curcol+i][currow-i].getOwner().equals(name) && !regions[curcol+i][currow-i].getOwner().equals("-")){
+
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow-i].getCurdeposit()/10));
+
+                        }
+                    }
+                case "upleft":
+                    for(int i=1; i<currow  ;i++){
+                        if(!regions[curcol-i][currow-i].getOwner().equals(name) && !regions[curcol-i][currow-i].getOwner().equals("-")){
+
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol-i][currow-i].getCurdeposit()/10));
+
+                        }
+                    }
+                default:
+
+                    return  new IntLiteral(0);
+
+
+            }
+
+
+
     }
 
     @Override

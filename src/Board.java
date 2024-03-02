@@ -12,7 +12,7 @@ public class Board {
     private int cols;
     private int init_plan_min;
     private int init_plan_sec;
-    private int init_budget;
+    public static int init_budget;
     private int init_center_dep;
     private int plan_rev_min;
     private int plan_rev_sec;
@@ -89,6 +89,10 @@ public class Board {
         regions = new Region[rows][cols];
         initializeBoard();
 
+        //test reading config file
+//        System.out.println(init_plan_min);
+//        System.out.println(init_plan_sec);
+//        System.out.println(init_budget);
 
 
     }
@@ -103,12 +107,12 @@ public class Board {
     public void printBoard() {
         for (int i = 0; i < rows; i++) {
             // Add spacing for visual representation of hexagonal grid
-            System.out.print("        ");
+            System.out.print("           ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 1){
-                    System.out.print(" " + regions[i][j].getOwner());
-                    if(regions[i][j].isStandHere()){
-                        System.out.print("C");
+                    System.out.print("        " + regions[i][j].getOwner());
+                    if(regions[i][j].isCapital()){
+                        System.out.print("Cap");
                     }else{
                         System.out.print("-");
                     }
@@ -118,9 +122,9 @@ public class Board {
             System.out.print("Row:" + (i+1) + " ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 0){
-                    System.out.print(" "+ regions[i][j].getOwner());
-                    if(regions[i][j].isStandHere()){
-                        System.out.print("C");
+                    System.out.print("        "+ regions[i][j].getOwner());
+                    if(regions[i][j].isCapital()){
+                        System.out.print("Cap");
                     }else{
                         System.out.print("-");
                     }
@@ -128,5 +132,9 @@ public class Board {
             }
             System.out.println();
         }
+    }
+
+    public int getInit_budget() {
+        return init_budget;
     }
 }

@@ -3,6 +3,7 @@ import Interfaces.Player;
 import Parser.*;
 import RegionP.Region;
 
+
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
@@ -10,19 +11,25 @@ import java.util.Scanner;
 public class PlayerContext implements Player {
     private String name;
     private Region[][] regions;
+    private Region curCaptal;
     private HashMap<String,Integer> variables;
     private int currow;
     private int curcol;
+    private int budget;
 
 
-    public PlayerContext(String name,Region[][] Board){
-        this.regions = Board;
+    public PlayerContext(String name,Region[][] regions){
+        this.regions = regions;
         this.name = name;
         this.variables = new HashMap<>();
+        this.budget = Board.init_budget ;
 
     }
     public String getName() {
         return name;
+    }
+    public int getBudget(){
+        return budget;
     }
     @Override
     public HashMap<String, Integer> getVariables() {
@@ -38,82 +45,106 @@ public class PlayerContext implements Player {
     @Override
     public void relocate() {
         System.out.println(name+" relocate");
+
+        // x should be  the minimum moving distance from the current city center to the current region
+        int x = 10;
+
+
+        if(budget - (5*x)+10 > 0 || Objects.equals(regions[currow][curcol].getOwner(), name)){
+            budget = budget - (5*x)+10;
+
+            //set current capital
+            curCaptal.setCapital(false);
+            regions[currow][curcol].setCapital(true);
+
+
+        }else{
+            done();
+        }
+
+
+
     }
     @Override
     public void move(String dir) {
 
         System.out.println(name+" moved "+dir);
+//Not sure how much should decrease the budget
+        if(budget-1 > 0){
+            budget = budget-1;
+//        if(isOpponent || isvalidDirection){
+//           no-op
+//        } else{
 
-        label:
-        while(true){
-            switch (dir) {
-                case "up":
+//            Do move...
+            label:
+            while(true){
 
-                    regions[currow][curcol].setPosition("-");
-                    regions[currow - 1][curcol].setPosition(name);
-                    SetPlayerPos(currow - 1, curcol);
+                switch (dir) {
+                    case "up":
 
-                    CheckPos();
-                    break label;
+                        regions[currow][curcol].setPosition("-");
+                        regions[currow - 1][curcol].setPosition(name);
+                        SetPlayerPos(currow - 1, curcol);
 
-                case "upright":
+                        break label;
 
-                    regions[currow][curcol].setPosition("-");
-                    regions[currow - 1][curcol + 1].setPosition(name);
-                    SetPlayerPos(currow - 1, curcol + 1);
+                    case "upright":
 
-                    CheckPos();
-                    break label;
+                        regions[currow][curcol].setPosition("-");
+                        regions[currow - 1][curcol + 1].setPosition(name);
+                        SetPlayerPos(currow - 1, curcol + 1);
 
-                case "downright":
+                        break label;
 
-                    regions[currow][curcol].setPosition("-");
-                    regions[currow+1][curcol+1].setPosition(name);
-                    SetPlayerPos(currow +1, curcol+1);
+                    case "downright":
 
-                    CheckPos();
-                    break label;
+                        regions[currow][curcol].setPosition("-");
+                        regions[currow+1][curcol+1].setPosition(name);
+                        SetPlayerPos(currow +1, curcol+1);
 
-                case "down":
+                        break label;
 
-                    regions[currow][curcol].setPosition("-");
-                    regions[currow+1][curcol].setPosition(name);
-                    SetPlayerPos(currow+1, curcol);
+                    case "down":
 
-                    CheckPos();
-                    break label;
+                        regions[currow][curcol].setPosition("-");
+                        regions[currow+1][curcol].setPosition(name);
+                        SetPlayerPos(currow+1, curcol);
 
-                case "downleft":
+                        break label;
 
-                    regions[currow][curcol].setPosition("-");
-                    regions[currow+1][curcol-1].setPosition(name);
-                    SetPlayerPos(currow+ 1 , curcol -1);
+                    case "downleft":
 
-                    CheckPos();
-                    break label;
+                        regions[currow][curcol].setPosition("-");
+                        regions[currow+1][curcol-1].setPosition(name);
+                        SetPlayerPos(currow+ 1 , curcol -1);
 
-                case "upleft":
+                        break label;
 
-                    regions[currow][curcol].setPosition("-");
-                    regions[currow - 1][curcol - 1].setPosition(name);
-                    SetPlayerPos(currow - 1, curcol - 1);
+                    case "upleft":
 
-                    CheckPos();
-                    break label;
+                        regions[currow][curcol].setPosition("-");
+                        regions[currow - 1][curcol - 1].setPosition(name);
+                        SetPlayerPos(currow - 1, curcol - 1);
 
-                default:
+                        break label;
 
-                    System.out.println("Invalid move. Please try again.");
+                    default:
 
-                    break;
+                        System.out.println("Invalid move. Please try again.");
+
+                        break;
+                }
+
             }
+//        }
 
+        }else{
+            done();
         }
+
     }
-    public void CheckPos(){
-        System.out.println("currow :"+currow );
-        System.out.println("curcol :"+curcol);
-    }
+
     private void SetPlayerPos(int x,int y){
         currow = x;
         curcol = y;
@@ -121,24 +152,35 @@ public class PlayerContext implements Player {
     @Override
     public void invest(int eval) {
         System.out.println(name+" invested "+eval);
+        //do this
     }
     @Override
     public void collect(int eval) {
         System.out.println(name+" collected "+eval);
+        //do this
     }
     @Override
     public void shoot(String dir, int eval) {
         System.out.println(name+" shooting "+dir+" "+ eval);
+        //do this
+
     }
     @Override
     public Expr opponent() {
         System.out.println("opponent called");
+
+
+        //should returns the location of the closest region belonging to an opponent
         return new IntLiteral(999);
+
     }
     @Override
     public Expr nearby(String dir) {
         System.out.println("nearby "+dir+"called");
-        return new IntLiteral(999);
+
+
+        //return  100*x + y;
+        return  new IntLiteral(999);
     }
 
     @Override
@@ -148,8 +190,10 @@ public class PlayerContext implements Player {
                 ", variables=" + variables +
                 '}';
     }
+
     @Override
-    public void ClaimFirstRegion(Region[][] board, Scanner scanner) {
+    public void ClaimCityCenter(Region[][] board, Scanner scanner) {
+
         while (true) {
             int row = scanner.nextInt();
             int col = scanner.nextInt();
@@ -159,10 +203,14 @@ public class PlayerContext implements Player {
             } else {
                 board[row-1][col-1].setPosition(name);
                 board[row-1][col-1].setStandHere(true);
+                board[row-1][col-1].setCapital(true);
+                curCaptal = board[row-1][col-1] ;
                 currow = row-1;
                 curcol = col-1;
                 break;
             }
         }
+
+
     }
 }

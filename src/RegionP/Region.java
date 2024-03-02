@@ -6,6 +6,9 @@ public class Region {
 
     private boolean StandHere;
 
+    private boolean isCapital;
+    private double curdeposit ;
+
     public Region(int m, int n) {
         StandHere = false;
         this.owner = "-";
@@ -27,4 +30,11 @@ public class Region {
         this.owner = owner;
     }
 
+    public boolean isCapital() {
+        return isCapital;
+    }
+
+    public void setCapital(boolean capital) {
+        isCapital = capital;
+    }
 }

@@ -92,7 +92,7 @@ public class Main {
         game.printBoard();
         System.out.println("Player 1's turn. Enter row and column to claim a region:");
 
-        player1.ClaimFirstRegion(game.regions, scanner);
+        player1.ClaimCityCenter(game.regions, scanner);
 
         System.out.println("Current board:");
         game.printBoard();
@@ -105,6 +105,9 @@ public class Main {
 
         while(true){
             System.out.println("Player 1's turn. Enter action");
+
+            System.out.println("current budget:" + ((PlayerContext) player1).getBudget());
+
             String action = scanner.nextLine();
             Tokenizer tokenizer = new ConstructionPlanTokenizer(action);
             Parser parser = new ConstructionPlanParser();

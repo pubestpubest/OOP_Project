@@ -36,6 +36,7 @@ public class Keywords {
         word.addAll(getAttack());
         return word;
     }
+
     public static Set<String> getMove(){
         Set<String> word = new HashSet<>();
         word.add("move");

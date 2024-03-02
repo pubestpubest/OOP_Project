@@ -93,15 +93,15 @@ public class Main {
 
         player1.ClaimCityCenter(game.regions, scanner);
 
-        System.out.println("Current board:");
-        game.printBoard();
-
-        System.out.println("Player 2's turn. Enter row and column to claim a region:");
-
-        player2.ClaimCityCenter(game.regions, scanner);
-
-        System.out.println("Current board:");
-        game.printBoard();
+//        System.out.println("Current board:");
+//        game.printBoard();
+//
+//        System.out.println("Player 2's turn. Enter row and column to claim a region:");
+//
+//        player2.ClaimCityCenter(game.regions, scanner);
+//
+//        System.out.println("Current board:");
+//        game.printBoard();
 
         while(true){
             System.out.println("Player 1's turn. Enter action");

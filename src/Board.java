@@ -16,7 +16,7 @@ public class Board {
     private int init_plan_min;
     private int init_plan_sec;
     public static int init_budget;
-    private int init_center_dep;
+    public static int init_center_dep;
     private int plan_rev_min;
     private int plan_rev_sec;
     private int rev_cost;
@@ -116,10 +116,10 @@ public class Board {
     public void printBoard() {
         for (int i = 0; i < rows; i++) {
             // Add spacing for visual representation of hexagonal grid
-            System.out.print("           ");
+            System.out.print("              ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 1){
-                    System.out.print("        ");
+                    System.out.print("             ");
                     if(!Objects.equals(regions[i][j].isStandHere(), "-")){
                         System.out.print(regions[i][j].isStandHere());
                     }else{
@@ -128,7 +128,8 @@ public class Board {
                     System.out.print(" ");
 
                     if(regions[i][j].isCapital()){
-                        System.out.print("Cap");
+                        System.out.print("C");
+                        System.out.print((int) regions[i][j].getCurdeposit());
 
                     }else{
                         if(!Objects.equals(regions[i][j].getOwner(), "-")){
@@ -144,7 +145,7 @@ public class Board {
             System.out.print("Row:" + (i+1) + " ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 0){
-                    System.out.print("        ");
+                    System.out.print("             ");
                     if(!Objects.equals(regions[i][j].isStandHere(), "-")){
                         System.out.print(regions[i][j].isStandHere());
                     }else{
@@ -153,7 +154,8 @@ public class Board {
                     System.out.print(" ");
 
                     if(regions[i][j].isCapital()){
-                        System.out.print("Cap");
+                        System.out.print("C");
+                        System.out.print((int) regions[i][j].getCurdeposit());
                     }else{
                         if(!Objects.equals(regions[i][j].getOwner(), "-")){
                             System.out.print((int) regions[i][j].getCurdeposit());

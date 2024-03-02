@@ -92,17 +92,29 @@ public class PlayerContext implements Player {
 
                     case "upright":
 
-                        regions[currow][curcol].setStandHere("-");
-                        regions[currow - 1][curcol + 1].setStandHere(name);
-                        SetPlayerPos(currow - 1, curcol + 1);
+                        if(curcol%2 == 0){
+                            regions[currow][curcol].setStandHere("-");
+                            regions[currow][curcol + 1].setStandHere(name);
+                            SetPlayerPos(currow, curcol + 1);
+                        }else{
+                            regions[currow][curcol].setStandHere("-");
+                            regions[currow - 1][curcol + 1].setStandHere(name);
+                            SetPlayerPos(currow - 1, curcol + 1);
+                        }
+
 
                         break label;
 
                     case "downright":
-
-                        regions[currow][curcol].setStandHere("-");
-                        regions[currow+1][curcol+1].setStandHere(name);
-                        SetPlayerPos(currow +1, curcol+1);
+                        if(curcol%2 == 1){
+                            regions[currow][curcol].setStandHere("-");
+                            regions[currow][curcol-1].setStandHere(name);
+                            SetPlayerPos(currow , curcol + 1);
+                        }else{
+                            regions[currow][curcol].setStandHere("-");
+                            regions[currow+1][curcol+1].setStandHere(name);
+                            SetPlayerPos(currow +1, curcol+1);
+                        }
 
                         break label;
 
@@ -115,18 +127,32 @@ public class PlayerContext implements Player {
                         break label;
 
                     case "downleft":
+                        if(curcol%2 == 1){
+                            regions[currow][curcol].setStandHere("-");
+                            regions[currow][curcol-1].setStandHere(name);
+                            SetPlayerPos(currow , curcol -1);
+                        }else{
+                            regions[currow][curcol].setStandHere("-");
+                            regions[currow+1][curcol-1].setStandHere(name);
+                            SetPlayerPos(currow+ 1 , curcol -1);
+                        }
 
-                        regions[currow][curcol].setStandHere("-");
-                        regions[currow+1][curcol-1].setStandHere(name);
-                        SetPlayerPos(currow+ 1 , curcol -1);
 
                         break label;
 
                     case "upleft":
 
-                        regions[currow][curcol].setStandHere("-");
-                        regions[currow - 1][curcol - 1].setStandHere(name);
-                        SetPlayerPos(currow - 1, curcol - 1);
+                        if(curcol%2 == 0){
+                            regions[currow][curcol].setStandHere("-");
+                            regions[currow][curcol - 1].setStandHere(name);
+                            SetPlayerPos(currow ,curcol - 1);
+                        }else {
+                            regions[currow][curcol].setStandHere("-");
+                            regions[currow - 1][curcol - 1].setStandHere(name);
+                            SetPlayerPos(currow - 1, curcol - 1);
+                        }
+
+
 
                         break label;
 
@@ -457,6 +483,7 @@ public class PlayerContext implements Player {
                 board[row-1][col-1].setStandHere(name);
                 board[row-1][col-1].setCapital(true);
                 curCaptal = board[row-1][col-1] ;
+                board[row-1][col-1].increaseCurdeposit( (double)Board.init_center_dep );
                 currow = row-1;
                 curcol = col-1;
                 break;

@@ -4,21 +4,21 @@ public class Region {
 
     private String owner;
 
-    private boolean StandHere;
+    private String StandHere;
 
     private boolean isCapital;
-    private double curdeposit ;
+    private double curdeposit = 0 ;
 
     public Region(int m, int n) {
-        StandHere = false;
+        StandHere = "-";
         this.owner = "-";
     }
 
-    public boolean isStandHere() {
+    public String isStandHere() {
         return StandHere;
     }
 
-    public void setStandHere(boolean standHere) {
+    public void setStandHere(String standHere) {
         StandHere = standHere;
     }
 
@@ -26,7 +26,7 @@ public class Region {
         return owner;
     }
 
-    public void setPosition(String owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
@@ -36,5 +36,17 @@ public class Region {
 
     public void setCapital(boolean capital) {
         isCapital = capital;
+    }
+
+    public double getCurdeposit() {
+        return curdeposit;
+    }
+
+    public void increaseCurdeposit(double curdeposit) {
+        this.curdeposit += curdeposit;
+    }
+
+    public void decreaseCurdeposit(double curdeposit) {
+        this.curdeposit -= curdeposit;
     }
 }

@@ -4,12 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class Board {
     public Region[][] regions;
     private int PlayerNum;
-    private int rows;
-    private int cols;
+    private final int rows;
+    private final int cols;
+    public static int r;
+    public static int c;
     private int init_plan_min;
     private int init_plan_sec;
     public static int init_budget;
@@ -17,8 +20,8 @@ public class Board {
     private int plan_rev_min;
     private int plan_rev_sec;
     private int rev_cost;
-    private int max_dep;
-    private int interest_pct;
+    public static int max_dep;
+    public static int interest_pct;
 
     public Board(int rows,int cols){
 
@@ -86,6 +89,8 @@ public class Board {
 
         this.rows = rows;
         this.cols = cols;
+        r = rows;
+        c = cols;
         regions = new Region[rows][cols];
         initializeBoard();
 
@@ -96,6 +101,15 @@ public class Board {
 
 
     }
+
+    public static int getRows(){
+        return r;
+    }
+    public static int getCols(){
+        return c;
+    }
+
+
     private void initializeBoard() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -110,11 +124,24 @@ public class Board {
             System.out.print("           ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 1){
-                    System.out.print("        " + regions[i][j].getOwner());
-                    if(regions[i][j].isCapital()){
-                        System.out.print("Cap");
+                    System.out.print("        ");
+                    if(!Objects.equals(regions[i][j].isStandHere(), "-")){
+                        System.out.print(regions[i][j].isStandHere());
                     }else{
                         System.out.print("-");
+                    }
+                    System.out.print(" ");
+
+                    if(regions[i][j].isCapital()){
+                        System.out.print("Cap");
+
+                    }else{
+                        if(!Objects.equals(regions[i][j].getOwner(), "-")){
+                            System.out.print((int) regions[i][j].getCurdeposit());
+                        }else {
+                            System.out.print("-");
+                        }
+
                     }
                 }
             }
@@ -122,19 +149,26 @@ public class Board {
             System.out.print("Row:" + (i+1) + " ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 0){
-                    System.out.print("        "+ regions[i][j].getOwner());
+                    System.out.print("        ");
+                    if(!Objects.equals(regions[i][j].isStandHere(), "-")){
+                        System.out.print(regions[i][j].isStandHere());
+                    }else{
+                        System.out.print("-");
+                    }
+                    System.out.print(" ");
+
                     if(regions[i][j].isCapital()){
                         System.out.print("Cap");
                     }else{
-                        System.out.print("-");
+                        if(!Objects.equals(regions[i][j].getOwner(), "-")){
+                            System.out.print((int) regions[i][j].getCurdeposit());
+                        }else {
+                            System.out.print("-");
+                        }
                     }
                 }
             }
             System.out.println();
         }
-    }
-
-    public int getInit_budget() {
-        return init_budget;
     }
 }

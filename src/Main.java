@@ -112,14 +112,19 @@ public class Main {
             Tokenizer tokenizer = new ConstructionPlanTokenizer(action);
             Parser parser = new ConstructionPlanParser();
             try{
-                System.out.println(player2);
+                System.out.println(player1);
                 parser.parse(tokenizer.getTokens(), player1);
-                System.out.println(player2);
+                System.out.println(player1);
             }catch(SyntaxError s){
                 System.out.println(s);
             }
 
             System.out.println("Current board:");
+            game.printBoard();
+
+            ((PlayerContext) player1).calculateInterest();
+
+            System.out.println("board after calculate:");
             game.printBoard();
 
 

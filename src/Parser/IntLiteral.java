@@ -2,7 +2,6 @@ package Parser;
 import java.util.Map;
 import Exceptions.*;
 import Interfaces.*;
-import Tokenizer.*;
 public record IntLiteral(int value) implements Expr{
     @Override
     public int eval(Map<String, Integer> bindings) throws EvaluationError {

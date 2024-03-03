@@ -106,7 +106,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public  getName() {
+    public void getName() {
     }
 
     @Test
@@ -145,7 +145,7 @@ public class PlayerActionsTest {
     }
 
     @Test
-    public void calculateInterest() {\
+    public void calculateInterest() {
 
     }
 

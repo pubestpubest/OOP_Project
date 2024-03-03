@@ -15,4 +15,8 @@ public interface Player {
     Expr opponent();
     Expr nearby(String dir);
     public void ClaimCityCenter(Region[][] board, Scanner scanner);
+
+    String getName();
+
+    int getBudget();
 }

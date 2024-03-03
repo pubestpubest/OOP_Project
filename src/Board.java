@@ -116,7 +116,7 @@ public class Board {
     public void printBoard() {
         for (int i = 0; i < rows; i++) {
             // Add spacing for visual representation of hexagonal grid
-            System.out.print("              ");
+            System.out.print("                ");
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 1){
                     System.out.print("             ");
@@ -129,16 +129,17 @@ public class Board {
 
                     if(regions[i][j].isCapital()){
                         System.out.print("C");
-                        System.out.print((int) regions[i][j].getCurdeposit());
+                        System.out.print((int) regions[i][j].getCurrentDeposite());
 
                     }else{
                         if(!Objects.equals(regions[i][j].getOwner(), "-")){
-                            System.out.print((int) regions[i][j].getCurdeposit());
+                            System.out.print((int) regions[i][j].getCurrentDeposite());
                         }else {
                             System.out.print("-");
                         }
 
                     }
+                    System.out.print("["+regions[i][j].getOwner() + "]");
                 }
             }
             System.out.println();
@@ -155,17 +156,19 @@ public class Board {
 
                     if(regions[i][j].isCapital()){
                         System.out.print("C");
-                        System.out.print((int) regions[i][j].getCurdeposit());
+                        System.out.print((int) regions[i][j].getCurrentDeposite());
                     }else{
                         if(!Objects.equals(regions[i][j].getOwner(), "-")){
-                            System.out.print((int) regions[i][j].getCurdeposit());
+                            System.out.print((int) regions[i][j].getCurrentDeposite());
                         }else {
                             System.out.print("-");
                         }
                     }
+                    System.out.print("["+regions[i][j].getOwner() + "]");
                 }
             }
             System.out.println();
+
         }
     }
 }

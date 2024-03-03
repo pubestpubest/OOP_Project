@@ -1,5 +1,4 @@
 import Interfaces.Expr;
-import Interfaces.Player;
 import Parser.*;
 import RegionP.Region;
 
@@ -8,7 +7,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class PlayerContext implements Player {
+public class PlayerContext implements Interfaces.Player {
     private String name;
     private Region[][] regions;
     private Region curCaptal;
@@ -18,7 +17,7 @@ public class PlayerContext implements Player {
     private int budget;
 
 
-    public PlayerContext(String name,Region[][] regions){
+    public PlayerContext(String name, Region[][] regions){
         this.regions = regions;
         this.name = name;
         this.variables = new HashMap<>();
@@ -73,13 +72,15 @@ public class PlayerContext implements Player {
 //Not sure how much should decrease the budget
         if(budget-1 > 0){
             budget = budget-1;
+            //check isOpponent || isvalidDirection
 //        if(isOpponent || isvalidDirection){
-//           no-op
-//        } else{
+//            //no-op
+//           return;
+//
+//        } else {
 
-//            Do move...
             label:
-            while(true){
+            while (true) {
 
                 switch (dir) {
                     case "up":
@@ -92,11 +93,11 @@ public class PlayerContext implements Player {
 
                     case "upright":
 
-                        if(curcol%2 == 0){
+                        if (curcol % 2 == 0) {
                             regions[currow][curcol].setStandHere("-");
                             regions[currow][curcol + 1].setStandHere(name);
                             SetPlayerPos(currow, curcol + 1);
-                        }else{
+                        } else {
                             regions[currow][curcol].setStandHere("-");
                             regions[currow - 1][curcol + 1].setStandHere(name);
                             SetPlayerPos(currow - 1, curcol + 1);
@@ -106,14 +107,14 @@ public class PlayerContext implements Player {
                         break label;
 
                     case "downright":
-                        if(curcol%2 == 1){
+                        if (curcol % 2 == 1) {
                             regions[currow][curcol].setStandHere("-");
-                            regions[currow][curcol+1].setStandHere(name);
-                            SetPlayerPos(currow , curcol + 1);
-                        }else{
+                            regions[currow][curcol + 1].setStandHere(name);
+                            SetPlayerPos(currow, curcol + 1);
+                        } else {
                             regions[currow][curcol].setStandHere("-");
-                            regions[currow+1][curcol+1].setStandHere(name);
-                            SetPlayerPos(currow +1, curcol+1);
+                            regions[currow + 1][curcol + 1].setStandHere(name);
+                            SetPlayerPos(currow + 1, curcol + 1);
                         }
 
                         break label;
@@ -121,20 +122,20 @@ public class PlayerContext implements Player {
                     case "down":
 
                         regions[currow][curcol].setStandHere("-");
-                        regions[currow+1][curcol].setStandHere(name);
-                        SetPlayerPos(currow+1, curcol);
+                        regions[currow + 1][curcol].setStandHere(name);
+                        SetPlayerPos(currow + 1, curcol);
 
                         break label;
 
                     case "downleft":
-                        if(curcol%2 == 1){
+                        if (curcol % 2 == 1) {
                             regions[currow][curcol].setStandHere("-");
-                            regions[currow][curcol-1].setStandHere(name);
-                            SetPlayerPos(currow , curcol -1);
-                        }else{
+                            regions[currow][curcol - 1].setStandHere(name);
+                            SetPlayerPos(currow, curcol - 1);
+                        } else {
                             regions[currow][curcol].setStandHere("-");
-                            regions[currow+1][curcol-1].setStandHere(name);
-                            SetPlayerPos(currow+ 1 , curcol -1);
+                            regions[currow + 1][curcol - 1].setStandHere(name);
+                            SetPlayerPos(currow + 1, curcol - 1);
                         }
 
 
@@ -142,16 +143,15 @@ public class PlayerContext implements Player {
 
                     case "upleft":
 
-                        if(curcol%2 == 0){
+                        if (curcol % 2 == 0) {
                             regions[currow][curcol].setStandHere("-");
                             regions[currow][curcol - 1].setStandHere(name);
-                            SetPlayerPos(currow ,curcol - 1);
-                        }else {
+                            SetPlayerPos(currow, curcol - 1);
+                        } else {
                             regions[currow][curcol].setStandHere("-");
                             regions[currow - 1][curcol - 1].setStandHere(name);
                             SetPlayerPos(currow - 1, curcol - 1);
                         }
-
 
 
                         break label;
@@ -164,11 +164,11 @@ public class PlayerContext implements Player {
                 }
 
             }
-//        }
 
         }else{
             done();
         }
+
 
     }
 
@@ -181,9 +181,10 @@ public class PlayerContext implements Player {
 
     // the region need to adjacent to another region belonging to the player.
     // still doing this
-//    private boolean is_Adj_toOwnRegion(){
+//    private boolean isAdjtoOwnRegion(){
 //        regions[currow][curcol].getOwner() ;
 //    }
+    // mot 100%
     @Override
     public void invest(int i) {
         System.out.println(name+" invested "+i);
@@ -195,7 +196,7 @@ public class PlayerContext implements Player {
                 budget = budget-i;
                 regions[currow][curcol].setOwner(name);
                 regions[currow][curcol].increaseCurdeposit( (double)i );
-                System.out.println(regions[currow][curcol].getCurdeposit());
+                System.out.println(regions[currow][curcol].getCurrentDeposite());
 
             }
 
@@ -212,7 +213,7 @@ public class PlayerContext implements Player {
             budget = budget - 1;
             if (Objects.equals(regions[currow][curcol].getOwner(), name)) {
                 budget = budget - 1;
-                if (i < regions[currow][curcol].getCurdeposit()) {
+                if (i < regions[currow][curcol].getCurrentDeposite()) {
                     regions[currow][curcol].decreaseCurdeposit(i);
                     budget += i;
                 }
@@ -225,10 +226,12 @@ public class PlayerContext implements Player {
     private void SHoot(int x, int addrow , int addcol){
         budget -= x+1;
         regions[currow+addrow][curcol+addcol].decreaseCurdeposit(x) ;
-        if(regions[currow+addrow][curcol+addcol].getCurdeposit() < 1 ){
+        if(regions[currow+addrow][curcol+addcol].getCurrentDeposite() < 1 ){
             regions[currow+addrow][curcol+addcol].setOwner("-");
-            regions[currow+addrow][curcol+addcol].setCurdeposit(0);
+            regions[currow+addrow][curcol+addcol].setCurrentDeposite(0);
+
             if(regions[currow+addrow][curcol+addcol].isCapital()){
+
                 for(int i = 0; i< Board.getRows(); i++){
                     for(int j = 0; j< Board.getCols(); j++){
 
@@ -327,7 +330,7 @@ public class PlayerContext implements Player {
                         }
                         if(!regions[curcol][currow+i].getOwner().equals(name) && !regions[curcol][currow+i].getOwner().equals("-")){
 
-                            String text = Double.toString(regions[curcol][currow+i].getCurdeposit());
+                            String text = Double.toString(regions[curcol][currow+i].getCurrentDeposite());
                             int index = text.indexOf('.');
                             int digits = 0;
                             if (index != -1) {
@@ -344,7 +347,7 @@ public class PlayerContext implements Player {
                     for(int i=1; i<currow  ;i++){
                         if(!regions[curcol-i][currow+i].getOwner().equals(name) && !regions[curcol-i][currow+i].getOwner().equals("-")){
 
-                            return  new IntLiteral((int) 100*i + (int)(regions[curcol-i][currow+i].getCurdeposit()/10));
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol-i][currow+i].getCurrentDeposite()/10));
 
                         }
                     }
@@ -352,7 +355,7 @@ public class PlayerContext implements Player {
                     for(int i=1; i<Board.getRows()-currow  ;i++){
                         if(!regions[curcol+i][currow+i].getOwner().equals(name) && !regions[curcol+i][currow+i].getOwner().equals("-")){
 
-                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow+i].getCurdeposit()/10));
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow+i].getCurrentDeposite()/10));
 
                         }
                     }
@@ -360,7 +363,7 @@ public class PlayerContext implements Player {
                     for(int i=1; i<Board.getRows()-currow  ;i++){
                         if(!regions[curcol+i][currow].getOwner().equals(name) && !regions[curcol+i][currow].getOwner().equals("-")){
 
-                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow].getCurdeposit()/10));
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow].getCurrentDeposite()/10));
 
                         }
                     }
@@ -368,7 +371,7 @@ public class PlayerContext implements Player {
                     for(int i=1; i<currow  ;i++){
                         if(!regions[curcol+i][currow-i].getOwner().equals(name) && !regions[curcol+i][currow-i].getOwner().equals("-")){
 
-                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow-i].getCurdeposit()/10));
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol+i][currow-i].getCurrentDeposite()/10));
 
                         }
                     }
@@ -376,7 +379,7 @@ public class PlayerContext implements Player {
                     for(int i=1; i<currow  ;i++){
                         if(!regions[curcol-i][currow-i].getOwner().equals(name) && !regions[curcol-i][currow-i].getOwner().equals("-")){
 
-                            return  new IntLiteral((int) 100*i + (int)(regions[curcol-i][currow-i].getCurdeposit()/10));
+                            return  new IntLiteral((int) 100*i + (int)(regions[curcol-i][currow-i].getCurrentDeposite()/10));
 
                         }
                     }
@@ -428,7 +431,7 @@ public class PlayerContext implements Player {
             for(int j = 0; j< Board.getCols(); j++){
 
                 if(regions[i][j].getOwner().equals(name)){
-                    regions[i][j].increaseCurdeposit((Board.interest_pct*regions[i][j].getCurdeposit())/100);
+                    regions[i][j].increaseCurdeposit((Board.interest_pct*regions[i][j].getCurrentDeposite())/100);
                 }
 
             }

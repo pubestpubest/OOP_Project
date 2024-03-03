@@ -7,7 +7,7 @@ public class Region {
     private String StandHere;
 
     private boolean isCapital;
-    private double curdeposit = 0 ;
+    private double currentDeposite = 0 ;
 
     public Region(int m, int n) {
         StandHere = "-";
@@ -38,16 +38,17 @@ public class Region {
         isCapital = capital;
     }
 
-    public double getCurdeposit() {
-        return curdeposit;
+    public double getCurrentDeposite() {
+        return currentDeposite;
     }
 
     public void increaseCurdeposit(double curdeposit) {
-        this.curdeposit += curdeposit;
+        this.currentDeposite += curdeposit;
     }
 
     public void decreaseCurdeposit(double curdeposit) {
-        this.curdeposit -= curdeposit;
+        this.currentDeposite -= curdeposit;
     }
-    public void setCurdeposit(double x){curdeposit = x;}
+    public void setCurrentDeposite(double x){
+        currentDeposite = x;}
 }

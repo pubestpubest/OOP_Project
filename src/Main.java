@@ -84,57 +84,75 @@ public class Main {
 
         System.out.println(Board.getRows()+"x"+Board.getCols()+" UPBEAT board:");
 
-        Player player1 = new PlayerContext("1",game.regions);
-        Player player2 = new PlayerContext("2",game.regions);
+        PlayerContext[] players = null; // Declares the array reference without initial size
+        players =  new PlayerContext[2];
+
+        players[0] = new PlayerContext("1",game.regions);
+        players[1] = new PlayerContext("2",game.regions);
 
         System.out.println("Current board:");
         game.printBoard();
         System.out.println("Player 1's turn. Enter row and column to claim a region:");
 
-        player1.ClaimCityCenter(game.regions, scanner);
+        players[0].ClaimCityCenter(game.regions, scanner);
 
-//        System.out.println("Current board:");
-//        game.printBoard();
-//
-//        System.out.println("Player 2's turn. Enter row and column to claim a region:");
-//
-//        player2.ClaimCityCenter(game.regions, scanner);
-//
-//        System.out.println("Current board:");
-//        game.printBoard();
+        System.out.println("Current board:");
+        game.printBoard();
+
+        System.out.println("Player 2's turn. Enter row and column to claim a region:");
+
+        players[1].ClaimCityCenter(game.regions, scanner);
+
+        System.out.println("Current board:");
+        game.printBoard();
+
+        int currentPlayer =  0;
+
 
         while(true){
-            System.out.println("Player 1's turn. Enter action");
+            //calculate interest of player1
 
-            System.out.println("current budget:" + ((PlayerContext) player1).getBudget());
+                playerPlay(scanner,players[currentPlayer]);
+                System.out.println("Current board:");
+                game.printBoard();
 
-            String action = scanner.nextLine();
-            Tokenizer tokenizer = new ConstructionPlanTokenizer(action);
-            Parser parser = new ConstructionPlanParser();
-            try{
-                System.out.println(player1);
-                parser.parse(tokenizer.getTokens(), player1);
-                System.out.println(player1);
-            }catch(SyntaxError s){
-                System.out.println(s);
+            System.out.print("End turn? (y/n): ");
+            String answer1 = scanner.nextLine().toLowerCase();
+            if (answer1.equals("y")) {
+
+                currentPlayer = (currentPlayer + 1) % 2;
+                System.out.println("\nTurn switching to " + players[currentPlayer] + ".");
+                players[currentPlayer].calculateInterest();
+                System.out.println("Current board after calculate interest:");
+                game.printBoard();
+
+            } else if (!answer1.equals("n")) {
+                System.out.println("Invalid input. Please enter 'y' or 'n'.");
             }
 
-            System.out.println("Current board:");
-            game.printBoard();
-
-
-//            System.out.println("End Turn? :");
-//            boolean endturn = scanner.nextBoolean();
-//            if (endturn){
-//                ((PlayerContext) player1).calculateInterest();
-//
-//                System.out.println("board after calculate:");
-//                game.printBoard();
-//            }
 
        }
 
 
+
+    }
+
+    public static void playerPlay(Scanner scanner, Player player){
+        System.out.println("Player "+player.getName()+"'s turn. Enter action");
+
+        System.out.println("current budget:" +  player.getBudget());
+
+        String action2 = scanner.nextLine();
+
+        Tokenizer tokenizer2 = new ConstructionPlanTokenizer(action2);
+        Parser parser2 = new ConstructionPlanParser();
+        try{
+            System.out.println(player);
+            parser2.parse(tokenizer2.getTokens(), player);
+            System.out.println(player);
+        }catch(SyntaxError | EvaluationError e){
+            System.out.println(e);
+        }
 
     }
 

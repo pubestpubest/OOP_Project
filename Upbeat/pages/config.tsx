@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/router";
 import ContainerForText from "../components/container-for-text";
 
+
 const Config: NextPage = () => {
   const router = useRouter();
 
@@ -58,12 +59,11 @@ const Config: NextPage = () => {
           rectangles="City Center Deposit"
           propMarginBottom="unset"
         />
-        <section className="self-stretch overflow-hidden flex flex-row flex-wrap items-start justify-start pt-0 pb-[22px] pr-12 pl-[86px] box-border gap-[0px_23px] max-w-full text-left text-45xl text-white font-inter lg:pl-[43px] lg:pr-6 lg:box-border mq750:pl-[21px] mq750:box-border">
-          <i className="h-[114px] flex-1 relative flex font-extrabold items-center min-w-[370px] max-w-full mq750:min-w-full mq1050:text-32xl mq450:text-19xl">
-            revisions Time
-          </i>
-          <div className="h-[113px] w-[199px] relative rounded-22xl bg-gainsboro box-border border-[9px] border-solid border-black" />
-        </section>
+        <ContainerForText
+                  rectangles="revisions Time"
+                  propMarginBottom="unset"
+                />
+
         <ContainerForText rectangles="revision cost" propMarginBottom="unset" />
         <ContainerForText
           rectangles="maximum deposit per region"

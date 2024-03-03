@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import FrameA from "../components/frame-a";
-import TableMap from "./tablemap";
+import HexGrid from "../components/HexGird";
 
 const Gameplay: NextPage = () => {
   return (
@@ -13,15 +13,8 @@ const Gameplay: NextPage = () => {
           alt=""
           src="/frame-1.svg"
         /> */}
-        <div
-          style={{
-            padding: 50,
-            border: " 1px solid black ",
-            paddingRight: 80,
-            paddingBottom: 30,
-          }}
-        >
-          <TableMap r={8} c={12} />
+        <div className="m-10">
+          <HexGrid rows={10} columns={16} />
         </div>
       </section>
     </div>

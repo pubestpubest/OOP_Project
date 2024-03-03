@@ -11,3 +11,23 @@ body {
 ::after {
   border-width: 0;
 }
+
+.hex {
+  width: 65px;
+  height: 60px;
+  display: inline-block;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.hex-p1 {
+  background-color: #cbf6db;
+}
+.hex-p2 {
+  background-color: #f5beb4;
+}
+.hex-p3 {
+  background-color: #000000;
+}
+.hex-p4 {
+  background-color: #ffffff;
+}

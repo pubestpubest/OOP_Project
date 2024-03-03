@@ -120,8 +120,8 @@ public class Board {
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 1){
                     System.out.print("             ");
-                    if(!Objects.equals(regions[i][j].isStandHere(), "-")){
-                        System.out.print(regions[i][j].isStandHere());
+                    if(!Objects.equals(regions[i][j].getStandHere(), "-")){
+                        System.out.print(regions[i][j].getStandHere());
                     }else{
                         System.out.print("-");
                     }
@@ -135,7 +135,12 @@ public class Board {
                         if(!Objects.equals(regions[i][j].getOwner(), "-")){
                             System.out.print((int) regions[i][j].getCurrentDeposite());
                         }else {
-                            System.out.print("-");
+                            if (regions[i][j].getCurrentDeposite() != 0){
+                                System.out.print((int) regions[i][j].getCurrentDeposite());
+                            }else{
+                                System.out.print("-");
+                            }
+
                         }
 
                     }
@@ -147,8 +152,8 @@ public class Board {
             for (int j = 0; j < cols; j++) {
                 if(j%2 == 0){
                     System.out.print("             ");
-                    if(!Objects.equals(regions[i][j].isStandHere(), "-")){
-                        System.out.print(regions[i][j].isStandHere());
+                    if(!Objects.equals(regions[i][j].getStandHere(), "-")){
+                        System.out.print(regions[i][j].getStandHere());
                     }else{
                         System.out.print("-");
                     }
@@ -161,7 +166,11 @@ public class Board {
                         if(!Objects.equals(regions[i][j].getOwner(), "-")){
                             System.out.print((int) regions[i][j].getCurrentDeposite());
                         }else {
-                            System.out.print("-");
+                            if (regions[i][j].getCurrentDeposite() != 0){
+                                System.out.print((int) regions[i][j].getCurrentDeposite());
+                            }else{
+                                System.out.print("-");
+                            }
                         }
                     }
                     System.out.print("["+regions[i][j].getOwner() + "]");

@@ -25,6 +25,10 @@ public class PlayerContext implements Interfaces.Player {
 
 
     }
+    public int getCurrow(){return currow;}
+    public void setCurrow(int x){currow = x;}
+    public int getCurcol(){return curcol;}
+    public void setCurcol(int x){curcol = x;}
     public String getName() {
         return name;
     }
@@ -231,16 +235,21 @@ public class PlayerContext implements Interfaces.Player {
             regions[currow+addrow][curcol+addcol].setCurrentDeposite(0);
 
             if(regions[currow+addrow][curcol+addcol].isCapital()){
-
                 for(int i = 0; i< Board.getRows(); i++){
                     for(int j = 0; j< Board.getCols(); j++){
 
-                        if(regions[i][j].getOwner().equals(regions[currow+addrow][curcol+addcol].getOwner())){
+                        //delete all the owner in the regions that belong to deleted player
+                        if(!regions[i][j].getOwner().equals(regions[currow + addrow][curcol + addcol].getOwner())){
                             regions[i][j].setOwner("-");
+                        }
+                        //delete the player that stand
+                        if(!regions[i][j].getStandHere().equals(regions[currow + addrow][curcol + addcol].getOwner())){
+                            regions[i][j].setStandHere("-");
                         }
 
                     }
                 }
+                regions[currow+addrow][curcol+addcol].setCapital(false);
             }
         }
     }
@@ -315,6 +324,7 @@ public class PlayerContext implements Interfaces.Player {
         return new IntLiteral(0);
 
     }
+
 
     //not sure && not done
     @Override

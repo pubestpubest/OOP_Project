@@ -14,7 +14,7 @@ public class Region {
         this.owner = "-";
     }
 
-    public String isStandHere() {
+    public String getStandHere() {
         return StandHere;
     }
 
@@ -46,9 +46,7 @@ public class Region {
         this.currentDeposite += curdeposit;
     }
 
-    public void decreaseCurdeposit(double curdeposit) {
-        this.currentDeposite -= curdeposit;
-    }
+    public void decreaseCurdeposit(double curdeposit) {this.currentDeposite -= curdeposit;}
     public void setCurrentDeposite(double x){
         currentDeposite = x;}
 }

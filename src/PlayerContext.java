@@ -108,7 +108,7 @@ public class PlayerContext implements Player {
                     case "downright":
                         if(curcol%2 == 1){
                             regions[currow][curcol].setStandHere("-");
-                            regions[currow][curcol-1].setStandHere(name);
+                            regions[currow][curcol+1].setStandHere(name);
                             SetPlayerPos(currow , curcol + 1);
                         }else{
                             regions[currow][curcol].setStandHere("-");
@@ -222,6 +222,25 @@ public class PlayerContext implements Player {
         }
         //do this
     }
+    private void SHoot(int x, int addrow , int addcol){
+        budget -= x+1;
+        regions[currow+addrow][curcol+addcol].decreaseCurdeposit(x) ;
+        if(regions[currow+addrow][curcol+addcol].getCurdeposit() < 1 ){
+            regions[currow+addrow][curcol+addcol].setOwner("-");
+            regions[currow+addrow][curcol+addcol].setCurdeposit(0);
+            if(regions[currow+addrow][curcol+addcol].isCapital()){
+                for(int i = 0; i< Board.getRows(); i++){
+                    for(int j = 0; j< Board.getCols(); j++){
+
+                        if(regions[i][j].getOwner().equals(regions[currow+addrow][curcol+addcol].getOwner())){
+                            regions[i][j].setOwner("-");
+                        }
+
+                    }
+                }
+            }
+        }
+    }
     @Override
     public void shoot(String dir, int x) {
         System.out.println(name+" shooting "+dir+" "+ x);
@@ -230,134 +249,45 @@ public class PlayerContext implements Player {
 
             switch (dir) {
                 case "up":
-                    budget -= x+1;
-                    regions[currow-1][curcol].decreaseCurdeposit(x) ;
-                    if(regions[currow-1][curcol].getCurdeposit() < 1 ){
-                        regions[currow-1][curcol].setOwner("-");
-                        regions[currow-1][curcol].setCurdeposit(0);
-                        if(regions[currow-1][curcol].isCapital()){
-                            for(int i = 0; i< Board.getRows(); i++){
-                                for(int j = 0; j< Board.getCols(); j++){
-
-                                    if(regions[i][j].getOwner().equals(regions[currow-1][curcol].getOwner())){
-                                        regions[i][j].setOwner("-");
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-
+                    SHoot(x,-1,0);
                     break;
 
                 case "upright":
-                    budget -= x+1;
-                    regions[currow-1][curcol+1].decreaseCurdeposit(x) ;
-                    if(regions[currow-1][curcol+1].getCurdeposit() < 1 ){
-                        regions[currow-1][curcol+1].setOwner("-");
-                        regions[currow-1][curcol+1].setCurdeposit(0);
-                        if(regions[currow-1][curcol+1].isCapital()){
-                            for(int i = 0; i< Board.getRows(); i++){
-                                for(int j = 0; j< Board.getCols(); j++){
-
-                                    if(regions[i][j].getOwner().equals(regions[currow-1][curcol+1].getOwner())){
-                                        regions[i][j].setOwner("-");
-                                    }
-
-                                }
-                            }
-                        }
+                    if(curcol%2 == 0){
+                        SHoot(x,0,+1);
+                    }else{
+                        SHoot(x,-1,1);
                     }
-
-
                     break;
 
                 case "downright":
-                    budget -= x+1;
-                    regions[currow+1][curcol+1].decreaseCurdeposit(x) ;
-                    if(regions[currow+1][curcol+1].getCurdeposit() < 1 ){
-                        regions[currow+1][curcol+1].setOwner("-");
-                        regions[currow+1][curcol+1].setCurdeposit(0);
-                        if(regions[currow+1][curcol+1].isCapital()){
-                            for(int i = 0; i< Board.getRows(); i++){
-                                for(int j = 0; j< Board.getCols(); j++){
-
-                                    if(regions[i][j].getOwner().equals(regions[currow+1][curcol+1].getOwner())){
-                                        regions[i][j].setOwner("-");
-                                    }
-
-                                }
-                            }
-                        }
+                    if(curcol%2 == 1){
+                        SHoot(x,0,+1);
+                    }else{
+                        SHoot(x,1,1);
                     }
 
                     break;
 
                 case "down":
-                    budget -= x+1;
-                    regions[currow+1][curcol].decreaseCurdeposit(x) ;
-                    if(regions[currow+1][curcol].getCurdeposit() < 1 ){
-                        regions[currow+1][curcol].setOwner("-");
-                        regions[currow+1][curcol].setCurdeposit(0);
-                        if(regions[currow+1][curcol].isCapital()){
-                            for(int i = 0; i< Board.getRows(); i++){
-                                for(int j = 0; j< Board.getCols(); j++){
-
-                                    if(regions[i][j].getOwner().equals(regions[currow+1][curcol].getOwner())){
-                                        regions[i][j].setOwner("-");
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-
-
+                    SHoot(x,1,0);
                     break;
 
                 case "downleft":
-                    budget -= x+1;
-                    regions[currow+1][curcol-1].decreaseCurdeposit(x) ;
-                    if(regions[currow+1][curcol-1].getCurdeposit() < 1 ){
-                        regions[currow+1][curcol-1].setOwner("-");
-                        regions[currow+1][curcol-1].setCurdeposit(0);
-                        if(regions[currow+1][curcol-1].isCapital()){
-                            for(int i = 0; i< Board.getRows(); i++){
-                                for(int j = 0; j< Board.getCols(); j++){
-
-                                    if(regions[i][j].getOwner().equals(regions[currow+1][curcol-1].getOwner())){
-                                        regions[i][j].setOwner("-");
-                                    }
-
-                                }
-                            }
-                        }
+                    if(curcol%2 == 1){
+                        SHoot(x,0,-1);
+                    }else{
+                        SHoot(x,1,-1);
                     }
-
-
 
                     break;
 
                 case "upleft":
-                    budget -= x+1;
-                    regions[currow-1][curcol-1].decreaseCurdeposit(x) ;
-                    if(regions[currow-1][curcol-1].getCurdeposit() < 1 ){
-                        regions[currow-1][curcol-1].setOwner("-");
-                        regions[currow-1][curcol-1].setCurdeposit(0);
-                        if(regions[currow-1][curcol-1].isCapital()){
-                            for(int i = 0; i< Board.getRows(); i++){
-                                for(int j = 0; j< Board.getCols(); j++){
-
-                                    if(regions[i][j].getOwner().equals(regions[currow-1][curcol-1].getOwner())){
-                                        regions[i][j].setOwner("-");
-                                    }
-
-                                }
-                            }
-                        }
+                    if(curcol%2 == 0){
+                        SHoot(x,0,-1);
+                    }else{
+                        SHoot(x,-1,-1);
                     }
-
-
 
                     break;
 
@@ -504,4 +434,5 @@ public class PlayerContext implements Player {
             }
         }
     }
+
 }

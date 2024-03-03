@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import { useCallback } from "react";
 import { useRouter } from "next/router";
-import TableMap from "./tablemap";
 
 const FrameComponent: NextPage = () => {
   const router = useRouter();

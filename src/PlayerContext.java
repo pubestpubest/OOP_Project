@@ -319,7 +319,7 @@ public class PlayerContext implements Interfaces.Player {
     }
 
 
-    //not sure && not done
+    //not sure && not don
     @Override
     public Expr nearby(String dir) {
         System.out.println("nearby " + dir + "called");

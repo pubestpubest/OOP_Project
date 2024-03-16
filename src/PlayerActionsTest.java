@@ -1,4 +1,15 @@
 import static org.junit.Assert.*;
+import Exceptions.EvaluationError;
+import Exceptions.SyntaxError;
+import Interfaces.*;
+import Interfaces.Player;
+import Parser.*;
+
+import Tokenizer.ConstructionPlanTokenizer;
+import Exceptions.EvaluationError;
+import Exceptions.SyntaxError;
+import Interfaces.Parser;
+import Interfaces.Tokenizer;
 import org.junit.Before;
 import org.junit.Test;
 import RegionP.Region;
@@ -134,6 +145,32 @@ public class PlayerActionsTest {
 
     @Test
     public void nearby() {
+//        Region[][] testMap1 ; // Mock map data with city crew and opponent cities
+//        for (int i = 0; i < 9; i++) {
+//            for (int j = 0; j < 9; j++) {
+//                testMap1[i][j] = new Region(i, j);
+//            }
+//        }
+//        testMap1[1][1].setOwner("1");
+//        testMap1[0][1].setOwner("2");
+//        PlayerContext player = new PlayerContext("1",testMap1);
+//
+//        String direction2 = "up";
+//        String expectedOutput2 = "0";
+//
+//// Use your parsing method to parse the expected output string
+//        Tokenizer tokenizer2 = new ConstructionPlanTokenizer("nearby up");
+//        Parser parser2 = new ConstructionPlanParser();
+//        try{
+//            parser2.parse(tokenizer2.getTokens(), player);
+//        }catch(SyntaxError | EvaluationError e){
+//            System.out.println(e);
+//        }
+//
+//// Call your nearby function with the test data
+//
+//// Assert that the actual output matches the parsed expected output
+//        assertEquals(new ConstructionPlanTokenizer("0"), player.nearby(direction2));
     }
 
     @Test

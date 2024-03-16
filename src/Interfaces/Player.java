@@ -14,7 +14,7 @@ public interface Player {
     void shoot(String dir, int eval);
     Expr opponent();
     Expr nearby(String dir);
-    public void ClaimCityCenter(Region[][] board, Scanner scanner);
+    public void RandomlyClaimCityCenter(Region[][] board, Scanner scanner);
 
     String getName();
 

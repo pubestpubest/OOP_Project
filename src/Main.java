@@ -94,14 +94,14 @@ public class Main {
         game.printBoard();
         System.out.println("Player 1's turn. Enter row and column to claim a region:");
 
-        players[0].ClaimCityCenter(game.regions, scanner);
+        players[0].RandomlyClaimCityCenter(game.regions, scanner);
 
         System.out.println("Current board:");
         game.printBoard();
 
         System.out.println("Player 2's turn. Enter row and column to claim a region:");
 
-        players[1].ClaimCityCenter(game.regions, scanner);
+        players[1].RandomlyClaimCityCenter(game.regions, scanner);
 
         System.out.println("Current board:");
         game.printBoard();

@@ -31,3 +31,25 @@ body {
 .hex-p4 {
   background-color: #ffffff;
 }
+.my-text {
+  text-shadow: 5px 10px 10px rgba(0, 0, 0, 20);
+}
+
+.bordered-text {
+  text-shadow: -1px -1px 0px black,  /* Top and left border */
+               1px 1px 0px black,   /* Bottom and right border */
+               0px 0px 2px rgba(0, 0, 0, 0.2); /* Inner shadow for depth */
+  color: white;  /* Ensure text color contrasts with border */
+}
+.animated-gradient {
+  animation: gradient-slide 5s linear infinite;
+}
+
+@keyframes gradient-slide {
+  0% {
+    background-position: 0% 0%; /* Start with no offset */
+  }
+  100% {
+    background-position: 100% 0%; /* Slide to the right over 5 seconds */
+  }
+}

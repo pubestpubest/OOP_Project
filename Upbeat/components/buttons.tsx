@@ -6,104 +6,49 @@ const Buttons: NextPage = () => {
   const router = useRouter();
 
   const onPLAYContainerClick = useCallback(() => {
-    // router.push("/gameplay");
-    router.push("/login");
+    router.push("/login"); // Assuming gameplay page is at "/gameplay"
   }, [router]);
 
   const onRULESContainerClick = useCallback(() => {
-    router.push("/the-rule");
+    router.push("/the-rule"); // Assuming rules page is at "/the-rule"
   }, [router]);
 
   const onConfigContainerClick = useCallback(() => {
-    router.push("/config");
+    router.push("/config"); // Assuming config page is at "/config"
   }, [router]);
-  const buttonsstyle = {
-    marginLeft: "auto",
-    marginRight: "auto",
-    cursor: "pointer",
-    width: "300px",
-    height: "100px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    border: "5px solid white",
-    borderRadius: 50,
-    marginTop: "20px",
-    marginBottom: "20px",
-    boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-    padding: "5px",
-    transition: "width 0.3s, height 0.3s",
-  };
-  const frontstyle = {
-    fontSize: "50px",
-    color: "white",
-    fontFamily: "monospace",
-    textShadow: "0 0 10px rgba(0, 0, 0, 0)",
-    WebkitTextStroke: "1px rgba(255, 255, 255, 0.2)",
-    filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0))",
-  };
 
   return (
     <div
       style={{
-        display: "block",
-        marginLeft: "auto",
-        marginRight: "auto",
-        width: "40%",
-        marginBottom: "50px", // Adjusted marginBottom for spacing
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center", // Center content vertically
       }}
     >
-      {/* play*/}
-      <div
-        style={buttonsstyle}
+      {/* Play button */}
+      <button
+        className="cursor-pointer text-white text-shadow-lg bg-gradient-to-r from-green-500 to-teal-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-teal-800 font-bold rounded-md text-7xl px-12 py-5 shadow-md transition ease-in-out duration-300 transform hover:-translate-y-1 hover:scale-110 m-4"
         onClick={onPLAYContainerClick}
-        onMouseEnter={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "275px";
-          target.style.height = "90px";
-        }}
-        onMouseLeave={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "300px";
-          target.style.height = "100px";
-        }}
       >
-        <div style={frontstyle}>PLAY</div>
-      </div>
-      {/* rules*/}
-      <div
-        style={buttonsstyle}
+        PLAY
+      </button>
+
+      {/* Rules button */}
+      <button
+        className="cursor-pointer text-white text-shadow-lg bg-gradient-to-r from-orange-500 to-yellow-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-yellow-800 font-bold rounded-md text-7xl px-12 py-5 shadow-md transition ease-in-out duration-300 transform hover:-translate-y-1 hover:scale-110 m-4" // Add margin-top for spacing
         onClick={onRULESContainerClick}
-        onMouseEnter={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "275px";
-          target.style.height = "90px";
-        }}
-        onMouseLeave={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "300px";
-          target.style.height = "100px";
-        }}
       >
-        <div style={frontstyle}>RULES</div>
-      </div>
-      {/* config*/}
-      <div
-        style={buttonsstyle}
+        RULES
+      </button>
+
+      {/* Config button */}
+      <button
+        className=" cursor-pointer text-white text-shadow-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-800 font-bold rounded-md text-7xl px-12 py-5 shadow-md transition ease-in-out duration-300 transform hover:-translate-y-1 hover:scale-110 m-4" // Add margin-top for spacing
         onClick={onConfigContainerClick}
-        onMouseEnter={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "275px";
-          target.style.height = "90px";
-        }}
-        onMouseLeave={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "300px";
-          target.style.height = "100px";
-        }}
       >
-        <div style={frontstyle}>CONFIG</div>
-      </div>
+        CONFIG
+      </button>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-gradient-to-r from-cyan-950 to-slate-400  h-screen">
+    <div className="bg-gradient-to-t from-cyan-950 to-slate-400  h-screen">
       <div>
         <main>
           <section className="relative text-109xl flex italic font-extrabold font-inter text-white text-center items-center justify-center">

@@ -1,9 +1,8 @@
 "use client";
 import type { NextPage } from "next";
 import { useCallback } from "react";
-import InstanceF from "./instance-f";
 import { useRouter } from "next/router";
-
+// import InstanceF from "./instance-f";
 import { useState, useEffect } from "react";
 import PlanBlock from "./planBlock";
 

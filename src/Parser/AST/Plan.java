@@ -3,7 +3,7 @@ import Interfaces.Statement;
 
 import java.util.List;
 public class Plan {
-    private final List<Statement> statements;
+    private List<Statement> statements;
     public Plan(List<Statement> statements) {
         this.statements = statements;
     }

@@ -17,9 +17,14 @@ public class ASTParser implements Parser {
     private List<Token> tokens = new ArrayList<Token>();
 
     //Singleton constructor
-    private static final ASTParser instance = new ASTParser();
-    public static ASTParser getInstance() {return instance;}
-    private ASTParser() {}
+//    private static ASTParser instance;
+//    public static ASTParser getInstance() {
+//        if(instance == null){
+//            instance = new ASTParser();
+//        }
+//        return instance;
+//    }
+//    private ASTParser() {}
 
     private Token getCurrentToken(){
         return tokens.get(currentPosition);
@@ -112,9 +117,10 @@ public class ASTParser implements Parser {
                 advance();
                 condition = parseExpression();
                 advance();
+                token = getCurrentToken();
                 if(expect(")")){
                     advance();
-                }else throw new SyntaxError(currentPosition+token.value()+"Expected )");
+                }else throw new SyntaxError(currentPosition+" : "+token.value()+"Expected )");
             }
             if(expect("then")) advance();
             thenBody = parseStatement();

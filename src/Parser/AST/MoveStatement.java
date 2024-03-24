@@ -8,6 +8,6 @@ import Interfaces.Statement;
 public record MoveStatement(String dir) implements Statement {
     @Override
     public void execute(Player player) throws EvaluationError {
-
+        player.move(dir);
     }
 }

@@ -1,11 +1,15 @@
 package Interfaces;
 import java.util.Map;
 import java.util.Scanner;
+
+import Exceptions.EvaluationError;
+import Parser.AST.Plan;
 import RegionP.Region;
 
 public interface Player {
 
-
+    public void setPlan(Plan plan);
+    public void executePlan() throws EvaluationError;
     int getVar(String variable);
     void setVar(String variable, int value);
     void done();

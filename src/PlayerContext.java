@@ -1,11 +1,11 @@
+import Exceptions.EvaluationError;
 import Interfaces.Expr;
+import Interfaces.Statement;
 import Parser.*;
+import Parser.AST.Plan;
 import RegionP.Region;
 
-import java.util.Random;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class PlayerContext implements Interfaces.Player {
     private final String name;
@@ -16,6 +16,10 @@ public class PlayerContext implements Interfaces.Player {
     private int curcol;
     private int budget;
     private final int Actioncost = 1;
+    private Plan plan;
+    private int exe = 0;
+    private boolean isDone = false;
+
 
 
     public PlayerContext(String name, Region[][] regions) {
@@ -24,6 +28,21 @@ public class PlayerContext implements Interfaces.Player {
         this.variables = new HashMap<>();
         this.budget = Board.init_budget;
     }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public void executePlan() throws EvaluationError {
+        List<Statement> statements = plan.getStatements();
+        for (int i = 0; i < statements.size(); i++) {
+            statements.get(i).execute(this);
+            if(isDone)  break;
+        }
+        isDone = false;
+        calculateInterest();
+    }
+
 
     public int getCurrow() {
         return currow;
@@ -64,13 +83,11 @@ public class PlayerContext implements Interfaces.Player {
     }
     @Override
     public void setVar(String variable, int value) {
-        if(!variables.containsKey(variable)){
-            variables.put(variable, value);
-        }
+        variables.put(variable, value);
     }
     @Override
     public void done() {
-        System.out.println(name + " done");
+        isDone = true;
     }
 
     @Override
@@ -96,9 +113,9 @@ public class PlayerContext implements Interfaces.Player {
 
     private void DoMove(int added_row, int added_col) {
         //if the moved region is not belong to opponent
-        System.out.println(name);
-        System.out.println(regions[currow+added_row][curcol+added_col].getOwner());
-        if(regions[currow+added_row][curcol+added_col].getOwner().equals("-")){
+//        System.out.println(name);
+//        System.out.println(regions[currow+added_row][curcol+added_col].getOwner());
+        if(regions[currow+added_row][curcol+added_col].getOwner().equals("-")|| regions[currow+added_row][curcol+added_col].getOwner().equals(name)){
 
         regions[currow][curcol].setStandHere("-");
         regions[currow + added_row][curcol + added_col].setStandHere(name);
@@ -169,16 +186,40 @@ public class PlayerContext implements Interfaces.Player {
 
 
     private boolean is_adjacent(){
-        boolean case1 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol].getOwner());
-        boolean case2 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol + 1].getOwner());
-        boolean case3 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol].getOwner());
-        boolean case4 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol - 1].getOwner());
-        boolean case5 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol - 1].getOwner());
-        boolean case6 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol + 1].getOwner());
-        boolean case7 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol + 1].getOwner());
-        boolean case8 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol - 1].getOwner());
-
-        return case1 || case2 || case3 || case4 || case5 || case6 || case7 || case8 ;
+        //ขอบบน
+        if(currow + 1 > Board.getRows()){
+            boolean case2 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol + 1].getOwner());
+            boolean case3 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol].getOwner());
+            boolean case4 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol - 1].getOwner());
+            boolean case6 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol + 1].getOwner());
+            boolean case8 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol - 1].getOwner());
+            return  case2 || case3 || case4 ||  case6 ||  case8 ;
+        }
+        if(currow - 1 <0){
+            boolean case1 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol].getOwner());
+            boolean case2 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol + 1].getOwner());
+            boolean case4 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol - 1].getOwner());
+            boolean case5 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol - 1].getOwner());
+            boolean case7 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol + 1].getOwner());
+            return case1 || case2 ||  case4 || case5 ||  case7  ;
+        }
+        if(curcol + 1 > Board.getCols()){
+            boolean case1 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol].getOwner());
+            boolean case3 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol].getOwner());
+            boolean case4 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol - 1].getOwner());
+            boolean case5 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol - 1].getOwner());
+            boolean case8 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol - 1].getOwner());
+            return case1 ||  case3 || case4 || case5 ||  case8 ;
+        }
+        if(curcol - 1 < 0){
+            boolean case1 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol].getOwner());
+            boolean case2 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol + 1].getOwner());
+            boolean case3 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol].getOwner());
+            boolean case6 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol + 1].getOwner());
+            boolean case7 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol + 1].getOwner());
+            return case1 || case2 || case3 ||   case6 || case7 ;
+        }
+        return false;
     }
 
 
@@ -234,10 +275,10 @@ public class PlayerContext implements Interfaces.Player {
             if (regions[currow + added_row][curcol + added_col].isCapital()) {
                 for (int i = 0; i < Board.getRows(); i++) {
                     for (int j = 0; j < Board.getCols(); j++) {
-
+//                        System.out.println(i+" "+j);
                         //delete all the owner in the regions that belong to deleted player
                         if (regions[i][j].getOwner().equals(regions[currow + added_row][curcol + added_col].getOwner())) {
-                            //System.out.println(regions[currow + added_row][curcol + added_col].getOwner() +"row:"+i+ "col:" +j);
+                            System.out.println(regions[currow + added_row][curcol + added_col].getOwner() +"row:"+i+ "col:" +j);
                             regions[i][j].setOwner("-");
                         }
                         //delete the player that stand
@@ -252,7 +293,6 @@ public class PlayerContext implements Interfaces.Player {
             regions[currow + added_row][curcol + added_col].setOwner("-");
         }
     }
-
     @Override
     public void shoot(String dir, int x) {
         System.out.println(name + " shooting " + dir + " " + x);
@@ -467,7 +507,7 @@ public class PlayerContext implements Interfaces.Player {
 
     }
 
-    public void calculateInterest() {
+    private void calculateInterest() {
         for (int i = 0; i < Board.getRows(); i++) {
             for (int j = 0; j < Board.getCols(); j++) {
 

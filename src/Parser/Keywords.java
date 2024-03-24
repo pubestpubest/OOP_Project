@@ -84,5 +84,10 @@ public class Keywords {
         word.add("nearby");
         return word;
     }
-
+    public static Set<String> getSpecialVar(){
+        Set<String> word = new HashSet<>();
+        word.add("opponent");
+        word.add("nearby");
+        return word;
+    }
 }

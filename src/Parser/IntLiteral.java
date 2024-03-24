@@ -11,8 +11,13 @@ public record IntLiteral(int value) implements Expr{
 record Variable(String name) implements Expr{
     @Override
     public int eval(Map<String, Integer> bindings) throws EvaluationError {
-        if( bindings.containsKey(name) ) return bindings.get(name);
-        throw new EvaluationError ("Unknown variable " + name);
+        if( bindings.containsKey(name) ){
+            return bindings.get(name);
+        }else {
+            bindings.put(name,0);
+            return 0;
+        }
+//        throw new EvaluationError ("Unknown variable " + name);
     }
 }
 record Opponent() implements Expr{

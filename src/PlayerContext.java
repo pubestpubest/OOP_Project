@@ -23,8 +23,6 @@ public class PlayerContext implements Interfaces.Player {
         this.name = name;
         this.variables = new HashMap<>();
         this.budget = Board.init_budget;
-
-
     }
 
     public int getCurrow() {

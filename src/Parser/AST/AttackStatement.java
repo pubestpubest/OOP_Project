@@ -9,6 +9,6 @@ import Interfaces.Statement;
 public record AttackStatement(String dir, Expr expr) implements Statement {
     @Override
     public void execute(Player player) throws EvaluationError {
-        player.shoot(dir, expr.eval(player.getVariables()));
+        player.shoot(dir, expr.eval(player.getVariables(),player));
     }
 }

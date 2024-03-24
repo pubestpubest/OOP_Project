@@ -86,8 +86,15 @@ public class Keywords {
     }
     public static Set<String> getSpecialVar(){
         Set<String> word = new HashSet<>();
-        word.add("opponent");
-        word.add("nearby");
+        word.add("rows");
+        word.add("cols");
+        word.add("currow");
+        word.add("curcol");
+        word.add("budget");
+        word.add("deposit");
+        word.add("int");
+        word.add("maxdeposit");
+        word.add("random");
         return word;
     }
 }

@@ -84,6 +84,7 @@ public class Main {
             Parser parser = new ASTParser();
             Plan plan = parser.parse(tokenizer2.getTokens());
             player.setPlan(plan);
+//            System.out.println(plan.getStatements());
             player.executePlan();
         }catch(SyntaxError | EvaluationError e){
             System.out.println(e);

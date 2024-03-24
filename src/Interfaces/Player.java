@@ -27,4 +27,11 @@ public interface Player {
     String getName();
 
     int getBudget();
+    public int getBoardRow();
+    public int getBoardCol();
+    int getCurrow();
+    int getCurcol();
+    public int getCurDeposit();
+    int getInt();
+    int getMdeposit();
 }

@@ -22,6 +22,7 @@ public class PlayerContext implements Interfaces.Player {
 
 
 
+
     public PlayerContext(String name, Region[][] regions) {
         this.regions = regions;
         this.name = name;
@@ -41,6 +42,15 @@ public class PlayerContext implements Interfaces.Player {
         }
         isDone = false;
         calculateInterest();
+    }
+    public int getBoardRow() {
+        return Board.getRows();
+    }
+    public int getBoardCol() {
+        return Board.getCols();
+    }
+    public int getCurDeposit() {
+        return (int) regions[currow][curcol].getCurrentDeposite();
     }
 
 
@@ -115,6 +125,15 @@ public class PlayerContext implements Interfaces.Player {
         //if the moved region is not belong to opponent
 //        System.out.println(name);
 //        System.out.println(regions[currow+added_row][curcol+added_col].getOwner());
+        if(added_col == 1 ){
+            if(curcol+1>Board.getCols()-1) return;
+        }if(added_col == -1){
+            if(curcol-1<0) return;
+        }if(added_row == 1 ){
+            if(currow+1>Board.getRows()-1) return;
+        }if(added_row == -1){
+            if(currow-1<0) return;
+        }
         if(regions[currow+added_row][curcol+added_col].getOwner().equals("-")|| regions[currow+added_row][curcol+added_col].getOwner().equals(name)){
 
         regions[currow][curcol].setStandHere("-");
@@ -186,47 +205,27 @@ public class PlayerContext implements Interfaces.Player {
 
 
     private boolean is_adjacent(){
-        //ขอบบน
-        if(currow + 1 > Board.getRows()){
-            boolean case2 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol + 1].getOwner());
-            boolean case3 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol].getOwner());
-            boolean case4 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol - 1].getOwner());
-            boolean case6 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol + 1].getOwner());
-            boolean case8 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol - 1].getOwner());
-            return  case2 || case3 || case4 ||  case6 ||  case8 ;
-        }
-        if(currow - 1 <0){
-            boolean case1 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol].getOwner());
-            boolean case2 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol + 1].getOwner());
-            boolean case4 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol - 1].getOwner());
-            boolean case5 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol - 1].getOwner());
-            boolean case7 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol + 1].getOwner());
-            return case1 || case2 ||  case4 || case5 ||  case7  ;
-        }
-        if(curcol + 1 > Board.getCols()){
-            boolean case1 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol].getOwner());
-            boolean case3 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol].getOwner());
-            boolean case4 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol - 1].getOwner());
-            boolean case5 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol - 1].getOwner());
-            boolean case8 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol - 1].getOwner());
-            return case1 ||  case3 || case4 || case5 ||  case8 ;
-        }
-        if(curcol - 1 < 0){
-            boolean case1 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol].getOwner());
-            boolean case2 = regions[currow][curcol].getStandHere().equals(regions[currow][curcol + 1].getOwner());
-            boolean case3 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol].getOwner());
-            boolean case6 = regions[currow][curcol].getStandHere().equals(regions[currow - 1][curcol + 1].getOwner());
-            boolean case7 = regions[currow][curcol].getStandHere().equals(regions[currow + 1][curcol + 1].getOwner());
-            return case1 || case2 || case3 ||   case6 || case7 ;
-        }
-        return false;
+
+        if(regions[currow][curcol].isCapital()){return true;}
+        boolean case1 = regions[currow][curcol].getStandHere().equals(regions[Math.min(currow + 1, Board.getRows()-1)][curcol].getOwner());
+        boolean case2 = regions[currow][curcol].getStandHere().equals(regions[currow][Math.min(curcol + 1,Board.getCols()-1)].getOwner());
+        boolean case3 = regions[currow][curcol].getStandHere().equals(regions[Math.max(currow - 1, 0)][curcol].getOwner());
+        boolean case4 = regions[currow][curcol].getStandHere().equals(regions[currow][Math.max(curcol - 1, 0)].getOwner());
+        boolean case5 = regions[currow][curcol].getStandHere().equals(regions[Math.min(currow + 1, Board.getRows()-1)][Math.max(curcol - 1, 0)].getOwner());
+        boolean case6 = regions[currow][curcol].getStandHere().equals(regions[Math.max(currow - 1, 0)][Math.min(curcol + 1, Board.getCols()-1)].getOwner());
+        boolean case7 = regions[currow][curcol].getStandHere().equals(regions[Math.min(currow + 1, Board.getRows()-1)][Math.min(curcol + 1, Board.getCols()-1)].getOwner());
+        boolean case8 = regions[currow][curcol].getStandHere().equals(regions[Math.max(currow - 1, 0)][Math.max(curcol - 1, 0)].getOwner());
+        return  case1 || case2 || case3 || case4 || case5 ||  case6 || case7 ||  case8 ;
     }
 
 
     @Override
     public void invest(int i) {
         System.out.println(name + " invested " + i);
-
+        if(i<0){
+            budget = budget - Actioncost;
+            return;
+        }
         System.out.println(is_adjacent());
         if (budget - (Actioncost + i) > 0 && is_adjacent()) {
             budget = budget - Actioncost;
@@ -507,6 +506,12 @@ public class PlayerContext implements Interfaces.Player {
         curcol = col - 1;
 
 
+    }
+    public int getInt(){
+        return Board.interest_pct;
+    }
+    public int getMdeposit(){
+        return Board.max_dep;
     }
 
     private void calculateInterest() {

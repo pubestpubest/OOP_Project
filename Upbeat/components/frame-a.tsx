@@ -5,11 +5,12 @@ import { useRouter } from "next/router";
 // import InstanceF from "./instance-f";
 import { useState, useEffect } from "react";
 import PlanBlock from "./planBlock";
+import Task from "./taskPlayer";
 
 const FrameA: NextPage = () => {
   const router = useRouter();
 
-  const [timeLeft, setTimeLeft] = useState(180); // Initial time (in seconds)
+  const [timeLeft, setTimeLeft] = useState(600); // Initial time (in seconds)
 
   const onRemainingTime112Click = useCallback(() => {
     const anchor = document.querySelector("[data-scroll-to='frameB']");
@@ -39,7 +40,6 @@ const FrameA: NextPage = () => {
   }, []);
   let submitClicked = 1; //0=false ,1 = true
   const timeDisplay = `${timeLeft.toString().padStart(2, "0")}s`; // Formatted time string
-
   return (
     <div>
       <div className="w-[400px] flex flex-col items-center justify-start mt-5"></div>
@@ -52,9 +52,15 @@ const FrameA: NextPage = () => {
             className=" flex justify-between items-center bg-white my-2 mx-3 p-4  rounded-md border-solid font-sans "
             onClick={onRemainingTime112Click}
           >
-            Remaining time : {submitClicked == 0 ? timeDisplay : timeLeft}
+            Remaining time : {submitClicked == 0 ? timeDisplay : timeLeft}{" "}
+            second
           </div>
         </div>
+      </div>
+      <div className="overflow-x-scroll overflow-y-hidden max-h-[75vh] max-w-[30vw] flex  items-center gap-x-2 mt-5">
+        <Task name={"James"} coin={20000} />
+        <Task name={"James"} coin={3000} />
+        <Task name={"James"} coin={20000} /> <Task name={"James"} coin={3000} />
       </div>
 
       <div className="mt-4 mx-2">

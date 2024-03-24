@@ -4,8 +4,8 @@ import HexGrid from "../components/HexGird";
 import { PlanBlock } from "../components/planBlock";
 
 const Gameplay: NextPage = () => {
-  const rowsize = 30;
-  const colsize = 80;
+  const rowsize = 8;
+  const colsize = 10;
   return (
     <div className="h-screen relative bg-green-100 overflow-hidden flex flex-row items-start justify-start  ">
       <div className="ml-5 mt-5 ">

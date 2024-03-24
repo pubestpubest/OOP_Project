@@ -19,16 +19,16 @@ body {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
 
-.hex-p1 {
+.hex-color1 {
   background-color: #cbf6db;
 }
-.hex-p2 {
+.hex-color2 {
   background-color: #f5beb4;
 }
-.hex-p3 {
+.hex-color3 {
   background-color: #000000;
 }
-.hex-p4 {
+.hex-color4 {
   background-color: #ffffff;
 }
 .my-text {

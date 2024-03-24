@@ -15,6 +15,19 @@ record Variable(String name) implements Expr{
         throw new EvaluationError ("Unknown variable " + name);
     }
 }
+record Opponent() implements Expr{
+    @Override
+    public int eval(Map<String, Integer> bindings) throws EvaluationError {
+        return 0;
+    }
+}
+
+record Nearby(String direction) implements Expr{
+    @Override
+    public int eval(Map<String, Integer> bindings) throws EvaluationError {
+        return 0;
+    }
+}
 record BinaryArithExpr(Expr left, String op, Expr right) implements Expr{
     public int eval(Map<String, Integer> bindings) throws EvaluationError {
         int le = left.eval(bindings);

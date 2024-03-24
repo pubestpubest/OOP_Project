@@ -29,6 +29,16 @@ public class PlayerContext implements Player {
         this.variables = variables;
     }
     @Override
+    public int getVar(String variable) {
+        return variables.getOrDefault(variable, 0);
+    }
+    @Override
+    public void setVar(String variable, int value) {
+        if(!variables.containsKey(variable)){
+            variables.put(variable, value);
+        }
+    }
+    @Override
     public void done() {
         System.out.println(name+" done");
     }

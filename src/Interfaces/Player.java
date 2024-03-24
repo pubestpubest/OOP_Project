@@ -4,6 +4,10 @@ import java.util.Scanner;
 import RegionP.Region;
 
 public interface Player {
+
+
+    int getVar(String variable);
+    void setVar(String variable, int value);
     void done();
     void relocate();
     void move(String dir);

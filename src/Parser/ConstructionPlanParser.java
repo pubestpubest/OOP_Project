@@ -4,6 +4,7 @@ import Exceptions.SyntaxError;
 import Interfaces.Expr;
 import Interfaces.Parser;
 import Interfaces.Player;
+import Parser.AST.Plan;
 import Tokenizer.Token;
 import Tokenizer.TokenType;
 
@@ -25,7 +26,7 @@ public class ConstructionPlanParser implements Parser {
      * @throws EvaluationError if an error occurs during evaluation
      * @throws SyntaxError if a syntax error is encountered
      */
-    public void parse(List<Token> tokens, Player player) throws EvaluationError, SyntaxError {
+    public Plan parse(List<Token> tokens) throws EvaluationError, SyntaxError {
         this.tokens = new ArrayList<>(tokens);  // deep copy
         this.player = player;   //Alias
         this.playerVariables = player.getVariables(); //Alias
@@ -34,6 +35,7 @@ public class ConstructionPlanParser implements Parser {
             parseStatement(true);
             currentPosition++;
         }
+        return null;
     }
 
     /**
@@ -285,7 +287,7 @@ public class ConstructionPlanParser implements Parser {
      * @throws EvaluationError Thrown when an error occurs during the evaluation of any expressions
      *                         that are part of the action commands, such as 'invest' or 'collect' amounts.
      */
-    private void parseAction(boolean enable) throws SyntaxError, EvaluationError {
+    private void parseAction(boolean enable) throws SyntaxError, EvaluationError{
         Token token = getCurrentToken();
         // Ensure the current token is a KEYWORD type as actions are predefined commands.
         if(token.type() == TokenType.KEYWORD) {
@@ -378,7 +380,7 @@ public class ConstructionPlanParser implements Parser {
     /**
      * Parses an expression starting from the current token position. This method is capable of
      * parsing binary arithmetic expressions involving addition and subtraction. It constructs
-     * an abstract syntax tree (AST) for the expression by recursively parsing terms and combining
+     * an abstract syntax tree (Parser.AST) for the expression by recursively parsing terms and combining
      * them into more complex expressions based on the operators encountered.
      * The parsing of expressions is controlled by the 'enable' flag, which can be used to conditionally
      * parse expressions without evaluating them. This is particularly useful in scenarios where the
@@ -386,7 +388,7 @@ public class ConstructionPlanParser implements Parser {
      *
      * @param enable Flag indicating whether the expression should be evaluated. This allows for the
      *               parsing of expressions in a conditional context without immediate evaluation.
-     * @return Expr An AST node representing the parsed expression. This can be evaluated to obtain
+     * @return Expr An Parser.AST node representing the parsed expression. This can be evaluated to obtain
      *              a numerical result based on the current game state and player variables.
      * @throws SyntaxError Thrown if the expression syntax is invalid, such as an unexpected token.
      * @throws EvaluationError Thrown if an error occurs during the evaluation of the expression.
@@ -413,7 +415,7 @@ public class ConstructionPlanParser implements Parser {
             }
         }
 
-        return v; // Return the constructed expression AST.
+        return v; // Return the constructed expression Parser.AST.
     }
 
     /**

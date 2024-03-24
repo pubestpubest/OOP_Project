@@ -68,8 +68,7 @@ public class Main {
                 "  }\n" +
                 "}\n" +
                 "# city crew on a region belonging to nobody, so claim it\n" +
-                "if (budget - 1) then invest 1 else {}\n" +
-                "-1";
+                "if (budget - 1) then invest 1 else {}\n";
 
         String arithmetic = "i = 100\n" +
                 "while(i){\n" +
@@ -88,7 +87,7 @@ public class Main {
 //        if(false)
         try{
             System.out.println(player);
-            parser.parse(tokenizer.getTokens(), player);
+            parser.parse(tokenizer.getTokens());
             System.out.println(player);
         }catch(SyntaxError s){
             System.out.println(s);

@@ -11,7 +11,7 @@ const Config: NextPage = () => {
   }, [router]);
 
   const onButtonContainer1Click = useCallback(() => {
-    router.push("/gameplay");
+    router.push("/login");
   }, [router]);
 
   return (

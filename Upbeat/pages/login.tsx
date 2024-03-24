@@ -14,7 +14,7 @@ function Login() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
-
+  localStorage.setItem("playerName", inputValue);
   return (
     <div className="bg-gradient-to-r from-emerald-700 to-slate-400  h-screen">
       <div className=" text-white flex items-center justify-center pt-10 pb-40 text-41xl font-mono font-bold">
@@ -41,7 +41,6 @@ function Login() {
             >
               SUBMIT
             </button>
-            {inputValue}
           </div>
         </div>
       </div>

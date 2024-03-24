@@ -19,10 +19,10 @@ export const PlanBlock = () => {
   return (
     <div className="mr-3">
       <div
-        className="flex justify-between items-center bg-teal-700 mx-[5px]  px-[60px]  rounded-md border-solid   border-y-emerald-500 shadow-l"
+        className="flex justify-between items-center bg-teal-700  px-[80px]  rounded-md border-solid   border-y-emerald-500 shadow-l"
         onClick={() => setConstructionPlan(!constructionPlan)}
       >
-        <p className="text-13xl font-sans text-white font-bold">
+        <p className="text-[25px] font-sans text-white font-bold">
           CONSTRUCTION PLAN
         </p>
       </div>

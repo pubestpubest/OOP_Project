@@ -27,7 +27,8 @@ const FrameA: NextPage = () => {
     router.push("/");
   }, [router]);
 
-  const turnRound = 5;
+  // const turnRound = 0;
+  const [turnRound, setTurn] = useState(4);
 
   // Improved countdown logic using useEffect
   useEffect(() => {
@@ -40,13 +41,14 @@ const FrameA: NextPage = () => {
   }, []);
   let submitClicked = 1; //0=false ,1 = true
   const timeDisplay = `${timeLeft.toString().padStart(2, "0")}s`; // Formatted time string
+  let Yourname = localStorage.getItem("playerName");
   return (
     <div>
-      <div className="w-[400px] flex flex-col items-center justify-start mt-5"></div>
+      <div className="w-[400px] flex flex-col items-center justify-start "></div>
       <div className=" flex justify-between items-center  bg-cyan-950 rounded-md border-solid">
-        <h1 className=" text-white font-sans mx-10 border-solid ">
+        <div className=" text-white font-sans mx-10 border-solid text-13xl ">
           TURN : {turnRound}
-        </h1>
+        </div>
         <div className="mx-2">
           <div
             className=" flex justify-between items-center bg-white my-2 mx-3 p-4  rounded-md border-solid font-sans "
@@ -57,13 +59,14 @@ const FrameA: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="overflow-x-scroll overflow-y-hidden max-h-[75vh] max-w-[30vw] flex  items-center gap-x-2 mt-5">
-        <Task name={"James"} coin={20000} />
-        <Task name={"James"} coin={3000} />
-        <Task name={"James"} coin={20000} /> <Task name={"James"} coin={3000} />
+      <div className="overflow-x-scroll overflow-y-hidden h-[20vh] w-[30vw] flex  items-center gap-x-2 ">
+        <Task YesYou={false} name={"Phu"} coin={4000} />
+        <Task YesYou={true} name={Yourname} coin={3000} />
+        <Task YesYou={false} name={"Palm"} coin={6200} />
+        <Task YesYou={false} name={"Danial"} coin={3500} />
       </div>
 
-      <div className="mt-4 mx-2">
+      <div className="mx-2">
         <PlanBlock />
       </div>
     </div>

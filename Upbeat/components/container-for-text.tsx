@@ -20,9 +20,10 @@ const ContainerForText: NextPage<ContainerForTextType> = ({
   const addinputText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(event.target.value); // Update text area state on change
   };
-
+  let x = rectangles;
+  localStorage.setItem(String(x), text);
   return (
-    <section className=" flex-row items-start justify-start  text-45xl text-white font-inter">
+    <div className=" flex-row items-start justify-start  text-45xl text-white font-inter">
       <div
         className="w-[1440px] overflow-hidden shrink-0 flex flex-row flex-wrap items-start justify-start px-9 box-border "
         style={configBoxStyle}
@@ -33,20 +34,18 @@ const ContainerForText: NextPage<ContainerForTextType> = ({
         {/* <div className="h-[113px] w-[199px] relative rounded-22xl bg-gainsboro box-border border-[9px] border-solid border-black" /> */}
         <textarea
           style={{ resize: "none" }}
-          className="rounded-full border-solid  border-2 h-[30px] w-[180px] flex  text-center items-center justify-center mt-7 mx-20"
+          className="rounded-full border-solid  border-2  h-[30px] w-[180px] flex  text-center items-center justify-center mt-7 mx-20"
           placeholder={rectangles}
           onChange={addinputText}
           value={text}
         />
       </div>
-      ///
-      <div className=" text-7xl">{text}</div>
-    </section>
+      {/* <div className=" text-7xl">{text}</div> */}
+    </div>
   );
 };
 
 export default ContainerForText;
-
 
 {
   /* <textarea

@@ -371,22 +371,24 @@ public class PlayerContext implements Interfaces.Player {
     @Override
     public Expr nearby(String dir) {
         System.out.println("nearby " + dir + "called");
-        int minDistance = 0;
-        int[] ClosestLocation = {currow, curcol};
 
         switch (dir) {
             case "up":
-                for (int step = 1; step <= Board.getRows() - 1; step++) {
-                    int newROW = currow - step;
-                    int newCOL = curcol;
+                int newROW = currow + 1;
+                int newCOL = curcol;
+                while(regions[newROW][newCOL] != null){
+
                     //found opponent
                     if (!regions[newROW][newCOL].getOwner().equals(name) && !regions[newROW][newCOL].getOwner().equals("-")) {
-
-                        minDistance = step;
-                        ClosestLocation = new int[]{newROW, newCOL};
-
+                        return new IntLiteral((int) 100*(newROW - currow) + (int) countDigits((int) regions[newROW][newCOL].getCurrentDeposite()));
+                    }
+                    newROW = newROW + 1;
+                    if(regions[newROW][newCOL] == null){
+                        return new IntLiteral(0);
                     }
                 }
+
+
 
 //                if () {
 //                    return new IntLiteral(100 * minDistance + countDigits((int) regions[ClosestLocation[0]][ClosestLocation[1]].getCurrentDeposite()));

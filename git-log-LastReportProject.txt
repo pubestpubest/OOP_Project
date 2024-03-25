@@ -1,0 +1,631 @@
+*   commit 0c9ec2187df4b2dca74f26ae69846e0a526210c9
+|\  Merge: bc3ccf8 ff4bffe
+| | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | Date:   Tue Mar 26 01:23:52 2024 +0700
+| | 
+| |     Merge pull request #14 from pubestpubest/ASTattempt
+| |     
+| |     Last pull (?)
+| |   
+| *   commit ff4bffeaac3d7ed82e569f629cebdec060786620
+| |\  Merge: f68a4a1 d38e933
+| | | Author: pubest <pubestpubest@gmail.com>
+| | | Date:   Tue Mar 26 01:21:23 2024 +0700
+| | | 
+| | |     Merge remote-tracking branch 'origin/fron-end-here' into ASTattempt
+| | | 
+| | * commit d38e933f404d8227901fe6a6390cfed71bf64b6e
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Mon Mar 25 02:15:27 2024 +0700
+| | | 
+| | |     Not done yet
+| | | 
+| | * commit ecc0a16457bcd9bd58c29e3fe7e76bf04490ce55
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Sun Mar 24 21:01:01 2024 +0700
+| | | 
+| | |     fixing board
+| | | 
+| | * commit 147f2d1a647e1f04b228e9ce867e6ea9103d509e
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Sun Mar 24 03:35:29 2024 +0700
+| | | 
+| | |     update a bit : not thing change  , check , fix old
+| | | 
+| | * commit 083dccf3a3f14413262d8ec99412567eae7f2249
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Sun Mar 24 00:39:52 2024 +0700
+| | | 
+| | |     fix Some ui (+page login +edit page gameplay)
+| | | 
+| | * commit d7df0853906d70a4c1bbc28d29957d7ab2723390
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Sun Mar 3 20:19:35 2024 +0700
+| | | 
+| | |     in progress fixing
+| | | 
+| | * commit 529b5b6d27d7d418804fee9d108185cd943e5f7d
+| |/  Author: Goodl3oyZ <panudetzx2@gmail.com>
+|/|   Date:   Sun Mar 3 19:30:39 2024 +0700
+| |   
+| |       in progress fixing
+| | 
+| * commit f68a4a1ec164439bacce3062954492183bf8bfd3
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Tue Mar 26 01:19:44 2024 +0700
+| | 
+| |     Last(?) commit
+| | 
+| * commit 2ede0a13723ab139feede48752d6bb9fde9189e0
+| | Author: pubestpubest <pubestpubest@gmail.com>
+| | Date:   Mon Mar 25 05:54:43 2024 +0700
+| | 
+| |     AST work with game's engine
+| | 
+| * commit 68a32da222386fd5a6adbd203bcb252961e0269c
+| | Author: pubestpubest <pubestpubest@gmail.com>
+| | Date:   Mon Mar 25 04:04:55 2024 +0700
+| | 
+| |     AST work with game's engine
+| | 
+| * commit 153311b6ce7a53c72fab88075a0bb32350d763ca
+| | Author: pubestpubest <pubestpubest@gmail.com>
+| | Date:   Mon Mar 25 02:25:37 2024 +0700
+| | 
+| |     AST work with game's engine
+| | 
+| * commit e1b0f8d6b56947607772144da138fd2c415829aa
+| | Author: pubestpubest <pubestpubest@gmail.com>
+| | Date:   Sun Mar 24 23:11:56 2024 +0700
+| | 
+| |     AST and playerAction Merged
+| |   
+| *   commit 0404b31409e9a5bd6c38ef7f445cf9b45554f57b
+| |\  Merge: 9aa2c4e 03a11e7
+| | | Author: pubestpubest <pubestpubest@gmail.com>
+| | | Date:   Sun Mar 24 23:08:59 2024 +0700
+| | | 
+| | |     Merge remote-tracking branch 'origin/implement-playeraction' into ASTattempt
+| | |     
+| | |     # Conflicts:
+| | |     #       src/Main.java
+| | | 
+| | * commit 03a11e7015405c6c71e84bacb962339bbe5db6eb
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 17 00:53:58 2024 +0700
+| | | 
+| | |     everything is done except nearby() done() and opponent()
+| | | 
+| | * commit f60229319b0155809cd805fbb1790e5a6618f06f
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sat Mar 16 22:43:43 2024 +0700
+| | | 
+| | |     add git-log
+| | | 
+| | * commit 577faf3e4add63fd8b079381d32386bd863b0a41
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 3 23:12:59 2024 +0700
+| | | 
+| | |     playerAction -75%
+| | |     create Junit Testcase and test Relocate,Move,invest,collect methods
+| | | 
+| | * commit 2e8a328b2d69ad48f304e80b9eb2d8da4c5d4bb1
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 3 23:12:13 2024 +0700
+| | | 
+| | |     playerAction -75%
+| | |     create Junit Testcase and test Relocate,Move,invest,collect methods
+| | | 
+| | * commit e84ce3551631a4d6930ad7515f7ae3ff09ab8a80
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 3 20:46:30 2024 +0700
+| | | 
+| | |     can play with 2 players
+| | |     playerAction -65%
+| | | 
+| | * commit 2b411bd0fdf649a33ad692ece272ce06de64f487
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 3 18:35:07 2024 +0700
+| | | 
+| | |     player actions implemented but mostly not sure
+| | | 
+| | * commit d96b985647933a46c5301920237e5c327982d7b4
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 3 05:04:09 2024 +0700
+| | | 
+| | |     player actions implemented but mostly not sure
+| | | 
+| | * commit 1ae725f60e98998d0596bf1878708d78229fa016
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 3 03:41:56 2024 +0700
+| | | 
+| | |     player actions implemented but mostly not sure
+| | | 
+| | * commit f92502f93689badfe0d5a1f91d31981cf540e7ff
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 3 00:23:29 2024 +0700
+| | | 
+| | |     move , relocate , collect , claim is Done but not 100%
+| | | 
+| | * commit a05beb1053b91d823be9ddb87ab81e4902756f56
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sun Mar 3 00:22:23 2024 +0700
+| | | 
+| | |     implement playermove > not done yet!
+| | | 
+| | * commit 870ba8bdba3a3becf578801db10c34d8730b09a3
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Sat Mar 2 22:34:13 2024 +0700
+| | | 
+| | |     implement playermove > not done yet!
+| | | 
+| | * commit 4bfe46e5035efaefa95b8b2bb0d8ecd80a123fb0
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Thu Feb 29 21:39:39 2024 +0700
+| | | 
+| | |     implement playermove > not done yet!
+| | | 
+| | * commit d82172b7488a1b303400a10dc0667f7e829fe0fb
+| | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Thu Feb 29 21:05:00 2024 +0700
+| | | 
+| | |     implement playermove > not done yet!
+| | | 
+| | * commit b9829b636a23cac59c83f74f015e7800812b0e64
+| |/  Author: GodMonera <borwonpak_du@cmu.ac.th>
+|/|   Date:   Thu Feb 29 03:00:45 2024 +0700
+| |   
+| |       implement playermove > not done yet!
+| | 
+| * commit 9aa2c4e0d1c1579c18cee9a5d00dd2e7f4f1ae9d
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Sun Mar 24 23:02:23 2024 +0700
+| | 
+| |     Delete old parser
+| | 
+| * commit ea3238ff4458c82c3409d86c6459808539f459cc
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Sun Mar 24 23:00:09 2024 +0700
+| | 
+| |     AST done ?
+| | 
+| * commit f2db914bb06422da5b0b707df1e3010945b95c8e
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Sun Mar 3 21:23:34 2024 +0700
+| | 
+| |     new branch
+| | 
+| * commit b1cc8fe61f4af2005d2c2bb26b27dd212b87bb2a
+|/  Author: pubest <pubestpubest@gmail.com>
+|   Date:   Thu Feb 29 13:30:36 2024 +0700
+|   
+|       add tokenizer test
+|   
+*   commit bc3ccf80ecbf0546d751e0d7c2e030ddde9d60d3
+|\  Merge: 3f02b43 59cce25
+| | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | Date:   Thu Feb 29 02:19:13 2024 +0700
+| | 
+| |     Merge pull request #13 from pubestpubest/parser
+| |     
+| |     merge all branch
+| | 
+| * commit 59cce25ddb4040ec0179da1c0dadb64ffe3f85a7
+| | Author: pubestpubest <pubestpubest@gmail.com>
+| | Date:   Thu Feb 29 01:57:12 2024 +0700
+| | 
+| |     add todo
+| |   
+| *   commit 30cf59078becadfb5a8623f4fbe108eb4ad53447
+| |\  Merge: dbc4814 f6cde6c
+| | | Author: pubestpubest <pubestpubest@gmail.com>
+| | | Date:   Thu Feb 29 01:44:58 2024 +0700
+| | | 
+| | |     Merge remote-tracking branch 'origin/app-front-end' into parser
+| | | 
+| | * commit f6cde6c0ee5e3ff41243c686dfd0775fca3dae33
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Wed Feb 28 23:51:36 2024 +0700
+| | | 
+| | |     add more input Current plan
+| | | 
+| | * commit 3d22909f26de56afe81cf692f74aa506802331a4
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Wed Feb 28 17:36:08 2024 +0700
+| | | 
+| | |     chang backgorund add Map  fix some other
+| | | 
+| | * commit 8214440c42972fa9ae040f838760cd7b39ced140
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Wed Feb 28 17:35:56 2024 +0700
+| | | 
+| | |     chang backgorund add Map  fix some other
+| | | 
+| | * commit 5f6461495ff671f6fcf7260bfafc9a9f5eca5c4a
+| | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | Date:   Wed Feb 28 00:30:02 2024 +0700
+| | | 
+| | |     add some Front end
+| | | 
+| * | commit dbc4814651320919239006e6b1d6e1778593a59b
+| | | Author: pubestpubest <pubestpubest@gmail.com>
+| | | Date:   Thu Feb 29 01:42:31 2024 +0700
+| | | 
+| | |     Merge with Region.java Board.java
+| | |   
+| * |   commit 6b9c0b4c19ba8b5cb84a9d4c4b5c48afb5f27ab3
+| |\ \  Merge: bee2640 fbceefb
+| | | | Author: pubestpubest <pubestpubest@gmail.com>
+| | | | Date:   Thu Feb 29 01:01:57 2024 +0700
+| | | | 
+| | | |     Merge remote-tracking branch 'origin/player-board-adjustment' into parser
+| | | |     
+| | | |     # Conflicts:
+| | | |     #       src/Board.txt
+| | | |     #       src/Main.java
+| | | | 
+| | * | commit fbceefbe9ff8356277062921d5c0b41db1fe7900
+| | | | Author: GodMonera <borwonpak_du@cmu.ac.th>
+| | | | Date:   Thu Feb 29 00:17:41 2024 +0700
+| | | | 
+| | | |     add something to player
+| | | | 
+| * | | commit bee26408b97fb7f36f3ebe7aeb62f78a672dbfcd
+| | | | Author: pubestpubest <pubestpubest@gmail.com>
+| | | | Date:   Thu Feb 29 00:56:16 2024 +0700
+| | | | 
+| | | |     Delete archived parser
+| | | | 
+| * | | commit 7e692df44aaf1b38b6359cc16a6da4460fb58ae1
+| | | | Author: pubest <pubestpubest@gmail.com>
+| | | | Date:   Wed Feb 28 19:02:44 2024 +0700
+| | | | 
+| | | |     clean the code, add specification ,and clear all warning and typo
+| | | | 
+| * | | commit 3bf41d17af81ba640600e45dd2e394d727863df2
+| | | | Author: pubest <pubestpubest@gmail.com>
+| | | | Date:   Wed Feb 28 13:09:05 2024 +0700
+| | | | 
+| | | |     debug parser done
+| | | | 
+| * | | commit 9a34ea7ff25aea0f62b857cb7d3801c695b0012c
+| | | | Author: pubest <pubestpubest@gmail.com>
+| | | | Date:   Mon Feb 19 21:14:32 2024 +0700
+| | | | 
+| | | |     arithmetic with player variables
+| | | | 
+| * | | commit 948375edfa622e192032cd62c2facea21502725d
+|/ / /  Author: pubest <pubestpubest@gmail.com>
+| | |   Date:   Mon Feb 12 00:25:10 2024 +0700
+| | |   
+| | |       add base method to parser
+| | | 
+* | | commit 3f02b4320a9b9432e1b6e03948f4d9f4dfab67a3
+| | | Author: pubestpubest <pubestpubest@gmail.com>
+| | | Date:   Wed Feb 7 23:50:24 2024 +0700
+| | | 
+| | |     Archive the Parser
+| | |     waiting to start over again
+| | | 
+* | | commit 1c3a6d859f896d1c1f1dd961c6a4b9f2e382bc44
+|\| | Merge: 86d1a40 4d931d4
+| | | Author: pubestpubest <pubestpubest@gmail.com>
+| | | Date:   Wed Feb 7 23:44:37 2024 +0700
+| | | 
+| | |     Merge remote-tracking branch 'origin/more-Action-commands'
+| | |     
+| | |     # Conflicts:
+| | |     #       src/Main.java
+| | |     #       src/Parser/ConstructionPlanParser.java
+| | |     #       src/Player.java
+| | | 
+| * | commit 4d931d40ba8f3bfc94f3f4dc5e4b05132f6acb23
+| | | Author: godmonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Wed Feb 7 22:49:09 2024 +0700
+| | | 
+| | |     add something to player
+| | | 
+| * | commit 70b0803488d95ffd896437e1c1b9acc5b74559c3
+| |/  Author: godmonera <borwonpak_du@cmu.ac.th>
+| |   Date:   Wed Feb 7 22:48:34 2024 +0700
+| |   
+| |       add something to player
+| |   
+* |   commit 86d1a401249a6035906a8728ddfcde9d362bdd5a
+|\ \  Merge: 7ba616c b08dcd2
+| | | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | | Date:   Wed Feb 7 22:12:34 2024 +0700
+| | | 
+| | |     Merge pull request #11 from pubestpubest/parser
+| | |     
+| | |     Tokenizer done
+| | | 
+| * | commit b08dcd230ee2921a409053cbf71bea791869d582
+| |/  Author: pubest <pubestpubest@gmail.com>
+| |   Date:   Wed Feb 7 21:57:55 2024 +0700
+| |   
+| |       The Parser messed up
+| |       Archive the old Parser
+| |       making a new one
+| | 
+| * commit 78077308e8ba189416045abf812b223d4aae3e45
+|/  Author: pubest <pubestpubest@gmail.com>
+|   Date:   Wed Feb 7 07:09:13 2024 +0700
+|   
+|       add Expression for parser
+|       add getValue for Token
+|       override Token equal
+| 
+* commit 7ba616c59647b4e8dfcb94abb1357ced147858d1
+| Author: pubest <pubestpubest@gmail.com>
+| Date:   Wed Feb 7 03:36:25 2024 +0700
+| 
+|     change input String
+|     Tokenizer fixed (add assignment type token)
+|   
+*   commit 4f2fbfeb7b8080266601cb521fab0dc5f46575fb
+|\  Merge: 74ec76d d2364fc
+| | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | Date:   Wed Feb 7 03:23:35 2024 +0700
+| | 
+| |     Merge pull request #10 from pubestpubest/no-pos-tokenize
+| |     
+| |     Tokenizer Ready
+| | 
+| * commit d2364fca95ca33d1462e0a41f8dd95fa2a5b237a
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Tue Feb 6 07:19:12 2024 +0700
+| | 
+| |     add specification and TODO list for Parser
+| |     remove current position in Tokenizer
+| |     fixed # Comment
+| | 
+| * commit 4aef27c30b1aa4e9ddb1dccaa0f9fa094d323426
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Tue Feb 6 06:21:23 2024 +0700
+| | 
+| |     add specification for Token
+| | 
+| * commit f1ae625ab96b23aade8cf522e0b3bf501f6efd86
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Tue Feb 6 06:17:59 2024 +0700
+| | 
+| |     fixed Tokenizer Interface and ConstructionPlanTokenizer as well
+| |     add Parser
+| | 
+| * commit 99ee5143af1322865e7fdc87c92cf9fee5c0d314
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Tue Feb 6 05:09:31 2024 +0700
+| | 
+| |     fixed ConstructionPlanTokenizer
+| |     tested on main
+| | 
+| * commit baa903b094092f770cbf7c5b413f952270767300
+|/  Author: pubest <pubestpubest@gmail.com>
+|   Date:   Tue Feb 6 04:55:38 2024 +0700
+|   
+|       add Tokenizer class and Tokenizer interface
+|   
+*   commit 74ec76d4852bcf5852667cbe7e5d19fc5673e0fd
+|\  Merge: 9bc73bf 9e054de
+| | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | Date:   Tue Feb 6 01:14:19 2024 +0700
+| | 
+| |     Merge pull request #9 from pubestpubest/edit-board
+| |     
+| |     new-main
+| | 
+| * commit 9e054de9ab622951946cc1418b39d6d411de7ba5
+| | Author: godmonera <borwonpak_du@cmu.ac.th>
+| | Date:   Tue Feb 6 01:12:30 2024 +0700
+| | 
+| |     new
+| | 
+| * commit 25420d05d71bd4ec45e2220c2f74e282c18d7374
+| | Author: godmonera <borwonpak_du@cmu.ac.th>
+| | Date:   Tue Feb 6 01:05:45 2024 +0700
+| | 
+| |     new
+| |   
+* |   commit 9bc73bfebdcdd6c5ca1d190ec208bcbef7aea9a2
+|\ \  Merge: eee92af a0dbd91
+| | | Author: pubest <pubestpubest@gmail.com>
+| | | Date:   Tue Feb 6 01:09:23 2024 +0700
+| | | 
+| | |     Merge remote-tracking branch 'origin/main'
+| | | 
+| * | commit a0dbd9119466c4f542d3803b9a48e30fca01ba3e
+| |\| Merge: 542552b 107988a
+| | | Author: pubest <pubestpubest@gmail.com>
+| | | Date:   Tue Feb 6 00:55:23 2024 +0700
+| | | 
+| | |     Merge remote-tracking branch 'origin/main'
+| | | 
+| | * commit 107988a15237d22875b32cf03afe9412260028de
+| | | Author: godmonera <borwonpak_du@cmu.ac.th>
+| | | Date:   Tue Feb 6 00:50:27 2024 +0700
+| | | 
+| | |     new
+| | | 
+| * | commit 542552badc5b9efa444633c7783079e73e893b52
+| |\| Merge: 6c62b30 bd9713b
+| | | Author: pubest <pubestpubest@gmail.com>
+| | | Date:   Fri Jan 26 02:30:17 2024 +0700
+| | | 
+| | |     Merge remote-tracking branch 'origin/main'
+| | |   
+| | *   commit bd9713bfb745a03816c24f7756b03ef6ccc13183
+| | |\  Merge: 8122fc2 756e5a4
+| | | | Author: Goodl3oyZ <110963173+Goodl3oyZ@users.noreply.github.com>
+| | | | Date:   Wed Jan 24 21:27:18 2024 +0700
+| | | | 
+| | | |     Merge pull request #8 from pubestpubest/fluke-nakrub
+| | | |     
+| | | |     Need to be contributor
+| | | | 
+| | | * commit 756e5a4f0e47fcf7416e9a367a386fa02033c08b
+| | |/  Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | |   Date:   Wed Jan 24 21:04:42 2024 +0700
+| | |   
+| | |       Start
+| | | 
+| | * commit 8122fc2fb2f26a73c790df728770feebdddc6556
+| | | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | | Date:   Wed Jan 24 01:10:43 2024 +0700
+| | | 
+| | |     Update README.md
+| | |     
+| | |     add emoji
+| | |   
+| | *   commit 52491e7e7b94990dbeef4a0dae00e0e062f47967
+| | |\  Merge: 8f02a3c e02b017
+| | | | Author: GodMonera <110964762+GodMonera@users.noreply.github.com>
+| | | | Date:   Wed Jan 24 00:35:40 2024 +0700
+| | | | 
+| | | |     Merge pull request #7 from pubestpubest/pubestb
+| | | |     
+| | | |     add portal
+| | | |   
+| | * |   commit 8f02a3c02bf68f99f082a1a32d2f3866d5be90e2
+| | |\ \  Merge: 90f4b74 daaab1b
+| | | | | Author: GodMonera <110964762+GodMonera@users.noreply.github.com>
+| | | | | Date:   Wed Jan 24 00:18:42 2024 +0700
+| | | | | 
+| | | | |     Merge pull request #6 from pubestpubest/pubestb
+| | | | |     
+| | | | |     Test Branch Protection
+| | | | | 
+| * | | | commit 6c62b3016b701c58d89753fdfa59474f7dabe076
+| |/ / /  Author: pubest <pubestpubest@gmail.com>
+| | | |   Date:   Wed Jan 24 00:10:02 2024 +0700
+| | | |   
+| | | |       test branch protection
+| | | |   
+| * | |   commit 90f4b74a08ed9e5a12408aa8a33e138b5e0bdf9d
+| |\ \ \  Merge: cfdbcf1 9dad1f4
+| | | | | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | | | | Date:   Wed Jan 24 00:00:47 2024 +0700
+| | | | | 
+| | | | |     Merge pull request #5 from pubestpubest/pubestb
+| | | | |     
+| | | | |     merge
+| | | | | 
+* | | | | commit eee92af6ec89e4a371be87fc1eeac92a12e46926
+| | | | | Author: godmonera <borwonpak_du@cmu.ac.th>
+| | | | | Date:   Tue Feb 6 00:50:27 2024 +0700
+| | | | | 
+| | | | |     new
+| | | | | 
+* | | | | commit a3a703dc02433035dd3834308e3180364d37eb6a
+| | | | | Author: Goodl3oyZ <panudetzx2@gmail.com>
+| | | | | Date:   Wed Jan 24 21:04:42 2024 +0700
+| | | | | 
+| | | | |     Start
+| | | | | 
+* | | | | commit 6f3a1f3cc53b1758681c8f8989366c0cdfbce68e
+| | | | | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | | | | Date:   Wed Jan 24 01:10:43 2024 +0700
+| | | | | 
+| | | | |     Update README.md
+| | | | |     
+| | | | |     add emoji
+| | | | | 
+* | | | | commit 89cf04022b379c6afd06dad52ba64d5bd807b27e
+| |_|_|/  Author: pubest <pubestpubest@gmail.com>
+|/| | |   Date:   Wed Jan 24 00:10:02 2024 +0700
+| | | |   
+| | | |       test branch protection
+| | | | 
+* | | | commit e02b017f5b3f62b9cd9faf7c2753db6b4e1423fa
+| |_|/  Author: pubest <pubestpubest@gmail.com>
+|/| |   Date:   Wed Jan 24 00:33:29 2024 +0700
+| | |   
+| | |       add portal
+| | | 
+* | | commit daaab1ba1334be0b9a43fe6efb2240e6aef612e0
+| |/  Author: pubest <pubestpubest@gmail.com>
+|/|   Date:   Wed Jan 24 00:10:43 2024 +0700
+| |   
+| |       test branch protection
+| | 
+* | commit 9dad1f4395ef08e85d0084a80f201e64c6154520
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Tue Jan 23 23:59:37 2024 +0700
+| | 
+| |     add timeline in README.md
+| | 
+* | commit 0ff3b6100e07d4ef957ed654cfa63715434c127f
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Tue Jan 23 23:54:11 2024 +0700
+| | 
+| |     add project spec.pdf
+| | 
+* | commit ded590e46188b4266fbe1a9b77d80c5b32f4d2c2
+|\| Merge: 0a294f9 cfdbcf1
+| | Author: pubest <pubestpubest@gmail.com>
+| | Date:   Tue Jan 23 23:27:39 2024 +0700
+| | 
+| |     Merge branch 'main' into pubestb
+| |     
+| |     # Conflicts:
+| |     #       README.md
+| |   
+| *   commit cfdbcf15ede39461794a21eea7bbe76a07fe1d2a
+| |\  Merge: 562aa1f 315f5b3
+| | | Author: GodMonera <110964762+GodMonera@users.noreply.github.com>
+| | | Date:   Tue Jan 23 23:15:36 2024 +0700
+| | | 
+| | |     Merge pull request #3 from pubestpubest/testbranch
+| | |     
+| | |     Pull01
+| | | 
+| | * commit 315f5b329618691f0953d4cd8243e8d7336c995b
+| |/  Author: godmonera <borwonpak_du@cmu.ac.th>
+| |   Date:   Tue Jan 23 23:06:37 2024 +0700
+| |   
+| |       new
+| | 
+| * commit 562aa1f1af5a720939d16b8466427d1b28bfdb70
+| | Author: godmonera <borwonpak_du@cmu.ac.th>
+| | Date:   Tue Jan 23 23:00:37 2024 +0700
+| | 
+| |     new
+| |   
+| *   commit 5034cec862bfafb953cc74134d6dc8582db4cf93
+| |\  Merge: b5e5c3f 1e1785e
+| | | Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+| | | Date:   Tue Jan 23 22:53:30 2024 +0700
+| | | 
+| | |     Merge pull request #1 from pubestpubest/pubestb
+| | |     
+| | |     Pull test
+| | | 
+* | | commit 0a294f959e6aa2eabe55973ab9940df8a45782c5
+| | | Author: pubest <pubestpubest@gmail.com>
+| | | Date:   Tue Jan 23 23:07:41 2024 +0700
+| | | 
+| | |     Test.md
+| | | 
+* | | commit 05cd590f3e9178be4bbcd881b1515aef862e6380
+| |/  Author: pubest <pubestpubest@gmail.com>
+|/|   Date:   Tue Jan 23 22:57:35 2024 +0700
+| |   
+| |       update README.md
+| | 
+* | commit 1e1785edcbe561f3899ac38e669fb06b268a0d8f
+|/  Author: pubest <pubestpubest@gmail.com>
+|   Date:   Tue Jan 23 22:52:30 2024 +0700
+|   
+|       update README.md
+| 
+* commit b5e5c3f772e4820e84d01b3097df59cdf8ec84ee
+| Author: pubest <pubestpubest@gmail.com>
+| Date:   Tue Jan 23 22:47:03 2024 +0700
+| 
+|     init
+| 
+* commit 42eb75c8a4881789b95ce6484cc8a9485ee8dffe
+  Author: pubestpubest <110964000+pubestpubest@users.noreply.github.com>
+  Date:   Tue Jan 23 22:45:20 2024 +0700
+  
+      Initial commit

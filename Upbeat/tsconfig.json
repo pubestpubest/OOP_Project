@@ -15,6 +15,14 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/region.jsx",
+    "components/map.jsx",
+    "components/HexGird.jsx",
+    "components/planBlock.jsx"
+  ],
   "exclude": ["node_modules"]
 }

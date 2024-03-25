@@ -3,6 +3,7 @@ import java.util.List;
 
 import Exceptions.EvaluationError;
 import Exceptions.SyntaxError;
+import Parser.AST.Plan;
 import Tokenizer.Token;
 /**
  * This interface defines the methods that a parser should implement.
@@ -12,5 +13,5 @@ public interface Parser {
     /**
      * Parses the entire construction plan, one statement at a time.
      */
-    public void parse(List<Token> tokens, Player player) throws EvaluationError, SyntaxError;
+    public Plan parse(List<Token> tokens) throws EvaluationError, SyntaxError;
 }

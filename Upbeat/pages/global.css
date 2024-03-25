@@ -11,3 +11,45 @@ body {
 ::after {
   border-width: 0;
 }
+
+.hex {
+  width: 65px;
+  height: 60px;
+  display: inline-block;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.hex-color1 {
+  background-color: #cbf6db;
+}
+.hex-color2 {
+  background-color: #f5beb4;
+}
+.hex-color3 {
+  background-color: #000000;
+}
+.hex-color4 {
+  background-color: #ffffff;
+}
+.my-text {
+  text-shadow: 5px 10px 10px rgba(0, 0, 0, 20);
+}
+
+.bordered-text {
+  text-shadow: -1px -1px 0px black,  /* Top and left border */
+               1px 1px 0px black,   /* Bottom and right border */
+               0px 0px 2px rgba(0, 0, 0, 0.2); /* Inner shadow for depth */
+  color: white;  /* Ensure text color contrasts with border */
+}
+.animated-gradient {
+  animation: gradient-slide 5s linear infinite;
+}
+
+@keyframes gradient-slide {
+  0% {
+    background-position: 0% 0%; /* Start with no offset */
+  }
+  100% {
+    background-position: 100% 0%; /* Slide to the right over 5 seconds */
+  }
+}

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useCallback } from "react";
 import { useRouter } from "next/router";
-
+import HexGrid from "../components/HexGird";
 const TheRule: NextPage = () => {
   const router = useRouter();
 
@@ -10,86 +10,81 @@ const TheRule: NextPage = () => {
   }, [router]);
 
   const onButtonContainer1Click = useCallback(() => {
-    router.push("/gameplay");
+    router.push("/config");
   }, [router]);
 
   return (
-    <div className="w-full relative bg-goldenrod overflow-hidden flex flex-col items-center justify-start pt-0 pb-[67px] pr-[30px] pl-7 box-border gap-[33px_0px] tracking-[normal] mq750:gap-[33px_0px]">
-      <section className="w-full h-[154px] absolute !m-[0] top-[36px] left-[0px] text-109xl flex italic font-extrabold font-inter text-white text-center items-center justify-center mq750:text-32xl mq450:text-13xl">
-        THE RULES
-      </section>
-      <section className="w-[1382px] h-[212px] overflow-x-auto shrink-0 flex flex-row items-start justify-between gap-[20px] max-w-full text-center text-34xl-3 text-white font-inter">
-        <div
-          className="self-stretch w-[277px] overflow-hidden shrink-0 flex flex-col items-start justify-start py-[66px] px-[17px] box-border relative cursor-pointer z-[1]"
-          onClick={onButtonContainerClick}
-        >
-          <img
-            className="w-full h-[106px] absolute !m-[0] top-[calc(50%_-_53px)] right-[0px] left-[0px] max-w-full overflow-hidden shrink-0"
-            loading="eager"
-            alt=""
-            src="/vector1.svg"
-          />
-          <i className="w-[224.7px] h-[67.9px] relative flex font-bold items-center justify-center shrink-0 z-[1] mq750:text-24xl mq450:text-13xl">
-            HOME
-          </i>
-        </div>
-        <div
-          className="self-stretch w-[277px] overflow-hidden shrink-0 flex flex-col items-start justify-start py-[66px] px-[17px] box-border relative cursor-pointer z-[1]"
-          onClick={onButtonContainer1Click}
-        >
-          <img
-            className="w-full h-[106px] absolute !m-[0] top-[calc(50%_-_53px)] right-[0px] left-[0px] max-w-full overflow-hidden shrink-0"
-            loading="eager"
-            alt=""
-            src="/vector-11.svg"
-          />
-          <i className="w-[224.7px] h-[67.9px] relative flex font-bold items-center justify-center shrink-0 z-[1] mq750:text-24xl mq450:text-13xl">
-            PLAY
-          </i>
-        </div>
-      </section>
-      <section className="self-stretch flex flex-row items-start justify-start py-0 pr-7 pl-2.5 box-border max-w-full text-left text-13xl text-white font-inter">
-        <div className="flex-1 flex flex-col items-start justify-start gap-[45px_0px] max-w-full mq675:gap-[45px_0px]">
-          <div className="w-[1312px] flex flex-row flex-wrap items-start justify-start gap-[0px_43px] max-w-full mq675:gap-[0px_43px]">
-            <div className="flex-1 flex flex-col items-start justify-start pt-0.5 px-0 pb-0 box-border min-w-[621px] max-w-full mq750:min-w-full">
-              <i className="self-stretch h-[342px] relative leading-[121.88%] inline-block font-extrabold shrink-0 mq750:text-7xl mq750:leading-[31px] mq450:text-lgi mq450:leading-[23px]">
-                <p className="[margin-block-start:0] [margin-block-end:42px] whitespace-pre-wrap">
-                  {" "}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Aenean laoreet, sapien nec placerat ultricies, nisl nisl
-                  faucibus quam, nec mollis neque turpis at ipsum. Vivamus quis
-                  tellus consectetur, congue quam quis, aliquet massa. Integer
-                  posuere a arcu sit amet eleifend. Aliquam fermentum nisi nec
-                  nisi semper gravida sed in ante. Suspendisse ut molestie nibh.
-                  Proin eget est pulvinar, tincidunt arcu vel, dapibus lectus.
-                  Nulla consectetur libero elit, et posuere dui porttitor sed.
-                  Nulla sagittis finibus vestibulum.
-                </p>
-              </i>
+    <div className="bg-gradient-to-t from-amber-600 to-slate-100  h-screen w-screen ">
+      <div>
+        <section className=" flex flex-row items-center justify-center  gap-[45vh] pt-10">
+          <button
+            onClick={onButtonContainerClick}
+            className=" cursor-pointer border-solid border-2 rounded-xl p-5 focus:ring-4 focus:outline-none focus:ring-white font-bold  text-7xl px-6 py-4  transition ease-in-out  transform hover:-translate-y-1 hover:scale-110 m-4"
+          >
+            &lt;&lt; Home
+          </button>
+
+          <div className="text-41xl flex items-center justify-center text-white font-mono font-bold">
+            <div className="mt-5 flex border-solid border-2 rounded-xl p-5 bg-gradient-to-r  from-orange-700 to-yellow-500 shadow-xl ">
+              <div className="text-wrap"> THE RULES</div>
             </div>
-            <img
-              className="h-[324px] w-[313px] relative object-cover"
-              loading="eager"
-              alt=""
-              src="/image-1@2x.png"
-            />
           </div>
-          <footer className="self-stretch h-[323px] relative text-13xl leading-[121.88%] inline-block italic font-extrabold font-inter text-white whitespace-pre-wrap text-left shrink-0 mq750:text-7xl mq750:leading-[31px] mq450:text-lgi mq450:leading-[23px]">
-            {" "}
-            Donec at risus eget odio pellentesque interdum. Curabitur gravida
-            pharetra odio, nec volutpat urna pulvinar blandit. Curabitur porta
-            quis diam vel eleifend. Sed a pharetra est, quis mattis nisl.
-            Pellentesque tempus condimentum ex, sed dapibus purus faucibus nec.
-            Maecenas id varius augue. Aliquam erat volutpat. Maecenas pulvinar
-            ligula sed ipsum elementum, in sagittis ex suscipit. Quisque sed
-            lacinia ante. Pellentesque accumsan, erat at iaculis aliquet, nibh
-            ex gravida leo, ut congue magna risus ac tortor. Aliquam venenatis
-            consectetur quam eu imperdiet. Maecenas scelerisque ex eu tortor
-            hendrerit congue. Quisque pharetra ante risus, quis vehicula quam
-            cursus at.
-          </footer>
+          <button
+            onClick={onButtonContainer1Click}
+            className="cursor-pointer border-solid border-2 rounded-xl p-5 focus:ring-4 focus:outline-none focus:ring-white font-bold  text-7xl px-6 py-4  transition ease-in-out  transform hover:-translate-y-1 hover:scale-110 m-4"
+          >
+            PLAY &gt;&gt;
+          </button>
+        </section>
+        <div className="pt-10">
+          <section className="self-stretch flex flex-row items-start justify-start ">
+            <div>
+              <div className="flex flex-row flex-wrap items-start justify-start mr-10">
+                <div className="flex-1 px-10 flex-col items-start justify-start text-black ">
+                  <div className="border-2 border-solid p-8 rounded-lg bg-zinc-300 bg-opacity-40">
+                    <h2>หลักการในการเล่นเกมนี้</h2>
+                    <p>
+                      1 เกมนี้เป็นเกมที่มีเนื้อหาในแนว
+                      แย่งการปกครองและช่วงชิงเงินและพื้นที่
+                    </p>
+                    <p>
+                      2 เกมนี้มีหลักการในการเล่น ด้วย
+                      การวางแผนด้วยการโยนคำสั่งมาทั้งก้อน (ConstructionPlan)
+                      ที่เป็นเหมือนการวางแผนในการเล่นแต่ละเทรินๆ{" "}
+                    </p>
+                    <p>
+                      3 สามารถกำหนดขนาดของแมพและรายละเอียดสำคัญอื่นๆได้ด้วย file
+                      config
+                    </p>
+                    <p>
+                      4 แมพที่เห็นในฝั่งขวา ในแต่ละ Cell ที่เป็น หกเหลี่ยมเล็กๆ
+                      (Region) ประกอบด้วย ข้อมูล 4 อย่าง คือ budget
+                      ผู้ที่มาลงทุน เจ้าของ และสีที่แสดงถึงเจ้าของนั้น
+                    </p>
+
+                    <p>
+                      6 การจบเกม : คือผู้ใดมีเงินมากที่สุดหลังจากหมดเวลา หรือ
+                      ผู้ที่เหลือรอดคนสุดท้าย
+                      โดยสิ่งที่จะบอกว่าเราโดนคัดออกจากแผนที่คือการที่
+                      เมืองหลวงของเราแตก
+                    </p>
+                  </div>
+                </div>
+                <div className="grayscale">
+                  <HexGrid rows={5} columns={10} />
+                </div>
+              </div>
+              <footer className="mt-10 text-white mx-[70px]">
+                &nbsp;&nbsp;&nbsp;คำเตือน :
+                เกมนี้เหมาะสำหรับผู้ที่สนใจในการเรียนหรือสนใจ ทางด้าน computer
+                science เนื่องด้วยวิธีในการเล่นเกมจะยุ่งยากออกจากไปจากเกมทั่วไป
+                เพราะได้ทำหลักการสอนต่างๆในเรื่องของ OOP,Webfrontend,Websocket,A
+                bit compliler(parser)ในห้องมาใช้ในการทำเกม
+              </footer>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

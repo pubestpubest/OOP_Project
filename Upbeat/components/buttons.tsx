@@ -6,160 +6,49 @@ const Buttons: NextPage = () => {
   const router = useRouter();
 
   const onPLAYContainerClick = useCallback(() => {
-    router.push("/gameplay");
+    router.push("/login"); // Assuming gameplay page is at "/gameplay"
   }, [router]);
 
   const onRULESContainerClick = useCallback(() => {
-    router.push("/the-rule");
+    router.push("/the-rule"); // Assuming rules page is at "/the-rule"
   }, [router]);
 
   const onConfigContainerClick = useCallback(() => {
-    router.push("/config");
+    router.push("/config"); // Assuming config page is at "/config"
   }, [router]);
 
   return (
     <div
       style={{
-        display: "block",
-        marginLeft: "auto",
-        marginRight: "auto",
-        width: "40%",
-        marginTop: "-600px",
-        marginBottom: "50px ", // ระยะห่างด้านล่าง
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center", // Center content vertically
       }}
     >
-      {/* play*/}
-      <div
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          cursor: "pointer",
-          width: "300px",
-          height: "100px",
-          display: "flex",
-          justifyContent: "center", //แนวนอน
-          alignItems: "center", // แนวตั้ง
-          border: "5px solid green", // Optional: add a border for visualization
-          borderRadius: 50,
-          marginTop: "20px",
-          marginBottom: "20px",
-          boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // เงาขอบ
-          padding: "5px", // กำหนดการเว้นระยะห่างภายใน div
-          transition: "width 0.3s, height 0.3s", // Add transition for smooth effect
-        }}
+      {/* Play button */}
+      <button
+        className="cursor-pointer text-white text-shadow-lg bg-gradient-to-r from-green-500 to-teal-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-teal-800 font-bold rounded-md text-7xl px-12 py-5 shadow-md transition ease-in-out duration-300 transform hover:-translate-y-1 hover:scale-110 m-4"
         onClick={onPLAYContainerClick}
-        onMouseEnter={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "275px";
-          target.style.height = "90px";
-        }}
-        onMouseLeave={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "300px";
-          target.style.height = "100px";
-        }}
       >
-        <div
-          style={{
-            fontSize: "50px", // Font size 50 pixels
-            color: "white",
-            fontFamily: "monospace",
-            textShadow: "0 0 10px rgba(255, 255, 255, 0.8)",
-            WebkitTextStroke: "1px rgba(255, 255, 255, 0.2)",
-            filter: "drop-shadow(2px 2px 4px rgba(0, 255, 0, 0.8))", // Adding a drop shadow with green color
-          }}
-        >
-          PLAY
-        </div>
-      </div>
-      {/* rules*/}
-      <div
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          cursor: "pointer",
-          width: "300px",
-          height: "100px",
-          display: "flex",
-          justifyContent: "center", //แนวนอน
-          alignItems: "center", // แนวตั้ง
-          border: "5px solid orange", // Optional: add a border for visualization
-          borderRadius: 50,
-          marginTop: "20px",
-          marginBottom: "20px",
-          boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // เงาขอบ
-          padding: "5px", // กำหนดการเว้นระยะห่างภายใน div
-          transition: "width 0.3s, height 0.3s", // Add transition for smooth effect
-        }}
+        PLAY
+      </button>
+
+      {/* Rules button */}
+      <button
+        className="cursor-pointer text-white text-shadow-lg bg-gradient-to-r from-orange-500 to-yellow-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-yellow-800 font-bold rounded-md text-7xl px-12 py-5 shadow-md transition ease-in-out duration-300 transform hover:-translate-y-1 hover:scale-110 m-4" // Add margin-top for spacing
         onClick={onRULESContainerClick}
-        onMouseEnter={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "275px";
-          target.style.height = "90px";
-        }}
-        onMouseLeave={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "300px";
-          target.style.height = "100px";
-        }}
       >
-        <div
-          style={{
-            fontSize: "50px", // Font size 50 pixels
-            color: "white", // Orange color for the text "RULES"
-            fontFamily: "monospace",
-            textShadow: "0 0 10px rgba(255, 165, 0, 0.8)", // Orange shadow for glow effect
-            WebkitTextStroke: "3px rgba(255, 165, 0, 0.2)", // Orange stroke for glow effect
-            filter: "drop-shadow(3px 2px 4px rgba(255, 165, 0, 0.8))", // Orange drop shadow for glow effect
-          }}
-        >
-          RULES
-        </div>
-      </div>
-      {/* config*/}
-      <div
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          cursor: "pointer",
-          width: "300px",
-          height: "100px",
-          display: "flex",
-          justifyContent: "center", //แนวนอน
-          alignItems: "center", // แนวตั้ง
-          border: "5px solid red", // Optional: add a border for visualization
-          borderRadius: 50,
-          marginTop: "20px",
-          marginBottom: "20px",
-          boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // เงาขอบ
-          padding: "5px", // กำหนดการเว้นระยะห่างภายใน div
-          transition: "width 0.3s, height 0.3s", // Add transition for smooth effect
-        }}
+        RULES
+      </button>
+
+      {/* Config button */}
+      <button
+        className=" cursor-pointer text-white text-shadow-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-800 font-bold rounded-md text-7xl px-12 py-5 shadow-md transition ease-in-out duration-300 transform hover:-translate-y-1 hover:scale-110 m-4" // Add margin-top for spacing
         onClick={onConfigContainerClick}
-        onMouseEnter={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "275px";
-          target.style.height = "90px";
-        }}
-        onMouseLeave={(e) => {
-          const target = e.target as HTMLElement;
-          target.style.width = "300px";
-          target.style.height = "100px";
-        }}
       >
-        <div
-          style={{
-            fontSize: "50px", // Font size 50 pixels
-            color: "white", // Red color for the text
-            fontFamily: "monospace",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Initial text shadow for glow effect
-            WebkitTextStroke: "1px rgba(255, 0, 0, 0.2)", // Red stroke for glow effect
-            filter: "drop-shadow(2px 2px 4px red)", // Red drop shadow for glow effect
-          }}
-        >
-          CONFIG
-        </div>
-      </div>
+        CONFIG
+      </button>
     </div>
   );
 };

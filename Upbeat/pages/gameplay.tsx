@@ -1,29 +1,23 @@
 import type { NextPage } from "next";
 import FrameA from "../components/frame-a";
-import TableMap from "./tablemap";
+import HexGrid from "../components/HexGird";
+import { PlanBlock } from "../components/planBlock";
 
 const Gameplay: NextPage = () => {
+  const rowsize = 20;
+  const colsize = 20;
   return (
-    <div className="w-full relative bg-gray overflow-hidden flex flex-row items-start justify-start pt-[26px] pb-[33px] pr-[38px] pl-[23px] box-border gap-[0px_24px] tracking-[normal] mq1125:flex-wrap">
-      <FrameA />
-      <section className="flex-1 flex flex-col items-start justify-start pt-1 px-0 pb-0 box-border min-w-[588px] max-w-full mq750:min-w-full">
-        {/* <img
-          className="self-stretch h-[942px] relative max-w-full overflow-hidden shrink-0"
-          loading="eager"
-          alt=""
-          src="/frame-1.svg"
-        /> */}
-        <div
-          style={{
-            padding: 50,
-            border: " 1px solid black ",
-            paddingRight: 80,
-            paddingBottom: 30,
-          }}
-        >
-          <TableMap r={8} c={12} />
+    <div className="h-screen relative bg-green-100 overflow-hidden flex flex-row items-start justify-start  ">
+      <div className="ml-5 mt-5 ">
+        <FrameA />
+      </div>
+      <div className="flex-1 flex flex-col items-start justify-start  box-border min-w-[588px] ">
+        <div className="mt-8  mb-10 m">
+          <div className="max-h-[85vh] max-w-[60vw] overflow-scroll p-8 relative  mb-5 ml-5">
+            <HexGrid rows={rowsize} columns={colsize} />
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

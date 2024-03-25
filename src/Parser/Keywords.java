@@ -36,6 +36,7 @@ public class Keywords {
         word.addAll(getAttack());
         return word;
     }
+
     public static Set<String> getMove(){
         Set<String> word = new HashSet<>();
         word.add("move");
@@ -83,5 +84,17 @@ public class Keywords {
         word.add("nearby");
         return word;
     }
-
+    public static Set<String> getSpecialVar(){
+        Set<String> word = new HashSet<>();
+        word.add("rows");
+        word.add("cols");
+        word.add("currow");
+        word.add("curcol");
+        word.add("budget");
+        word.add("deposit");
+        word.add("int");
+        word.add("maxdeposit");
+        word.add("random");
+        return word;
+    }
 }

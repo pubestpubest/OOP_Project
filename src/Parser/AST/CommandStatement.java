@@ -11,6 +11,7 @@ public record CommandStatement(String command) implements Statement {
                 break;
             case "relocate":
                 player.relocate();
+                player.done();
                 break;
             default:
                 throw new EvaluationError("Unknown command: " + command);

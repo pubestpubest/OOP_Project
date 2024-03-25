@@ -19,6 +19,7 @@ public class PlayerContext implements Interfaces.Player {
     private Plan plan;
     private int exe = 0;
     private boolean isDone = false;
+    public boolean endgame = false;
 
 
 
@@ -277,7 +278,7 @@ public class PlayerContext implements Interfaces.Player {
 //                        System.out.println(i+" "+j);
                         //delete all the owner in the regions that belong to deleted player
                         if (regions[i][j].getOwner().equals(regions[currow + added_row][curcol + added_col].getOwner())) {
-                            System.out.println(regions[currow + added_row][curcol + added_col].getOwner() +"row:"+i+ "col:" +j);
+                             //System.out.println(regions[currow + added_row][curcol + added_col].getOwner() +"row:"+i+ "col:" +j);
                             regions[i][j].setOwner("-");
                         }
                         //delete the player that stand
@@ -288,6 +289,9 @@ public class PlayerContext implements Interfaces.Player {
                     }
                 }
                 regions[currow + added_row][curcol + added_col].setCapital(false);
+                System.out.println("game end!!!!!!!!!!!!!!!!");
+                endgame = true;
+
             }
             regions[currow + added_row][curcol + added_col].setOwner("-");
         }

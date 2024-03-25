@@ -48,46 +48,73 @@ public class Main {
         int currentPlayer =  0;
 
         int i = 1;
-        while(true){
+        while(!players[currentPlayer].endgame){
             //calculate interest of player1
 
                 playerPlay(scanner,players[currentPlayer],i);
                 System.out.println("Current board:");
                 game.printBoard();
 
-            System.out.print("End turn? (y/n): ");
-            String answer1 = scanner.nextLine().toLowerCase();
-            if (answer1.equals("y")) {
+//            System.out.print("End turn? (y/n): ");
+//            String answer1 = scanner.nextLine().toLowerCase();
+//            if (answer1.equals("y")) {
 
                 currentPlayer = (currentPlayer + 1) % 2;
-                System.out.println("\nTurn switching to " + players[currentPlayer] + ".");
+                System.out.println("\nTurn switching to " + players[currentPlayer].getName() + ".");
                 System.out.println("Current board after calculate interest:");
                 game.printBoard();
 
-            } else if (!answer1.equals("n")) {
-                System.out.println("Invalid input. Please enter 'y' or 'n'.");
-            }
+//            } else if (!answer1.equals("n")) {
+//                System.out.println("Invalid input. Please enter 'y' or 'n'.");
+//            }
             i++;
        }
+
     }
 
     public static void playerPlay(Scanner scanner, Player player,int i){
-        System.out.println("Player "+player.getName()+"'s turn. Enter action");
-
+        System.out.println("Player "+player.getName()+"'s turn.");
         System.out.println("current budget:" +  player.getBudget());
 
-        String action2 = scanner.nextLine();
 
-        Tokenizer tokenizer2 = new ConstructionPlanTokenizer(action2);
+
+//        String action2 = scanner.nextLine();
+
+//        Tokenizer tokenizer2 = new ConstructionPlanTokenizer(action2);
         try{
 //            System.out.println(tokenizer2.getTokens());
-            Parser parser = new ASTParser();
-            Plan plan = parser.parse(tokenizer2.getTokens());
-            player.setPlan(plan);
-//            System.out.println(plan.getStatements());
+            if(i<=2){
+                String action2 = scanner.nextLine();
+                Tokenizer tokenizer2 = new ConstructionPlanTokenizer(action2);
+                Parser parser = new ASTParser();
+                Plan plan = parser.parse(tokenizer2.getTokens());
+                player.setPlan(plan);
+                System.out.println("Planned");
+            }else if(i>=3){
+                System.out.println("Do you want to change plan ? (y/n)");
+                String answer1 = scanner.nextLine().toLowerCase();
+                if(answer1.equals("y")){
+                    String action2 = scanner.nextLine();
+                    Tokenizer tokenizer2 = new ConstructionPlanTokenizer(action2);
+                    Parser parser = new ASTParser();
+                    Plan plan = parser.parse(tokenizer2.getTokens());
+                    player.setPlan(plan);
+                    System.out.println("Planned");
+                }
+            }
+//            String action2 = scanner.nextLine();
+//            Tokenizer tokenizer2 = new ConstructionPlanTokenizer(action2);
+//            Parser parser = new ASTParser();
+//            Plan plan = parser.parse(tokenizer2.getTokens());
+//            player.setPlan(plan);
+//            System.out.println("Planned");
+            System.out.println("Execution plan. . .");
             player.executePlan();
+            Thread.sleep(1000);
         }catch(SyntaxError | EvaluationError e){
             System.out.println(e);
+        } catch(InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
     }

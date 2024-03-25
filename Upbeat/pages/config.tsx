@@ -11,73 +11,68 @@ const Config: NextPage = () => {
   }, [router]);
 
   const onButtonContainer1Click = useCallback(() => {
-    router.push("/gameplay");
+    router.push("/login");
   }, [router]);
 
   return (
-    <div className="w-full relative bg-lightcoral overflow-hidden flex flex-col items-center justify-start pt-0 pb-[15px] pr-[30px] pl-7 box-border gap-[20px_0px] tracking-[normal] text-center text-109xl text-white font-inter">
-      <h1 className="!m-[0] w-full h-[154px] absolute top-[108px] left-[0px] text-inherit flex italic font-extrabold font-inherit items-center justify-center mq1050:text-32xl mq450:text-13xl">
-        CONFIG
-      </h1>
-      <header className="w-[1382px] h-[212px] overflow-x-auto shrink-0 flex flex-row items-start justify-between gap-[20px] max-w-full text-center text-34xl-3 text-white font-inter">
-        <div
-          className="self-stretch w-[277px] overflow-hidden shrink-0 flex flex-col items-start justify-start py-[66px] px-[17px] box-border relative cursor-pointer z-[1]"
-          onClick={onButtonContainerClick}
-        >
-          <img
-            className="w-full h-[106px] absolute !m-[0] top-[calc(50%_-_53px)] right-[0px] left-[0px] max-w-full overflow-hidden shrink-0"
-            loading="eager"
-            alt=""
-            src="/vector1.svg"
-          />
-          <i className="w-[224.7px] h-[67.9px] relative flex font-bold items-center justify-center shrink-0 z-[1]">
-            HOME
-          </i>
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    <div className="bg-gradient-to-t from-sky-700 to-slate-100 flex flex-col items-center justify-center  ">
+      <div className="flex flex-col items-center justify-center">
+        <div className="flex-col items-center justify-center">
+          <section className=" flex flex-row items-center justify-center  gap-[45vh] pt-10">
+            <button
+              onClick={onButtonContainerClick}
+              className=" cursor-pointer border-solid border-2 rounded-xl p-5 focus:ring-4 focus:outline-none focus:ring-white font-bold  text-7xl px-6 py-4  transition ease-in-out  transform hover:-translate-y-1 hover:scale-110 m-4"
+            >
+              &lt;&lt; Home
+            </button>
+
+            <div className="text-41xl flex items-center justify-center text-white font-mono font-bold">
+              <div className="mt-5 flex border-solid border-2 rounded-xl p-5 bg-gradient-to-r from-blue-700 to-sky-400 shadow-xl ">
+                <div className="text-wrap"> Config Game</div>
+              </div>
+            </div>
+            <button
+              onClick={onButtonContainer1Click}
+              className="cursor-pointer border-solid border-2 rounded-xl p-5 focus:ring-4 focus:outline-none focus:ring-white font-bold  text-7xl px-6 py-4  transition ease-in-out  transform hover:-translate-y-1 hover:scale-110 m-4"
+            >
+              PLAY &gt;&gt;
+            </button>
+          </section>
         </div>
-        <div
-          className="self-stretch w-[277px] overflow-hidden shrink-0 flex flex-col items-start justify-start py-[66px] px-[17px] box-border relative cursor-pointer z-[1]"
-          onClick={onButtonContainer1Click}
-        >
-          <img
-            className="w-full h-[106px] absolute !m-[0] top-[calc(50%_-_53px)] right-[0px] left-[0px] max-w-full overflow-hidden shrink-0"
-            loading="eager"
-            alt=""
-            src="/vector-11.svg"
-          />
-          <i className="w-[224.7px] h-[67.9px] relative flex font-bold items-center justify-center shrink-0 z-[1]">
-            PLAY
-          </i>
+        <div className="p-5 flex flex-col items-center justify-center ">
+          <div className="p-2 ">
+            <ContainerForText rectangles="rows" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="columns" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="startTimer" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="startBudget" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="cityCenterDeposit" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="revisionsTime" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="revisioncost" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="maximumDepositPerRegion" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="interestRatePercentage" />
+          </div>
+          <div className="p-2 ">
+            <ContainerForText rectangles="numberOfPlayers" />
+          </div>
         </div>
-      </header>
-      <main className="self-stretch overflow-hidden flex flex-col items-start justify-start pt-[18px] px-0 pb-0 box-border gap-[13px_0px] max-w-full z-[1]">
-        <ContainerForText rectangles="Rows" />
-        <ContainerForText rectangles="Columns" propMarginBottom="unset" />
-        <ContainerForText rectangles="Start Timer" propMarginBottom="unset" />
-        <ContainerForText rectangles="Start Budget" propMarginBottom="unset" />
-        <ContainerForText
-          rectangles="City Center Deposit"
-          propMarginBottom="unset"
-        />
-        <section className="self-stretch overflow-hidden flex flex-row flex-wrap items-start justify-start pt-0 pb-[22px] pr-12 pl-[86px] box-border gap-[0px_23px] max-w-full text-left text-45xl text-white font-inter lg:pl-[43px] lg:pr-6 lg:box-border mq750:pl-[21px] mq750:box-border">
-          <i className="h-[114px] flex-1 relative flex font-extrabold items-center min-w-[370px] max-w-full mq750:min-w-full mq1050:text-32xl mq450:text-19xl">
-            revisions Time
-          </i>
-          <div className="h-[113px] w-[199px] relative rounded-22xl bg-gainsboro box-border border-[9px] border-solid border-black" />
-        </section>
-        <ContainerForText rectangles="revision cost" propMarginBottom="unset" />
-        <ContainerForText
-          rectangles="maximum deposit per region"
-          propMarginBottom="unset"
-        />
-        <ContainerForText
-          rectangles="interest rate percentage"
-          propMarginBottom="unset"
-        />
-        <ContainerForText
-          rectangles="Number of players"
-          propMarginBottom="-1px"
-        />
-      </main>
+      </div>
     </div>
   );
 };

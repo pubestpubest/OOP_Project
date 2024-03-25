@@ -51,7 +51,7 @@ const InstanceF: NextPage<InstanceFType> = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center justify-start gap-[0px_11px] text-maroon mq450:flex-wrap">
+        <div className="flex flex-row items-center justify-start gap-[0px_11px] text-white mq450:flex-wrap">
           <img
             className="h-[67.9px] w-[67.9px] relative"
             loading="eager"
